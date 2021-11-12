@@ -1,3 +1,1 @@
-django
-gunicorn
-django-heroku
+Flask==0.7.2
