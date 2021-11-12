@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<!-- Set info for accessibility -->
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<meta
+			name="description"
+			content="Homepage for the Prism concert series at George Jenkins"
+		/>
+
+		<title>{{ title }}</title>
+
+		<!-- Load main styles -->
+		<link rel="stylesheet" href="static/modern_style.css" />
+
+		<!-- Favicon -->
+		<link rel="shortcut icon" href="assets/prism.ico" />
+		<link rel="icon" type="image/jpg" href="static/prism.jpg" />
+
+		<!-- Load an icon library -->
+		<link
+			rel="stylesheet"
+			href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+		/>
+	</head>
+
+	<body>
+		<header>
+			<div class="info">
+				<div class="title fade">
+					<h1>Prism<br />Concerts</h1>
+				</div>
+				<div class="slideshow">
+					<h2 class="slide fade">A Creative Showcase</h2>
+					<h2 class="slide fade">A Collection of Art</h2>
+					<h2 class="slide fade">A Multitude of Talent</h2>
+				</div>
+				<h3 class="morebutton fade">
+					<a href="#more">Learn More <i class="jump">↴</i></a>
+				</h3>
+			</div>
+		</header>
+		<nav class="reverse">
+			<div class="holder">
+				<div class="nav-center">
+					<a href="#home">PRISM CONCERTS</a>
+				</div>
+
+				<a href="#about">About</a>
+				<a href="#schedule">Schedule</a>
+
+				<div class="nav-right">
+					<a href="#register">Register</a>
+					<a href="#login">Login</a>
+				</div>
+
+				<a href="javascript:void(0);" class="icon" onclick="responsiveNavbar()">
+					<i class="fa fa-bars"></i>
+				</a>
+			</div>
+		</nav>
+		<main id="more">
+	   {% include file %}
+		</main>
+		<footer>
+			<form>
+				<label for="theme">Theme:</label>
+
+				<select name="theme" id="theme" onchange="setTheme(this.value)">
+					<option value="theme-dark">Dark</option>
+					<option value="theme-light">Light</option>
+					<option value="theme-contrast">High Contrast</option>
+				</select>
+			</form>
+			<p>Made by Tyson McLaws and Pierre Boisvert</p>
+			<p>Sources from ADT at George Jenkins</p>
+		</footer>
+
+		<script src="static/modern_script.js"></script>
+	</body>
+</html>
