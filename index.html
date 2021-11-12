@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<!-- Set info for accessibility -->
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<meta
+			name="description"
+			content="Homepage for the Prism concert series at George Jenkins"
+		/>
+
+		<title>Prism Concerts</title>
+
+		<!-- Load main styles -->
+		<link rel="stylesheet" href="assets/modern_style.css" />
+
+		<!-- Favicon -->
+		<link rel="shortcut icon" href="assets/prism.ico" />
+		<link rel="icon" type="image/jpg" href="assets/prism.jpg" />
+
+		<!-- Load an icon library -->
+		<link
+			rel="stylesheet"
+			href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+		/>
+	</head>
+
+	<body>
+		<header>
+			<div class="info">
+				<div class="title fade">
+					<h1>Prism<br />Concerts</h1>
+				</div>
+				<div class="slideshow">
+					<h2 class="slide fade">A Creative Showcase</h2>
+					<h2 class="slide fade">A Collection of Art</h2>
+					<h2 class="slide fade">A Multitude of Talent</h2>
+				</div>
+				<h3 class="morebutton fade">
+					<a href="#more">Learn More <i class="jump">↴</i></a>
+				</h3>
+			</div>
+		</header>
+		<nav class="reverse">
+			<div class="holder">
+				<div class="nav-center">
+					<a href="#home">PRISM CONCERTS</a>
+				</div>
+
+				<a href="#about">About</a>
+				<a href="#schedule">Schedule</a>
+
+				<div class="nav-right">
+					<a href="#register">Register</a>
+					<a href="#login">Login</a>
+				</div>
+
+				<a href="javascript:void(0);" class="icon" onclick="responsiveNavbar()">
+					<i class="fa fa-bars"></i>
+				</a>
+			</div>
+		</nav>
+		<main id="more">
+			<div class="upcoming">
+				<h2>Upcoming</h2>
+				<div class="row">
+					<div class="card-outside">
+						<div class="card">
+							<img
+								src="assets/orchestra.jpg"
+								alt="Avatar"
+								style="width: 100%"
+							/>
+							<div class="container">
+								<h4><b>Oregon Orchestra</b></h4>
+								<p>Featuring Orange Orangutan<br />on Jan 3 & 4 2065</p>
+							</div>
+						</div>
+					</div>
+					<div class="card-outside">
+						<div class="card">
+							<img
+								src="assets/orchestra.jpg"
+								alt="Avatar"
+								style="width: 100%"
+							/>
+							<div class="container">
+								<h4><b>Oregon Orchestra</b></h4>
+								<p>Featuring Orange Orangutan<br />on Jan 3 & 4 2065</p>
+							</div>
+						</div>
+					</div>
+					<div class="card-outside">
+						<div class="card">
+							<img
+								src="assets/orchestra.jpg"
+								alt="Avatar"
+								style="width: 100%"
+							/>
+							<div class="container">
+								<h4><b>Oregon Orchestra</b></h4>
+								<p>Featuring Orange Orangutan<br />on Jan 3 & 4 2065</p>
+							</div>
+						</div>
+					</div>
+					<div class="card-outside">
+						<div class="card">
+							<img
+								src="assets/orchestra.jpg"
+								alt="Avatar"
+								style="width: 100%"
+							/>
+							<div class="container">
+								<h4><b>Oregon Orchestra</b></h4>
+								<p>Featuring Orange Orangutan<br />on Jan 3 & 4 2065</p>
+							</div>
+						</div>
+					</div>
+					<div class="card-outside">
+						<div class="card">
+							<img
+								src="assets/orchestra.jpg"
+								alt="Avatar"
+								style="width: 100%"
+							/>
+							<div class="container">
+								<h4><b>Oregon Orchestra</b></h4>
+								<p>Featuring Orange Orangutan<br />on Jan 3 & 4 2065</p>
+							</div>
+						</div>
+					</div>
+					<div class="card-outside">
+						<div class="card">
+							<img
+								src="assets/orchestra.jpg"
+								alt="Avatar"
+								style="width: 100%"
+							/>
+							<div class="container">
+								<h4><b>Oregon Orchestra</b></h4>
+								<p>Featuring Orange Orangutan<br />on Jan 3 & 4 2065</p>
+							</div>
+						</div>
+					</div>
+					<div class="card-outside">
+						<div class="card">
+							<img
+								src="assets/orchestra.jpg"
+								alt="Avatar"
+								style="width: 100%"
+							/>
+							<div class="container">
+								<h4><b>Oregon Orchestra</b></h4>
+								<p>Featuring Orange Orangutan<br />on Jan 3 & 4 2065</p>
+							</div>
+						</div>
+					</div>
+					<div class="card-outside">
+						<div class="card">
+							<img
+								src="assets/orchestra.jpg"
+								alt="Avatar"
+								style="width: 100%"
+							/>
+							<div class="container">
+								<h4><b>Oregon Orchestra</b></h4>
+								<p>Featuring Orange Orangutan<br />on Jan 3 & 4 2065</p>
+							</div>
+						</div>
+					</div>
+					<div class="more">
+						<a href="#more">More</a>
+					</div>
+				</div>
+			</div>
+			<div class="slant">
+				<h2>About</h2>
+				<p>
+					Donec non commodo enim, nec condimentum nulla. Fusce nulla dui,
+					commodo non metus nec, facilisis blandit lectus.
+				</p>
+			</div>
+			<div>
+				<form action="action_page.php" onsubmit="return validateForm()">
+					<div>
+						<h2>Register</h2>
+						<p>Please fill in this form to create an account.</p>
+						<hr />
+						<div class="not_signed_in">
+							<label for="email"><b>Email</b></label>
+							<input
+								type="text"
+								placeholder="Enter Email"
+								name="email"
+								required
+							/>
+
+							<label for="password"><b>Password</b></label>
+							<input
+								type="password"
+								placeholder="Enter Password"
+								name="password"
+								required
+							/>
+						</div>
+
+						<label for="event"><b>Event</b></label>
+						<input
+							list="event"
+							name="event"
+							placeholder="Select Event"
+							required
+						/>
+						<datalist id="event">
+							<option value="Oregon Orchestra">
+								Featuring Orange Orangutan on Jan 3 & 4 2065
+							</option>
+							<option value="Panama Philharmonic">
+								Featuring Pasley Potato on March 32 & 34 1934
+							</option>
+							<option value="Oregon Orchestra">
+								Featuring Orange Orangutan on Jan 5 & 6 2066
+							</option>
+							<option value="Panama Philharmonic">
+								Featuring Pasley Potato on March 32 & 34 1934
+							</option>
+							<option value="Oregon Orchestra">
+								Featuring Orange Orangutan on May 9 20101
+							</option>
+							<option value="Panama Philharmonic">
+								Featuring Pasley Potato on July 3 1812
+							</option>
+						</datalist>
+
+						<hr />
+
+						<p>
+							By creating a slot you agree to our
+							<a href="#">Terms & Privacy</a>.
+						</p>
+						<button type="submit" class="registerbtn">Register</button>
+					</div>
+
+					<div>
+						<p>Already have a slot? <a href="#">Check your dashboard</a>.</p>
+					</div>
+				</form>
+			</div>
+		</main>
+		<footer>
+			<form>
+				<label for="theme">Theme:</label>
+
+				<select name="theme" id="theme" onchange="setTheme(this.value)">
+					<option value="theme-dark">Dark</option>
+					<option value="theme-light">Light</option>
+					<option value="theme-contrast">High Contrast</option>
+				</select>
+			</form>
+			<p>Made by Tyson McLaws and Pierre Boisvert</p>
+			<p>Sources from ADT at George Jenkins</p>
+		</footer>
+
+		<script src="assets/modern_script.js"></script>
+	</body>
+</html>
