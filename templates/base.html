@@ -10,10 +10,13 @@
 			content="Homepage for the Prism concert series at George Jenkins"
 		/>
 
-		<title>{{ title }}</title>
+		<title>{{ title }} | Prism Concerts</title>
 
 		<!-- Load main styles -->
-		<link rel="stylesheet" href="static/modern_style.css" />
+		<link rel="stylesheet" href="static/base.css" />
+		{% if os.path.exists('static/' + title + '.css') %}
+		<link rel="stylesheet" href="static/{{ title }}.css" />
+		{% endif %}
 
 		<!-- Favicon -->
 		<link rel="shortcut icon" href="assets/prism.ico" />
@@ -27,7 +30,8 @@
 	</head>
 
 	<body>
-		<header>
+	 {% if (request.path == "/") or ("/index" in  request.path) %}
+	 <header>
 			<div class="info">
 				<div class="title fade">
 					<h1>Prism<br />Concerts</h1>
@@ -41,7 +45,8 @@
 					<a href="#more">Learn More <i class="jump">↴</i></a>
 				</h3>
 			</div>
-		</header>
+		</header> 
+		{% endif %}
 		<nav class="reverse">
 			<div class="holder">
 				<div class="nav-center">
@@ -61,9 +66,9 @@
 				</a>
 			</div>
 		</nav>
-		<main id="more">
+		
 	   {% include file %}
-		</main>
+
 		<footer>
 			<form>
 				<label for="theme">Theme:</label>
@@ -78,6 +83,9 @@
 			<p>Sources from ADT at George Jenkins</p>
 		</footer>
 
-		<script src="static/modern_script.js"></script>
+		<script src="static/base.js"></script>
+		{% if os.path.exists('static/' + title + '.js') %}
+		<script src="static/{{title}}.js"></script>
+		{% endif %}
 	</body>
 </html>

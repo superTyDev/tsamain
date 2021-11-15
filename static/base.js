@@ -1,24 +1,11 @@
-// Get the navbar
+ // Get the navbar
 var navbar = document.getElementsByTagName("nav")[0];
-var header = document.getElementsByTagName("header")[0];
 var theme = document.getElementById("theme");
 var sticky = navbar.offsetTop;
-
-var slideIndex = 1;
-var slideInterval = setInterval(nextSlide, 1000);
 
 window.onscroll = function () {
 	stickyNav();
 };
-window.addEventListener("resize", placeNav);
-window.onload = setTimeout(placeNav, 300);
-
-// Get the offset position of the navbar
-function placeNav(event) {
-	header.style.height =
-		(window.innerHeight - navbar.offsetHeight).toString() + "px";
-	sticky = window.innerHeight - navbar.offsetHeight - 5;
-}
 
 // Add the sticky class to the navbar when you reach its scroll position. Remove "sticky" when you leave the scroll position
 function stickyNav() {
@@ -48,30 +35,6 @@ function responsiveNavbar() {
 	}
 }
 
-showSlides(slideIndex);
-
-function nextSlide() {
-	showSlides((slideIndex += 1));
-}
-
-function showSlides(n) {
-	var i;
-	var slides = document.getElementsByClassName("slide");
-	if (n > slides.length) {
-		slideIndex = 1;
-	}
-	if (n < 1) {
-		slideIndex = slides.length;
-	}
-	for (i = 0; i < slides.length; i++) {
-		slides[i].style.display = "none";
-	}
-	slides[slideIndex - 1].style.display = "block";
-
-	clearInterval(slideInterval);
-	slideInterval = setInterval(nextSlide, 5000);
-}
-
 // function to set a given theme/color-scheme
 function setTheme(themeName) {
 	localStorage.setItem("theme", themeName);
@@ -87,7 +50,7 @@ function setTheme(themeName) {
 	} else {
 		setTheme("theme-dark");
 	}
-})();
+} )();
 
 function validateForm() {
 	var x = document.forms["myForm"]["fname"].value;
