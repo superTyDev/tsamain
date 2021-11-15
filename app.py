@@ -4,9 +4,9 @@ from flask import Flask, request, render_template
 
 app = Flask(__name__)
 
-@app.context_processor
-def handle_context():
-    return dict(os=os)
+# @app.context_processor
+# def handle_context():
+#     return dict(os=os)
 
 @app.route("/")
 @app.route("/<request>")

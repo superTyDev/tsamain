@@ -14,9 +14,7 @@
 
 		<!-- Load main styles -->
 		<link rel="stylesheet" href="static/base.css" />
-		{% if os.path.exists('static/' + title + '.css') %}
-		<link rel="stylesheet" href="static/{{ title }}.css" />
-		{% endif %}
+		<link rel="stylesheet" href="static/{{title}}.css" />
 
 		<!-- Favicon -->
 		<link rel="shortcut icon" href="assets/prism.ico" />
@@ -84,8 +82,6 @@
 		</footer>
 
 		<script src="static/base.js"></script>
-		{% if os.path.exists('static/' + title + '.js') %}
 		<script src="static/{{title}}.js"></script>
-		{% endif %}
 	</body>
 </html>
