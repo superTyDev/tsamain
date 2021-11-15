@@ -10,7 +10,7 @@
 			content="Homepage for the Prism concert series at George Jenkins"
 		/>
 
-		<title>{{ title.title()  }} | Prism Concerts</title>
+		<title>{{ title.title() }} | Prism Concerts</title>
 
 		<!-- Load main styles -->
 		<link rel="stylesheet" href="static/base.css" />
@@ -25,14 +25,14 @@
 			rel="stylesheet"
 			href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
 		/>
-	</head>
+	</head> 
 
 	<body>
 	 {% if (request.path == "/") or ("/index" in  request.path) %}
 	 <header>
 			<div class="info">
 				<div class="title fade">
-					<h1>Prism<br />Concerts<br />{{ title }}</h1>
+					<h1>Prism<br />Concerts</h1>
 				</div>
 				<div class="slideshow">
 					<h2 class="slide fade">A Creative Showcase</h2>
