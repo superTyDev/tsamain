@@ -13,7 +13,7 @@ app = Flask(__name__)
 def index(request="index.html"):
     if request.find(".") == -1:
         request += ".html"
-    return render_template('base.html', file=request, title=(request.split('.')[0].title()))
+    return render_template('base.html', file=request, title=(request.split('.')[0]))
 
 if __name__ == "__main__":
     port = int(os.environ.get("PORT", 5000))
