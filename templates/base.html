@@ -25,11 +25,11 @@
 			rel="stylesheet"
 			href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
 		/>
-	</head> 
+	</head>
 
 	<body>
-	 {% if (request.path == "/") or ("/index" in  request.path) %}
-	 <header>
+		{% if (request.path == "/") or ("/index" in request.path) %}
+		<header>
 			<div class="info">
 				<div class="title fade">
 					<h1>Prism<br />Concerts</h1>
@@ -43,7 +43,7 @@
 					<a href="#more">Learn More <i class="jump">↴</i></a>
 				</h3>
 			</div>
-		</header> 
+		</header>
 		{% endif %}
 		<nav class="reverse">
 			<div class="holder">
@@ -64,8 +64,8 @@
 				</a>
 			</div>
 		</nav>
-		
-	   {% include file %}
+
+		{% include file %}
 
 		<footer>
 			<form>
