@@ -173,6 +173,9 @@ nav.shrink a {
 }
 
 /* MAIN PAGE */
+main {
+	min-height: calc(100vh - 10rem);
+}
 main > div {
 	position: relative;
 	padding: 2rem 20%;
@@ -303,6 +306,7 @@ footer {
 	background-color: var(--color-nav);
 	color: var(--color-text-nav);
 	padding: 10px;
+	height: 10rem;
 }
 .theme-contrast footer {
 	border-top: 1px solid black;

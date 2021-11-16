@@ -1,25 +1,29 @@
-<h1>Sign In</h1>
-<form action="action_page.php" onsubmit="return validateForm()">
+<main>
 	<div>
-		<p>Sign in to view your events.</p>
-		<hr />
-		<div class="not_signed_in">
-			<label for="email"><b>Email</b></label>
-			<input type="text" placeholder="Enter Email" name="email" required />
+		<h1>Sign In</h1>
+		<form action="action_page.php" onsubmit="return validateForm()">
+			<div>
+				<p>Sign in to view your events.</p>
+				<hr />
+				<div class="not_signed_in">
+					<label for="email"><b>Email</b></label>
+					<input type="text" placeholder="Enter Email" name="email" required />
 
-			<label for="password"><b>Password</b></label>
-			<input
-				type="password"
-				placeholder="Enter Password"
-				name="password"
-				required
-			/>
-		</div>
+					<label for="password"><b>Password</b></label>
+					<input
+						type="password"
+						placeholder="Enter Password"
+						name="password"
+						required
+					/>
+				</div>
 
-		<button type="submit" class="registerbtn">Sign In</button>
+				<button type="submit" class="registerbtn">Sign In</button>
+			</div>
+
+			<div>
+				<p>Not registered?<a href="/register">Sign Up Here</a>.</p>
+			</div>
+		</form>
 	</div>
-
-	<div>
-		<p>Not registered?<a href="/register">Sign Up Here</a>.</p>
-	</div>
-</form>
+</main>
