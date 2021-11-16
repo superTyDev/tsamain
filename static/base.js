@@ -1,4 +1,4 @@
-// Get the navbar
+// DEFINITIONS AND ELEMENTS
 var navbar = document.getElementsByTagName("nav")[0];
 var theme = document.getElementById("theme");
 var sticky = navbar.offsetTop;
@@ -7,7 +7,7 @@ window.onscroll = function () {
 	stickyNav();
 };
 
-// Add the sticky class to the navbar when you reach its scroll position. Remove "sticky" when you leave the scroll position
+// NAVBAR
 function stickyNav() {
 	if (window.pageYOffset >= sticky) {
 		navbar.classList.add("sticky");
@@ -35,7 +35,7 @@ function responsiveNavbar() {
 	}
 }
 
-// function to set a given theme/color-scheme
+// THEME
 function setTheme(themeName) {
 	localStorage.setItem("theme", themeName);
 	document.documentElement.className = themeName;
@@ -52,6 +52,7 @@ function setTheme(themeName) {
 	}
 })();
 
+// FORM
 function validateForm() {
 	var x = document.forms["myForm"]["fname"].value;
 	if (x == "") {

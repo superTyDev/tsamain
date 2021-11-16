@@ -1,19 +1,21 @@
+// DEFINITIONS AND ELEMENTS
 var header = document.getElementsByTagName("header")[0];
 
 var slideIndex = 1;
 var slideInterval = setInterval(nextSlide, 1000);
+showSlides(slideIndex);
 
 window.addEventListener("resize", placeNav);
 window.onload = setTimeout(placeNav, 300);
 
+// NAVBAR
 function placeNav(event) {
 	header.style.height =
 		(window.innerHeight - navbar.offsetHeight).toString() + "px";
 	sticky = window.innerHeight - navbar.offsetHeight - 5;
 }
 
-showSlides(slideIndex);
-
+// SLIDESHOW
 function nextSlide() {
 	showSlides((slideIndex += 1));
 }
