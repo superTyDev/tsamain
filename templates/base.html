@@ -45,7 +45,10 @@
 			</div>
 		</header>
 
-		<nav class="{{ 'reverse' }} {% else %} {{ 'shrink' }}">
+		<nav class="reverse"> 
+		{% else %}
+		<nav class="shrink">
+		{% endif %}
 			<div class="holder">
 				<div class="nav-center">
 					<a href="/">PRISM CONCERTS</a>
@@ -64,7 +67,7 @@
 				</a>
 			</div>
 		</nav>
-		{% endif %} {% include file %}
+		{% include file %}
 
 		<footer>
 			<form>
