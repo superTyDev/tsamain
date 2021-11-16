@@ -1,4 +1,5 @@
 @import url("https://fonts.googleapis.com/css2?family=Zen+Kurenaido&display=swap");
+/* THEMES */
 .theme-dark {
 	--color-primary: #31cc31;
 	--color-primary-light: #72ff64;
@@ -41,6 +42,8 @@
 	--color-input: #f1f1f1;
 	--color-input-focus: #ddd;
 }
+
+/* GENERAL */
 * {
 	box-sizing: border-box;
 }
@@ -57,6 +60,8 @@ body {
 a {
 	color: var(--color-primary);
 }
+
+/* HEADER */
 header {
 	background-color: var(--color-primary);
 	background: linear-gradient(239deg, var(--color-primary), #0d324d);
@@ -114,6 +119,8 @@ header .info .jump {
 	animation-name: fade;
 	animation-duration: 1.5s;
 }
+
+/* NAVIGATION BAR */
 nav,
 nav .holder {
 	z-index: 2;
@@ -164,6 +171,8 @@ nav.shrink a {
 .sticky + main {
 	padding-top: 60px;
 }
+
+/* MAIN PAGE */
 main > div {
 	position: relative;
 	padding: 2rem 20%;
@@ -174,6 +183,8 @@ main > div {
 	padding: 10rem 20%;
 	color: var(--color-text-theme);
 }
+
+/* - CARDS */
 .row {
 	display: flex;
 	flex-wrap: wrap;
@@ -237,6 +248,7 @@ img {
 	padding: 6px 16px;
 }
 
+/* -FORMS */
 input[type="text"],
 input[type="password"],
 input[list],
@@ -286,6 +298,7 @@ hr {
 	margin-bottom: 25px;
 }
 
+/* FOOTER */
 footer {
 	background-color: var(--color-nav);
 	color: var(--color-text-nav);
@@ -294,23 +307,23 @@ footer {
 .theme-contrast footer {
 	border-top: 1px solid black;
 }
-/* Scrollbar Width */
+
+/* SCROLLBAR */
 ::-webkit-scrollbar {
 	width: 5px;
 }
-/* Track */
 ::-webkit-scrollbar-track {
 	box-shadow: inset 0 0 5px grey;
 }
-/* Handle */
 ::-webkit-scrollbar-thumb {
 	background-color: var(--color-primary);
 	border-radius: 5px;
 }
-/* Handle on hover */
 ::-webkit-scrollbar-thumb:hover {
 	background: var(--color-primary-light);
 }
+
+/* ANIMATIONS */
 @-webkit-keyframes fade {
 	from {
 		opacity: 0;
@@ -360,7 +373,8 @@ footer {
 		background-position: 0% 50%;
 	}
 }
-/* Mobile Styles */
+
+/* RESPONSIVE STYLES */
 @media screen and (max-width: 1200px) {
 	.upcoming .card-outside {
 		flex: 33.3%;
