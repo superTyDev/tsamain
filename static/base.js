@@ -1,4 +1,4 @@
- // Get the navbar
+// Get the navbar
 var navbar = document.getElementsByTagName("nav")[0];
 var theme = document.getElementById("theme");
 var sticky = navbar.offsetTop;
@@ -50,7 +50,7 @@ function setTheme(themeName) {
 	} else {
 		setTheme("theme-dark");
 	}
-} )();
+})();
 
 function validateForm() {
 	var x = document.forms["myForm"]["fname"].value;
