@@ -173,7 +173,7 @@ nav.shrink a {
 
 /* MAIN PAGE */
 main {
-	min-height: calc(100vh - 10rem);
+	min-height: calc(100vh - 30rem);
 }
 main > div {
 	position: relative;
@@ -193,7 +193,7 @@ main > div {
 	position: relative;
 	margin: 0 -10px;
 	width: 100%;
-	height: 800px;
+	max-height: 800px;
 	overflow-y: hidden;
 }
 .row .more {
@@ -201,27 +201,29 @@ main > div {
 	bottom: 0;
 	right: 0;
 	left: 0;
-	height: 100px;
+	height: 200px;
 
 	background-color: var(--color-background);
 	background: linear-gradient(transparent, var(--color-background));
-	/* opacity: 0.5; */
 }
 .row .more a {
 	position: absolute;
 	left: 50%;
-	top: 50%;
+	bottom: 20%;
 	width: 50%;
 	min-width: 100px;
-	border: 2px solid var(--color-primary);
+	color: var(--color-primary-dark);
+	border: 2px solid var(--color-primary-dark);
 	border-radius: 2px;
 
 	transform: translate(-50%, -50%);
 	text-align: center;
 	text-decoration: none;
+	font-weight: bold;
+	text-size: 20px;
 }
 .row .more a:hover {
-	background-color: var(--color-primary);
+	background-color: var(--color-primary-dark);
 	color: var(--color-text-theme);
 }
 .card-outside {
