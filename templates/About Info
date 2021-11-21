@@ -1,0 +1,14 @@
+<main>
+	<div>
+		<h1>Contact Information</h1>
+		<p>
+			A contact
+		</p>
+
+		<h2>Activities</h2>
+		<div class="fold">Phone number</div>
+		<div class="fold">Address</div>
+		<div class="fold">E-mail</div>
+		<div class="fold">Social Media</div>
+	</div>
+</main>
