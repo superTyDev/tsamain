@@ -70,16 +70,30 @@ header {
 	-webkit-animation: AnimationName 30s ease infinite;
 	-moz-animation: AnimationName 30s ease infinite;
 	animation: AnimationName 30s ease infinite;
+
 	height: 100vh;
+	width: 100%;
 	transition: 0.3s;
 	position: relative;
 }
 header .info {
 	position: absolute;
-	left: 20%;
 	top: 50%;
+	left: 20%;
+	right: 20%;
 	transform: translateY(-50%);
 	text-shadow: 0 0 4px #222;
+	box-sizing: border-box;
+}
+header .info:after {
+	content: "";
+	display: table;
+	clear: both;
+}
+header .info .column {
+	display: inline;
+	width: 50%;
+	float: left;
 }
 header .info .title {
 	font-size: 5vh;
@@ -220,7 +234,7 @@ main > div {
 	text-align: center;
 	text-decoration: none;
 	font-weight: bold;
-	text-size: 20px;
+	/* font-size: 20px; */
 }
 .row .more a:hover {
 	background-color: var(--color-primary-dark);
@@ -393,6 +407,9 @@ footer {
 	}
 }
 @media (max-width: 600px) {
+	header .column {
+		width: 100%;
+	}
 	nav a {
 		display: none;
 		padding: 14px 16px;
@@ -417,7 +434,7 @@ footer {
 		overflow: visible;
 	}
 	nav.responsive.reverse .holder {
-	 	transform: translateY(-83.333%);
+		transform: translateY(-83.333%);
 	}
 	.upcoming .card-outside {
 		flex: 100%;

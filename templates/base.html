@@ -31,17 +31,25 @@
 		{% if (request.path == "/") or ("/index" in request.path) %}
 		<header>
 			<div class="info">
-				<div class="title fade">
-					<h1>Prism<br />Concerts</h1>
+				<div class="column">
+					<div class="title fade">
+						<h1>Prism<br />Concerts</h1>
+					</div>
+					<div class="slideshow">
+						<h2 class="slide fade">A Creative Showcase</h2>
+						<h2 class="slide fade">A Collection of Art</h2>
+						<h2 class="slide fade">A Multitude of Talent</h2>
+					</div>
+					<h3 class="morebutton fade">
+						<a href="#more">Learn More <i class="jump">↴</i></a>
+					</h3>
 				</div>
-				<div class="slideshow">
-					<h2 class="slide fade">A Creative Showcase</h2>
-					<h2 class="slide fade">A Collection of Art</h2>
-					<h2 class="slide fade">A Multitude of Talent</h2>
+				<div class="column">
+					<div class="title fade">
+						<h1>Slide<br />Show</h1>
+					</div>
+					
 				</div>
-				<h3 class="morebutton fade">
-					<a href="#more">Learn More <i class="jump">↴</i></a>
-				</h3>
 			</div>
 		</header>
 
@@ -54,9 +62,9 @@
 					<a href="/">PRISM CONCERTS</a>
 				</div>
 
-				<a href="/about">About Us</a>
+				<a href="/about">About</a>
 				<a href="/schedule">Schedule</a>
-				<a href="/Info">Contact Info</a>
+				<a href="/Info">Contact</a>
 
 				<div class="nav-right">
 					<a href="/register">Register</a>
