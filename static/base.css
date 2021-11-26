@@ -407,8 +407,14 @@ footer {
 	}
 }
 @media (max-width: 600px) {
-	header .column {
+	header .info .column {
+		background-color: blue;
 		width: 100%;
+		float: none;
+		display: block;
+	}
+	header .info .title {
+		height: 3vw;
 	}
 	nav a {
 		display: none;

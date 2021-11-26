@@ -23,6 +23,7 @@ function nextSlide() {
 function showSlides(n) {
 	var i;
 	var slides = document.getElementsByClassName("slide");
+	var slideCards = document.getElementsByClassName("slide-card");
 	if (n > slides.length) {
 		slideIndex = 1;
 	}
@@ -31,8 +32,10 @@ function showSlides(n) {
 	}
 	for (i = 0; i < slides.length; i++) {
 		slides[i].style.display = "none";
+		slideCards[i].style.display = "none";
 	}
 	slides[slideIndex - 1].style.display = "block";
+	slideCards[slideIndex - 1].style.display = "block";
 
 	clearInterval(slideInterval);
 	slideInterval = setInterval(nextSlide, 5000);

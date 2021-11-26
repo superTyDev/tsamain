@@ -17,8 +17,8 @@
 		<link rel="stylesheet" href="static/{{title}}.css" />
 
 		<!-- Favicon -->
-		<link rel="shortcut icon" href="assets/prism.ico" />
-		<link rel="icon" type="image/jpg" href="static/prism.jpg" />
+		<link rel="shortcut icon" href="assets/favicon.ico" />
+		<link rel="icon" type="image/jpg" href="static/favicon.jpg" />
 
 		<!-- Load an icon library -->
 		<link
@@ -46,7 +46,15 @@
 				</div>
 				<div class="column">
 					<div class="title fade">
-						<h1>Slide<br />Show</h1>
+						<div class="slideshow">
+							 {% for i in range (3) %}
+							 <div class="slide-card">
+								<div class="slide-title">Oregon Orchestra</div>
+								<img src="orchestra.jpg" alt="Orchestra">
+								<div class="slide-time">{{i}} Days Left</div>
+							</div>
+							 {% endfor %}
+						</div>
 					</div>
 					
 				</div>
