@@ -10,7 +10,7 @@ window.onload = setTimeout(placeNav, 300);
 
 // NAVBAR
 function placeNav(event) {
-	header.style.height =
+	header.style.minHeight =
 		(window.innerHeight - navbar.offsetHeight).toString() + "px";
 	sticky = window.innerHeight - navbar.offsetHeight - 5;
 }
@@ -23,7 +23,7 @@ function nextSlide() {
 function showSlides(n) {
 	var i;
 	var slides = document.getElementsByClassName("slide");
-	var slideCards = document.getElementsByClassName("slide-card");
+	var slideCards = document.getElementsByClassName("slide-card-inner");
 	if (n > slides.length) {
 		slideIndex = 1;
 	}

@@ -17,8 +17,8 @@
 		<link rel="stylesheet" href="static/{{title}}.css" />
 
 		<!-- Favicon -->
-		<link rel="shortcut icon" href="static/favicon.ico" />
-		<link rel="icon" type="image/jpg" href="static/favicon.jpg" />
+		<link rel="shortcut icon" href="static/prism.ico" />
+		<link rel="icon" type="image/jpg" href="static/prism.jpg" />
 
 		<!-- Load an icon library -->
 		<link
@@ -44,19 +44,21 @@
 						<a href="#more">Learn More <i class="jump">↴</i></a>
 					</h3>
 				</div>
-				<div class="column">
-					<div class="title fade">
-						<div class="slideshow">
-							 {% for i in range (3) %}
-							 <div class="slide-card">
-								<div class="slide-title">Oregon Orchestra</div>
-								<img src="static/orchestra.jpg" alt="Orchestra">
-								<div class="slide-time">{{i}} days left</div>
-							</div>
-							 {% endfor %}
+				<div class="column rotateColumn">
+					<div class="slideshow slide-card">
+						<div class="slide-card-inner">
+							<div class="slide-title">Boo Orchestra</div>
+							<img src="static/orchestra.jpg" alt="Orchestra">
+							<div class="slide-time">many days left</div>
 						</div>
+						{% for i in range (3) %}
+						<div class="slide-card-inner">
+							<div class="slide-title">Oregon Orchestra</div>
+							<img src="static/orchestra.jpg" alt="Orchestra">
+							<div class="slide-time">{{i}} days left</div>
+						</div>
+						{% endfor %}
 					</div>
-					
 				</div>
 			</div>
 		</header>
