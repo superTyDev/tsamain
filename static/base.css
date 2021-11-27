@@ -139,6 +139,7 @@ header .info .rotateColumn {
 	perspective: 1000px;
 	background-color: transparent;
 	overflow: visible;
+	max-height: 60vh;
 }
 .rotateColumn .slide-card {
 	position: relative;
@@ -152,6 +153,7 @@ header .info .rotateColumn {
 }
 .slide-card .slide-card-inner {
 	display: none;
+	overflow: hidden;
 }
 .slide-card .slide-title,
 .slide-card .slide-time {
@@ -161,19 +163,26 @@ header .info .rotateColumn {
 	right: 0px;
 	text-align: center;
 	text-transform: uppercase;
-	background-color: var(--color-primary);
-	background-repeat: none;
-	background-size: cover;
+
 	font-size: 200%;
+	background-color: var(--color-primary);
+	background-image: linear-gradient(
+		to right,
+		var(--color-primary-dark),
+		var(--color-primary)
+	);
+	/* box-shadow: 0 4px 8px 0 rgb(0, 0, 0, 0.5);
+	transform: translate(-5px, -5px); */
 }
 .slide-card .slide-time {
 	top: inherit;
 	bottom: 0px;
 	font-size: 100%;
 }
-header .info img {
+header .info img,
+header .info video {
 	object-fit: cover;
-	width: 100%;
+	max-height: 60vh;
 }
 
 /* NAVIGATION BAR */
@@ -200,6 +209,7 @@ nav a {
 	top: 50%;
 	left: 50%;
 	transform: translate(-50%, -50%);
+	background-color: var(--color-nav);
 }
 .nav-right {
 	float: right;
@@ -276,7 +286,6 @@ main > div {
 	text-align: center;
 	text-decoration: none;
 	font-weight: bold;
-	/* font-size: 20px; */
 }
 .row .more a:hover {
 	background-color: var(--color-primary-dark);
@@ -448,15 +457,25 @@ footer {
 }
 @media (max-width: 900px) {
 	header .info {
-		top: 20%;
+		top: 10%;
 		transform: none;
 		/* position: static; */
 	}
 	header .info .column {
-		background-color: blue;
 		width: 100%;
 		float: none;
 		display: block;
+	}
+	header .info .rotateColumn {
+		max-height: 40vh;
+	}
+	.rotateColumn .slide-card {
+		transform: rotateX(20deg);
+	}
+	header .info img,
+	header .info video {
+		min-height: 30vh;
+		width: 100%;
 	}
 }
 @media screen and (max-width: 800px) {
