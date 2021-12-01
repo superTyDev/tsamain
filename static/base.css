@@ -291,10 +291,14 @@ main > div {
 	background-color: var(--color-primary-dark);
 	color: var(--color-text-theme);
 }
-.card-outside {
+.row > .card-outside {
+	flex: 100%;
+	max-width: 100%;
+	margin-bottom: 20px;
+}
+.row > .card-outside ~ .card-outside {
 	flex: 25%;
 	max-width: 25%;
-	margin-bottom: 20px;
 }
 .card {
 	box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
@@ -310,8 +314,10 @@ main > div {
 .card:hover {
 	box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
 }
-img {
+.card img {
 	border-radius: 2px 2px 0 0;
+	max-height: 20vh;
+	object-fit: cover;
 }
 .card .container {
 	padding: 6px 16px;
@@ -446,7 +452,7 @@ footer {
 
 /* RESPONSIVE STYLES */
 @media screen and (max-width: 1200px) {
-	.upcoming .card-outside {
+	.row > .card-outside ~ .card-outside {
 		flex: 33.3%;
 		max-width: 33.3%;
 	}
@@ -479,7 +485,7 @@ footer {
 	}
 }
 @media screen and (max-width: 800px) {
-	.upcoming .card-outside {
+	.row > .card-outside ~ .card-outside {
 		flex: 50%;
 		max-width: 50%;
 	}
@@ -514,7 +520,7 @@ footer {
 	nav.responsive.reverse .holder {
 		transform: translateY(-83.333%);
 	}
-	.upcoming .card-outside {
+	.row > .card-outside ~ .card-outside {
 		flex: 100%;
 		max-width: 100%;
 	}
