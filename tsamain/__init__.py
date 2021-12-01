@@ -41,5 +41,5 @@ def create_app(test_config=None):
 
 if __name__ == "__main__":
     console.log('i ran')
-    port = int(os.environ.get('PORT', 5000))
+    port = int(os.environ.get('PORT', 33507))
     create_app.run(host='0.0.0.0', port=port)
