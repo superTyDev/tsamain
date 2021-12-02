@@ -10,11 +10,11 @@
 			content="Homepage for the Prism concert series at George Jenkins"
 		/>
 
-		<title>{{ title.title() }} | Prism Concerts</title>
+		<title>{% block title %}{% endblock %} | Prism Concerts</title>
 
 		<!-- Load main styles -->
-		<link rel="stylesheet" href="static/base.css" />
-		<link rel="stylesheet" href="static/{{title}}.css" />
+		<link rel="stylesheet" href="{{ url_for('static', filename='base.css') }}" />
+		{% block imports %}{% endblock %}
 
 		<!-- Favicon -->
 		<link rel="shortcut icon" href="static/prism.ico" />
@@ -30,6 +30,7 @@
 	<body>
 		{% if (request.path == "/") or ("/index" in request.path) %}
 		<header>
+			{% block header %}{% endblock %}
 			<div class="info">
 				<div class="column">
 					<div class="title fade">
@@ -83,9 +84,13 @@
 				<a href="/Info">Contact</a>
 				
 				<div class="nav-right">
-					<a href="/Tickets">Tickets</a>
-					<a href="/register">Register</a>
-					<a href="/signin">Sign In</a>
+								<a href="/Tickets">Tickets</a>
+								{% if g.user %}
+      <a href="{{ url_for('auth.logout') }}">Log Out</a>
+    {% else %}
+    <a href="{{ url_for('auth.register') }}">Register</a>
+					<a href="{{ url_for('auth.login') }}">Sign In</a>
+    {% endif %}
 				</div>
 
 				<a href="javascript:void(0);" class="icon" onclick="responsiveNavbar()">
