@@ -38,10 +38,8 @@
 
 				<a href="/about">About</a>
 				<a href="/schedule">Schedule</a>
-				<a href="/info">Contact</a>
 				
 				<div class="nav-right">
-								<a href="/tickets">Tickets</a>
 								{% if g.user %}
       <a href="{{ url_for('auth.logout') }}">Log Out</a>
     {% else %}
