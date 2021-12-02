@@ -20,7 +20,7 @@ function stickyNav() {
 	} else {
 		navbar.classList.add("shrink");
 	}
-	if (window.pageYOffset <= 200) {
+	if (window.pageYOffset <= 200 && navbar.getBoundingClientRect().top != 0) {
 		navbar.classList.add("reverse");
 	} else {
 		navbar.classList.remove("reverse");
