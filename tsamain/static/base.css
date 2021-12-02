@@ -57,6 +57,12 @@ body {
 	color: var(--color-text);
 	font-family: "Zen Kurenaido", sans-serif;
 }
+.theme-contrast body {
+	font-family: Arial, sans-serif;
+	letter-spacing: 5px;
+	line-height: 1.5;
+	word-spacing: 10px;
+}
 a {
 	color: var(--color-primary);
 }

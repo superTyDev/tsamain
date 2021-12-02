@@ -3,9 +3,8 @@ var navbar = document.getElementsByTagName("nav")[0];
 var theme = document.getElementById("theme");
 var sticky = navbar.offsetTop;
 
-window.onscroll = function () {
-	stickyNav();
-};
+window.onload = stickyNav;
+window.onscroll = stickyNav;
 
 // NAVBAR
 function stickyNav() {

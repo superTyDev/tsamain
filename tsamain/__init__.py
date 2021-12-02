@@ -27,8 +27,8 @@ def create_app(test_config=None):
     @app.route("/<request>")
     def index(request="index.html"):
         if request.find(".") == -1:
-            request += ".html"
-        return render_template('base.html', file=request, title=(request.split('.')[0]))
+            request += ".html"    
+        return render_template(request)
 
     from . import db
     db.init_app(app)

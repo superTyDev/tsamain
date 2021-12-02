@@ -6,7 +6,7 @@ var slideInterval = setInterval(nextSlide, 1000);
 showSlides(slideIndex);
 
 window.addEventListener("resize", placeNav);
-window.onload = setTimeout(placeNav, 300);
+navbar.onload = setTimeout(placeNav, 300);
 
 // NAVBAR
 function placeNav(event) {
