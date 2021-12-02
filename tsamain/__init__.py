@@ -35,8 +35,5 @@ def create_app(test_config=None):
 
     from . import auth
     app.register_blueprint(auth.bp)
-    port = int(os.environ.get('PORT', 33507))
-
-    app.run(host='0.0.0.0', port=8000)
 
     return app
