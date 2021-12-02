@@ -12,13 +12,13 @@ bp = Blueprint('auth', __name__, url_prefix='/auth')
 
 @bp.before_app_request
 def load_logged_in_user():
-    user_id = session.get('user_id')
+    userid = session.get('userid')
 
-    if user_id is None:
+    if userid is None:
         g.user = None
     else:
         g.user = get_db().execute(
-            'SELECT * FROM user WHERE id = ?', (user_id,)
+            'SELECT * FROM user WHERE userid = ?', (userid,)
         ).fetchone()
 
 
@@ -70,7 +70,7 @@ def login():
 
         if error is None:
             session.clear()
-            session['user_id'] = user['userid']
+            session['userid'] = user['userid']
             return redirect(url_for('index'))
 
         flash(error)
