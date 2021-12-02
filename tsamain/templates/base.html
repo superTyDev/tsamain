@@ -17,8 +17,8 @@
 		{% block style %}{% endblock %}
 
 		<!-- Favicon -->
-		<link rel="shortcut icon" href="static/prism.ico" />
-		<link rel="icon" type="image/jpg" href="static/prism.jpg" />
+		<link rel="shortcut icon" href="{{ url_for('static', filename='prism.ico') }}" />
+		<link rel="icon" type="image/jpg" href="{{ url_for('static', filename='prism.jpg') }}" />
 
 		<!-- Load an icon library -->
 		<link
