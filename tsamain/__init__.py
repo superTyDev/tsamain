@@ -37,6 +37,7 @@ def create_app(test_config=None):
     from . import auth
     app.register_blueprint(auth.bp)
     
-    Talisman(app, content_security_policy=None)
+    if os.getenv("FLASK_ENV") != "development":    
+        Talisman(app, content_security_policy=None)        
 
     return app
