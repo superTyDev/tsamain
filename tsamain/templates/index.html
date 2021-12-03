@@ -151,34 +151,51 @@
 	</div>
 	<div class="accounts">
 		<h2>Accounts</h2>
-		<h3>Features</h3>
 		<div class="table-cont">
-			<table>
-				<tr>
-					<th></th>
-					<th>None</th>
-					<th>Free</th>
-					<th>Premium</th>
-				</tr>
-				<tr>
-					<td>Participate</td>
-					<td>Free Events</td>
-					<td>Free & Paid Events</td>
-					<td>Free & Paid Events</td>
-				</tr>
-				<tr>
-					<td>Register</td>
-					<td>--</td>
-					<td>10 Days in Advance</td>
-					<td>Unlimited</td>
-				</tr>
-				<tr>
-					<td>Price</td>
-					<td>--</td>
-					<td>As Shown</td>
-					<td>50% Off</td>
-				</tr>
-			</table>
+				<div class="card-outside">
+				<div class="card">
+				  <h3 class="plan">Guest</h3>
+				  <div class="info">
+				  				<ul>
+				  								<li>Anonymously Attend Free Events</li>
+				  				</ul>
+				  </div>
+				</div>
+				</div>
+				<div class="card-outside">
+				<div class="card">
+				  <h3 class="plan">Basic</h3>
+				  <div class="info">
+				  				<ul>
+				  								<li>Attend Free & Paid Events</li>
+				  								<li>Choose from 2 Virtual Avatars</li>
+				  								<li>Book 10 days in Advance</li>
+				  								<li>$5 Credit For Registering</li>
+				  								<li>Free Forever</li>
+				  								<li>No Credit Card Required</li>
+				  				</ul>
+				  </div>
+				</div>
+				</div>
+				<div class="card-outside">
+				<div class="card">
+				  <h3 class="plan">Extended</h3>
+				  <div class="info">
+				  				<ul>
+				  								<li>Attend Free, Paid, and Specialty Events</li>
+				  								<li>Choose From 5 Virtual Avatars</li>
+				  								<li>Book Anytime</li>
+				  								<li>$5 Credit For Registering</li>
+				  								<li>25% Off Tickets</li>
+				  								<li>Host Your Own Events</li>
+				  								<li>One Time Purchase</li>
+				  				</ul>
+				  </div>
+				</div>
+				</div>
+		</div>
+		<div class="more">
+			<a href="{{ url_for('auth.register') }}">Sign Up</a>
 		</div>
 	</div>
 </main>
