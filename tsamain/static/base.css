@@ -251,12 +251,6 @@ main > div {
 	position: relative;
 	padding: 2rem 20%;
 }
-.slant {
-	background: var(--color-primary-dark);
-	clip-path: polygon(0 20%, 100% 0, 100% 80%, 0 100%);
-	padding: 10rem 20%;
-	color: var(--color-text-theme);
-}
 
 /* - CARDS */
 .row {

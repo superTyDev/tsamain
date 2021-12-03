@@ -1,3 +1,27 @@
+.slant {
+	background: var(--color-primary-dark);
+	clip-path: polygon(0 20%, 100% 0, 100% 80%, 0 100%);
+	padding: 10rem 20%;
+	color: var(--color-text-theme);
+}
+.slant .more {
+	position: relative
+	margin: auto;
+	
+}
+.slant .more a {
+	padding: 5px 10px;
+	color: var(--color-text-theme);
+	border: 2px solid var(--color-text-theme);
+	border-radius: 2px;
+	text-decoration: none;
+	width: 50%;
+	min-width: 150px;
+}
+.slant .more a:hover {
+	background-color: var(--color-background);
+	color: var(--color-text);
+}
 .accounts .table-cont {
 	width: 100%;
 	overflow-x: auto;
