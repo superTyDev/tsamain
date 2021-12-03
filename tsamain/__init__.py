@@ -1,5 +1,6 @@
 import os
 from flask import Flask, request, render_template
+from flask_talisman import Talisman
 
 
 def create_app(test_config=None):
@@ -35,5 +36,7 @@ def create_app(test_config=None):
 
     from . import auth
     app.register_blueprint(auth.bp)
+    
+    Talisman(app, content_security_policy=None)
 
     return app
