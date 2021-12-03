@@ -1,0 +1,23 @@
+.accounts .table-cont {
+	width: 100%;
+	overflow-x: auto;
+}
+.accounts table {
+	width: 100%;
+	background-color: var(--color-card);
+	text-align: center;
+	padding: 5px;
+}
+.accounts td, th {
+	border: none;
+	padding: 8px;
+}
+.accounts tr {
+	transition: background-color 0.5s;
+}
+.accounts tr:nth-child(even) {
+	background-color: var(--color-nav);
+}
+.accounts tr:hover {
+	background-color: var(--color-input);
+}

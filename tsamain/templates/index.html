@@ -1,48 +1,48 @@
 {% extends 'base.html' %}
 {% block title %}Home{% endblock %}
 {% block style %}
-		<link rel="stylesheet" href="{{ url_for('static', filename='index.css') }}" />
+<link rel="stylesheet" href="{{ url_for('static', filename='index.css') }}" />
 {% endblock %}
 {% block header %}
 <header>
-			<div class="info">
-				<div class="column">
-					<div class="title fade">
-						<h1>Prism<br />Concerts</h1>
-					</div>
-					<div class="slideshow">
-						<h2 class="slide fade">A Creative Showcase</h2>
-						<h2 class="slide fade">A Collection of Art</h2>
-						<h2 class="slide fade">A Multitude of Talent</h2>
-					</div>
-					<h3 class="morebutton fade">
-						<a href="#more">Learn More <i class="jump">↴</i></a>
-					</h3>
-				</div>
-				<div class="column rotateColumn">
-					<div class="slideshow slide-card">
-						<div class="slide-card-inner">
-							<div class="slide-title">Boo Orchestra</div>
-							<video autoplay muted loop>
-								<source src="static/winter.mp4" type="video/mp4" />
-								<img src="static/orchestra.jpg" alt="Orchestra">
-							</video>
-							<div class="slide-time">many days left</div>
-						</div>
-						{% for i in range (3) %}
-						<div class="slide-card-inner">
-							<div class="slide-title">Oregon Orchestra</div>
-							<video autoplay muted loop>
-								<source src="static/sailing.mp4" type="video/mp4" />
-								<img src="static/orchestra.jpg" alt="Orchestra">
-							</video>
-							<div class="slide-time">{{i}} days left</div>
-						</div>
-						{% endfor %}
-					</div>
-				</div>
+	<div class="info">
+		<div class="column">
+			<div class="title fade">
+				<h1>Prism<br />Concerts</h1>
 			</div>
-		</header>
+			<div class="slideshow">
+				<h2 class="slide fade">A Creative Showcase</h2>
+				<h2 class="slide fade">A Collection of Art</h2>
+				<h2 class="slide fade">A Multitude of Talent</h2>
+			</div>
+			<h3 class="morebutton fade">
+				<a href="#more">Learn More <i class="jump">↴</i></a>
+			</h3>
+		</div>
+		<div class="column rotateColumn">
+			<div class="slideshow slide-card">
+				<div class="slide-card-inner">
+					<div class="slide-title">Boo Orchestra</div>
+					<video autoplay muted loop>
+						<source src="static/winter.mp4" type="video/mp4" />
+						<img src="static/orchestra.jpg" alt="Orchestra">
+					</video>
+					<div class="slide-time">many days left</div>
+				</div>
+				{% for i in range (3) %}
+				<div class="slide-card-inner">
+					<div class="slide-title">Oregon Orchestra</div>
+					<video autoplay muted loop>
+						<source src="static/sailing.mp4" type="video/mp4" />
+						<img src="static/orchestra.jpg" alt="Orchestra">
+					</video>
+					<div class="slide-time">{{i}} days left</div>
+				</div>
+				{% endfor %}
+			</div>
+		</div>
+	</div>
+</header>
 {% endblock %}
 
 {% block content %}
@@ -143,20 +143,39 @@
 		</p>
 	</div>
 	<div class="accounts">
-	  <h2>Accounts</h2>
-	  <h3>Features</h3>
-	  <table>
-	  		<tr>
-	  						<th>None</th>
-	  						<th>Free</th>
-	  						<th>Premium</th>
-	  		</tr>
-	    
-	  </table>
-	  
+		<h2>Accounts</h2>
+		<h3>Features</h3>
+		<div class="table-cont">
+			<table>
+				<tr>
+					<th></th>
+					<th>None</th>
+					<th>Free</th>
+					<th>Premium</th>
+				</tr>
+				<tr>
+					<td>Participate</td>
+					<td>Free Events</td>
+					<td>Free & Paid Events</td>
+					<td>Free & Paid Events</td>
+				</tr>
+				<tr>
+					<td>Register</td>
+					<td>--</td>
+					<td>10 Days in Advance</td>
+					<td>Unlimited</td>
+				</tr>
+				<tr>
+					<td>Price</td>
+					<td>--</td>
+					<td>As Shown</td>
+					<td>50% Off</td>
+				</tr>
+			</table>
+		</div>
 	</div>
 </main>
 {% endblock %}
 {% block script %}
-		<script src="{{ url_for('static', filename='index.js') }}"></script>
+<script src="{{ url_for('static', filename='index.js') }}"></script>
 {% endblock %}

@@ -393,6 +393,11 @@ footer {
 /* SCROLLBAR */
 ::-webkit-scrollbar {
 	width: 5px;
+	height: 5px;
+}
+.theme-contrast ::-webkit-scrollbar {
+	width: 15px;
+	height: 15px;
 }
 ::-webkit-scrollbar-track {
 	box-shadow: inset 0 0 5px grey;
