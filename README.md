@@ -8,4 +8,5 @@ Used to serve the website. [tsaevent](https://github.com/superTyDev/tsaevent) wi
 Following [this tutorial](https://flask.palletsprojects.com/en/2.0.x/tutorial/views/)
 
 Use `python app.py` to start app.  
-You must set FLASK_ENV first. Use `export FLASK_ENV=development` for bash, `$env:FLASK_ENV = "development"` for powershell, `set FLASK_ENV=development` for cmd.
+You must set FLASK_ENV first. Use `export FLASK_ENV=development` for bash, `$env:FLASK_ENV = "development"` for powershell, `set FLASK_ENV=development` for cmd.  
+The server will force https unless the environment is development.
