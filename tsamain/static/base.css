@@ -243,9 +243,16 @@ nav.shrink a {
 	padding-top: 60px;
 }
 
+/* ALERTS */
+.flash {
+				width: 100%;
+				background-color: var(--color-primary);
+				color: var(--color-theme)
+}
+
 /* MAIN PAGE */
 main {
-	min-height: calc(100vh - 30rem);
+	min-height: calc(100vh - 15rem);
 }
 main > div {
 	position: relative;
@@ -378,7 +385,7 @@ footer {
 	background-color: var(--color-nav);
 	color: var(--color-text-nav);
 	padding: 10px;
-	height: 10rem;
+	height: 15rem;
 }
 .theme-contrast footer {
 	border-top: 1px solid black;
