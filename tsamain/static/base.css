@@ -244,10 +244,29 @@ nav.shrink a {
 }
 
 /* ALERTS */
+.messages {
+    position: fixed;
+				bottom: 0px;
+				right: 0px;
+				left: 0px;
+				margin: 5% 20%;
+}
 .flash {
-				width: 100%;
+				text-align: center;
+				font-weight: bold;
 				background-color: var(--color-primary);
-				color: var(--color-theme)
+				color: var(--color-theme-text);
+				box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+				padding: 15px;
+				font-size: 100%;
+				animation: fade 1s linear 5s;
+	   animation-direction: reverse;
+	   animation-fill-mode: forwards;				
+}
+.flash:hover {
+				animation: fade 1s linear;
+	   animation-direction: reverse;
+	   animation-fill-mode: forwards;		
 }
 
 /* MAIN PAGE */
