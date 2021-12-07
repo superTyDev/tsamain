@@ -1,9 +1,14 @@
 // DEFINITIONS AND ELEMENTS
 var navbar = document.getElementsByTagName("nav")[0];
+var main = document.getElementsByTagName("main")[0];
 var theme = document.getElementById("theme");
 var sticky = navbar.offsetTop;
+var footer = document.getElementsByTagName("footer")[0];
 
-window.onload = stickyNav;
+window.onload = function () {
+	stickyNav()
+	placeFooter()
+};
 window.onscroll = stickyNav;
 
 // NAVBAR
@@ -14,7 +19,7 @@ function stickyNav() {
 		navbar.classList.remove("sticky");
 	}
 
-	if (window.pageYOffset == 0) {
+	if (window.pageYOffset == 0 && document.getElementsByTagName("header").length != 0) {
 		navbar.classList.remove("shrink");
 	} else {
 		navbar.classList.add("shrink");
@@ -58,4 +63,9 @@ function validateForm() {
 		alert("Name must be filled out");
 		return false;
 	}
+}
+
+// FOOTER
+function placeFooter() {
+	main.style.minHeight = (window.innerHeight - footer.offsetHeight) + "px";
 }
