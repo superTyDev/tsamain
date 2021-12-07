@@ -1,78 +1,104 @@
 <!DOCTYPE html>
 <html lang="en">
+	<head>
+		<!-- Set info for accessibility -->
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<meta
+			name="description"
+			content="Homepage for the Prism concert series at George Jenkins"
+		/>
 
-<head>
-	<!-- Set info for accessibility -->
-	<meta charset="UTF-8" />
-	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
-	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-	<meta name="description" content="Homepage for the Prism concert series at George Jenkins" />
+		<title>{% block title %}{% endblock %} | Prism Concerts</title>
 
-	<title>{% block title %}{% endblock %} | Prism Concerts</title>
+		<!-- Load main styles -->
+		<link
+			rel="stylesheet"
+			href="{{ url_for('static', filename='base.css') }}"
+		/>
+		{% block style %}{% endblock %}
 
-	<!-- Load main styles -->
-	<link rel="stylesheet" href="{{ url_for('static', filename='base.css') }}" />
-	{% block style %}{% endblock %}
+		<!-- Favicon -->
+		<link
+			rel="shortcut icon"
+			href="{{ url_for('static', filename='prism.ico') }}"
+		/>
+		<link
+			rel="icon"
+			type="image/jpg"
+			href="{{ url_for('static', filename='prism.jpg') }}"
+		/>
 
-	<!-- Favicon -->
-	<link rel="shortcut icon" href="{{ url_for('static', filename='prism.ico') }}" />
-	<link rel="icon" type="image/jpg" href="{{ url_for('static', filename='prism.jpg') }}" />
+		<!-- Load an icon library -->
+		<link
+			rel="stylesheet"
+			href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+		/>
+	</head>
 
-	<!-- Load an icon library -->
-	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
-</head>
+	<body>
+		{% block header %}{% endblock %}
 
-<body>
-	{% block header %}{% endblock %}
+		<nav class="">
+			<div class="holder">
+				<div class="nav-center">
+					<a href="/">PRISM CONCERTS</a>
+				</div>
 
-	<nav class="">
-		<div class="holder">
-			<div class="nav-center">
-				<a href="/">PRISM CONCERTS</a>
+				<a href="/about">About</a>
+				<a href="/schedule">Schedule</a>
+
+				<div class="nav-right">
+					{% if g.user %}
+					<a href="{{ url_for('auth.logout') }}">Log Out</a>
+					{% else %}
+					<a href="{{ url_for('auth.register') }}">Register</a>
+					<a href="{{ url_for('auth.login') }}">Sign In</a>
+					{% endif %}
+				</div>
+
+				<a href="javascript:void(0);" class="icon" onclick="responsiveNavbar()">
+					<i class="fa fa-bars"></i>
+				</a>
 			</div>
-
-			<a href="/about">About</a>
-			<a href="/schedule">Schedule</a>
-
-			<div class="nav-right">
-				{% if g.user %}
-				<a href="{{ url_for('auth.logout') }}">Log Out</a>
-				{% else %}
-				<a href="{{ url_for('auth.register') }}">Register</a>
-				<a href="{{ url_for('auth.login') }}">Sign In</a>
-				{% endif %}
+		</nav>
+		<div class="messages">
+			{% for message in get_flashed_messages() %}
+			<div class="flash" onclick="this.classList.add('hide')">
+				{{ message }}
 			</div>
-
-			<a href="javascript:void(0);" class="icon" onclick="responsiveNavbar()">
-				<i class="fa fa-bars"></i>
-			</a>
+			{% endfor %}
 		</div>
-	</nav>
-	<div class="messages">
-	{% for message in get_flashed_messages() %}
-    <div class="flash">{{ message }}</div>
-  {% endfor %}
-  </div>
-	{% block content %}{% endblock %}
+		{% block content %}{% endblock %}
 
-	<footer>
-		<form>
-			<label for="theme">Theme:</label>
+		<footer>
+			<form>
+				<label for="theme">Theme:</label>
 
-			<select name="theme" id="theme" onchange="setTheme(this.value)">
-				<option value="theme-dark">Dark</option>
-				<option value="theme-light">Light</option>
-				<option value="theme-contrast">Accessible</option>
-			</select>
-		</form>
-		<p><a href="/">Home</a> <a href="/about">About</a> <a href="/schedule">Schedule</a> <a href="{{ url_for('auth.register') }}">Register</a> <a href="{{ url_for('auth.login') }}">Login</a></p>
-		<p><a href="/legal">Legal</a> <a href="/sitemap">Sitemap</a> <a href="/feedback">Feedback</a></p>
-		<p>Made by Tyson McLaws and Pierre Boisvert</p>
-		<p>Sources from ADT at George Jenkins</p>
-	</footer>
+				<select name="theme" id="theme" onchange="setTheme(this.value)">
+					<option value="theme-dark">Dark</option>
+					<option value="theme-light">Light</option>
+					<option value="theme-contrast">Accessible</option>
+				</select>
+			</form>
 
-	<script src="{{ url_for('static', filename='base.js') }}"></script>
-	{% block script %}{% endblock %}
-</body>
+			<div class="links">
+				<a href="/">Home</a> <a href="/about">About</a>
+				<a href="/schedule">Schedule</a>
+				<a href="{{ url_for('auth.register') }}">Register</a>
+				<a href="{{ url_for('auth.login') }}">Login</a>
+				<a href="/legal">Legal</a> <a href="/sitemap">Sitemap</a>
+				<a href="/feedback">Feedback</a>
+			</div>
 
+			<div class="comments">
+				<p>Made by Tyson McLaws and Pierre Boisvert</p>
+				<p>Sources from ADT at George Jenkins</p>
+			</div>
+		</footer>
+
+		<script src="{{ url_for('static', filename='base.js') }}"></script>
+		{% block script %}{% endblock %}
+	</body>
 </html>
