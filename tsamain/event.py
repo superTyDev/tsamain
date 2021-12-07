@@ -60,22 +60,43 @@ def eventid(eventid):
     error = None
     if eventid:
         db = get_db()
-        user = db.execute(
-            'SELECT * FROM user WHERE username = ?', (username,)
+        info = db.execute(
+            'SELECT * FROM events WHERE eventid = ?', (eventid,)
         ).fetchone()
+
     else:
-        error = 'Enter an Event'
+        flash('Enter an Event')
         return render_template('schedule.html')
 
     flash(error)
+    return render_template('event/id.html', info=info)
 
-    return render_template('auth/login.html')
 
+@bp.route('/create', methods=('GET', 'POST'))
+def create():
+    if request.method == 'POST':
+        title = request.form['title']
+        date = request.form['date']
+        price = request.form['price']
+        desc = request.form['desc']
+        error = None
 
-@bp.route('/logout')
-def logout():
-    session.clear()
-    return redirect(url_for('index'))
+        if not title:
+            error = 'Title is required.'
+
+        if error is not None:
+            flash(error)
+        else:
+            db = get_db()
+            db.execute(
+                'INSERT INTO events (title, body, author_id)'
+                ' VALUES (?, ?, ?)',
+                (title, date, g.user['id'])
+            )
+            db.commit()
+            return redirect(url_for('blog.index'))
+
+    return render_template('blog/create.html')
 
 
 def login_required(view):
