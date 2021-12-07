@@ -1,6 +1,5 @@
-{% extends 'base.html' %}
-{% block title %}Login{% endblock %}
-{% block content %}
+{% extends 'base.html' %} {% block title %}Login{% endblock %} {% block content
+%}
 <main>
 	<div>
 		<h1>Login</h1>
@@ -9,15 +8,30 @@
 				<p>Please fill in this form to create an account.</p>
 				<hr />
 				<label for="username">Username</label>
-    <input type="text" name="username" id="username" placeholder="Enter Username" required>
-    <label for="password">Password</label>
-    <input type="password" name="password" id="password" placeholder="Enter Password" required>
+				<input
+					type="text"
+					name="username"
+					id="username"
+					placeholder="Enter Username"
+					required
+				/>
+				<label for="password">Password</label>
+				<input
+					type="password"
+					name="password"
+					id="password"
+					placeholder="Enter Password"
+					required
+				/>
 				<button type="submit" class="registerbtn">Login</button>
 			</div>
 
 			<div>
-				<p>Need an account? <a href="{{ url_for('auth.register') }}">Register</a>.</p>
-				</div>
+				<p>
+					Need an account?
+					<a href="{{ url_for('auth.register') }}">Register</a>.
+				</p>
+			</div>
 		</form>
 	</div>
 </main>

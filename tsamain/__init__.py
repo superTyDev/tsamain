@@ -1,6 +1,7 @@
 import os
-from flask import Flask, request, render_template
+from flask import Flask, request, render_template, g, session
 from flask_talisman import Talisman
+from tsamain.db import get_db
 
 
 def create_app(test_config=None):
@@ -24,6 +25,17 @@ def create_app(test_config=None):
     except OSError:
         pass
 
+    @app.before_request
+    def load_logged_in_user():
+        userid = session.get('userid')
+
+        if userid is None:
+            g.user = None
+        else:
+            g.user = get_db().execute(
+                'SELECT * FROM user WHERE userid = ?', (userid,)
+            ).fetchone()
+
     @app.route("/")
     @app.route("/<request>")
     def index(request="index.html"):
@@ -36,6 +48,9 @@ def create_app(test_config=None):
 
     from . import auth
     app.register_blueprint(auth.bp)
+
+    from . import event
+    app.register_blueprint(event.bp)
 
     if os.getenv("FLASK_ENV") != "development":
         Talisman(app, content_security_policy=None)

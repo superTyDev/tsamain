@@ -51,6 +51,7 @@
 
 				<div class="nav-right">
 					{% if g.user %}
+					<a href="{{ url_for('event.dashboard') }}">Dashboard</a>
 					<a href="{{ url_for('auth.logout') }}">Log Out</a>
 					{% else %}
 					<a href="{{ url_for('auth.register') }}">Register</a>

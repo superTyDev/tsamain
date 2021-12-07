@@ -1,9 +1,6 @@
-{% extends 'base.html' %}
-{% block title %}Home{% endblock %}
-{% block style %}
+{% extends 'base.html' %} {% block title %}Home{% endblock %} {% block style %}
 <link rel="stylesheet" href="{{ url_for('static', filename='index.css') }}" />
-{% endblock %}
-{% block header %}
+{% endblock %} {% block header %}
 <header>
 	<div class="info">
 		<div class="column">
@@ -25,7 +22,7 @@
 					<div class="slide-title">Boo Orchestra</div>
 					<video autoplay muted loop>
 						<source src="static/winter.mp4" type="video/mp4" />
-						<img src="static/orchestra.jpg" alt="Orchestra">
+						<img src="static/orchestra.jpg" alt="Orchestra" />
 					</video>
 					<div class="slide-time">many days left</div>
 				</div>
@@ -34,7 +31,7 @@
 					<div class="slide-title">Oregon Orchestra</div>
 					<video autoplay muted loop>
 						<source src="static/sailing.mp4" type="video/mp4" />
-						<img src="static/orchestra.jpg" alt="Orchestra">
+						<img src="static/orchestra.jpg" alt="Orchestra" />
 					</video>
 					<div class="slide-time">{{i}} days left</div>
 				</div>
@@ -43,9 +40,7 @@
 		</div>
 	</div>
 </header>
-{% endblock %}
-
-{% block content %}
+{% endblock %} {% block content %}
 <main id="more">
 	<div class="upcoming">
 		<h2>Upcoming</h2>
@@ -152,54 +147,53 @@
 	<div class="accounts">
 		<h2>Accounts</h2>
 		<div class="table-cont">
-				<div class="card-outside">
+			<div class="card-outside">
 				<div class="card">
-				  <h3 class="plan">Guest</h3>
-				  <div class="info">
-				  				<ul>
-				  								<li>Anonymously Attend Free Events</li>
-				  				</ul>
-				  </div>
+					<h3 class="plan">Guest</h3>
+					<div class="info">
+						<ul>
+							<li>Anonymously Attend Free Events</li>
+						</ul>
+					</div>
 				</div>
-				</div>
-				<div class="card-outside">
+			</div>
+			<div class="card-outside">
 				<div class="card">
-				  <h3 class="plan">Basic</h3>
-				  <div class="info">
-				  				<ul>
-				  								<li>Attend Free & Paid Events</li>
-				  								<li>Choose from 2 Virtual Avatars</li>
-				  								<li>Book 10 days in Advance</li>
-				  								<li>$5 Credit For Registering</li>
-				  								<li>Free Forever</li>
-				  								<li>No Credit Card Required</li>
-				  				</ul>
-				  </div>
+					<h3 class="plan">Basic</h3>
+					<div class="info">
+						<ul>
+							<li>Attend Free & Paid Events</li>
+							<li>Choose from 2 Virtual Avatars</li>
+							<li>Book 10 days in Advance</li>
+							<li>$5 Credit For Registering</li>
+							<li>Free Forever</li>
+							<li>No Credit Card Required</li>
+						</ul>
+					</div>
 				</div>
-				</div>
-				<div class="card-outside">
+			</div>
+			<div class="card-outside">
 				<div class="card">
-				  <h3 class="plan">Extended</h3>
-				  <div class="info">
-				  				<ul>
-				  								<li>Attend Free, Paid, and Specialty Events</li>
-				  								<li>Choose From 5 Virtual Avatars</li>
-				  								<li>Book Anytime</li>
-				  								<li>$5 Credit For Registering</li>
-				  								<li>25% Off Tickets</li>
-				  								<li>Host Your Own Events</li>
-				  								<li>One Time Purchase</li>
-				  				</ul>
-				  </div>
+					<h3 class="plan">Extended</h3>
+					<div class="info">
+						<ul>
+							<li>Attend Free, Paid, and Specialty Events</li>
+							<li>Choose From 5 Virtual Avatars</li>
+							<li>Book Anytime</li>
+							<li>$5 Credit For Registering</li>
+							<li>25% Off Tickets</li>
+							<li>Host Your Own Events</li>
+							<li>One Time Purchase</li>
+						</ul>
+					</div>
 				</div>
-				</div>
+			</div>
 		</div>
 		<div class="more">
 			<a href="{{ url_for('auth.register') }}">Sign Up</a>
 		</div>
 	</div>
 </main>
-{% endblock %}
-{% block script %}
+{% endblock %} {% block script %}
 <script src="{{ url_for('static', filename='index.js') }}"></script>
 {% endblock %}

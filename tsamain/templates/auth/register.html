@@ -1,6 +1,5 @@
-{% extends 'base.html' %}
-{% block title %}Register{% endblock %}
-{% block content %}
+{% extends 'base.html' %} {% block title %}Register{% endblock %} {% block
+content %}
 <main>
 	<div>
 		<h1>Register</h1>
@@ -8,11 +7,31 @@
 			<div>
 				<p>Please fill in this form to create an account.</p>
 				<hr />
+				<label for="email">Email</label>
+				<input
+					type="text"
+					name="email"
+					id="email"
+					placeholder="Enter Email"
+					required
+				/>
 				<label for="username">Username</label>
-    <input type="text" name="username" id="username" placeholder="Create Username" required>
-    <label for="password">Password</label>
-    <input type="password" name="password" id="password" placeholder="Create Password" required>
-    <p>
+				<input
+					type="text"
+					name="username"
+					id="username"
+					placeholder="Create Username"
+					required
+				/>
+				<label for="password">Password</label>
+				<input
+					type="password"
+					name="password"
+					id="password"
+					placeholder="Create Password"
+					required
+				/>
+				<p>
 					By creating a slot you agree to our
 					<a href="#">Terms & Privacy</a>.
 				</p>
@@ -20,8 +39,11 @@
 			</div>
 
 			<div>
-				<p>Already have an account? <a href="{{ url_for('auth.login') }}">Login</a>.</p>
-				</div>
+				<p>
+					Already have an account?
+					<a href="{{ url_for('auth.login') }}">Login</a>.
+				</p>
+			</div>
 		</form>
 	</div>
 </main>
