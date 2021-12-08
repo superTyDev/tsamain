@@ -6,7 +6,8 @@ CREATE TABLE user (
   userid INTEGER PRIMARY KEY AUTOINCREMENT,
   email TEXT NOT NULL,
   username TEXT UNIQUE NOT NULL,
-  password TEXT NOT NULL
+  password TEXT NOT NULL,
+  userlevel INT NOT NULL DEFAULT 0
 );
 
 CREATE TABLE events (
@@ -26,5 +27,5 @@ CREATE TABLE registrations (
   regevent INTEGER,
   regdate TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
   FOREIGN KEY (reguser) REFERENCES user (userid),
-  FOREIGN KEY (regevent) REFERENCES user (eventid)
+  FOREIGN KEY (regevent) REFERENCES event (eventid)
 );

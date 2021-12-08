@@ -10,18 +10,6 @@ from tsamain.db import get_db
 bp = Blueprint('auth', __name__, url_prefix='/auth')
 
 
-@bp.before_app_request
-def load_logged_in_user():
-    userid = session.get('userid')
-
-    if userid is None:
-        g.user = None
-    else:
-        g.user = get_db().execute(
-            'SELECT * FROM user WHERE userid = ?', (userid,)
-        ).fetchone()
-
-
 @bp.route('/register', methods=('GET', 'POST'))
 def register():
     if request.method == 'POST':

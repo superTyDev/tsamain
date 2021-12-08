@@ -1,28 +1,17 @@
 import functools
 
 from flask import (
-    Blueprint, flash, g, redirect, render_template, request, session, url_for
+    Blueprint, flash, g, redirect, render_template, request, session, url_for, make_response
 )
 from werkzeug.security import check_password_hash, generate_password_hash
 
+from tsamain.auth import login_required
 from tsamain.db import get_db
 
 bp = Blueprint('event', __name__, url_prefix='/event')
 
-
-@bp.before_app_request
-def load_logged_in_user():
-    userid = session.get('userid')
-
-    if userid is None:
-        g.user = None
-    else:
-        g.user = get_db().execute(
-            'SELECT * FROM user WHERE userid = ?', (userid,)
-        ).fetchone()
-
-
 @bp.route('/dashboard', methods=('GET', 'POST'))
+@login_required
 def dashboard():
     if request.method == 'POST':
         email = request.form['email']
@@ -53,6 +42,20 @@ def dashboard():
         flash(error)
 
     return render_template('event/dashboard.html')
+    
+@bp.route('/initdb')
+@login_required
+def initdb():
+    error = None
+    if g.user["userlevel"] == 3:
+        init-db()
+        response = "DB Init Began"
+    else:
+        response = "NO AUTH"
+    
+    response = make_response(response, 200)
+    response.mimetype = "text/plain"
+    return response
 
 
 @bp.route('/<int:eventid>', methods=('GET', 'POST'))
@@ -97,14 +100,3 @@ def create():
             return redirect(url_for('blog.index'))
 
     return render_template('blog/create.html')
-
-
-def login_required(view):
-    @functools.wraps(view)
-    def wrapped_view(**kwargs):
-        if g.user is None:
-            return redirect(url_for('auth.login'))
-
-        return view(**kwargs)
-
-    return wrapped_view

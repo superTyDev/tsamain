@@ -1,8 +1,16 @@
-{% extends 'base.html' %} {% block title %}Register{% endblock %} {% block
+{% extends 'base.html' %} {% block title %}Register{% endblock %}{% block style %}
+<link rel="stylesheet" href="{{ url_for('static', filename='register.css') }}" />
+{% endblock %} {% block
 content %}
 <main>
 	<div>
 		<h1>Register</h1>
+		<div class="tabcont">
+						<div class="tab">
+  <button class="tablinks" onclick="openPayTab(event, 'London')">Basic</button>
+  <button class="tablinks" onclick="openPayTab(event, 'Paris')">Premium</button>
+</div>
+<div class="tabcontent">
 		<form method="POST" onsubmit="return validateForm()">
 			<div>
 				<p>Please fill in this form to create an account.</p>
@@ -31,9 +39,10 @@ content %}
 					placeholder="Create Password"
 					required
 				/>
+				
 				<p>
-					By creating a slot you agree to our
-					<a href="#">Terms & Privacy</a>.
+					By creating an account you agree to our
+					<a href="/legal">Terms & Privacy</a>.
 				</p>
 				<button type="submit" class="registerbtn">Register</button>
 			</div>
@@ -45,6 +54,13 @@ content %}
 				</p>
 			</div>
 		</form>
+		</div>
+		<div class="tabcontent">
+						Not Currently Avaliable<br>By the way, this website was made by high schoolers.  Although it is secure (https) and server info is encrypted, you may not want to submit your credit card.
+		</div>
+		</div>
 	</div>
 </main>
+{% endblock %}{% block script %}
+<script src="{{ url_for('static', filename='register.js') }}"></script>
 {% endblock %}
