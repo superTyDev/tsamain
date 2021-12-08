@@ -6,9 +6,10 @@ from flask import (
 from werkzeug.security import check_password_hash, generate_password_hash
 
 from tsamain.auth import login_required
-from tsamain.db import get_db
+from tsamain.db import get_db, init_db
 
 bp = Blueprint('event', __name__, url_prefix='/event')
+
 
 @bp.route('/dashboard', methods=('GET', 'POST'))
 @login_required
@@ -42,17 +43,18 @@ def dashboard():
         flash(error)
 
     return render_template('event/dashboard.html')
-    
+
+
 @bp.route('/initdb')
 @login_required
 def initdb():
-    error = None
+    # error = None
     if g.user["userlevel"] == 3:
-        init-db()
+        init_db()
         response = "DB Init Began"
     else:
         response = "NO AUTH"
-    
+
     response = make_response(response, 200)
     response.mimetype = "text/plain"
     return response

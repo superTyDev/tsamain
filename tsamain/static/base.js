@@ -56,16 +56,14 @@ function setTheme(themeName) {
 	}
 })();
 
-// FORM
-function validateForm() {
-	var x = document.forms["myForm"]["fname"].value;
-	if (x == "") {
-		alert("Name must be filled out");
-		return false;
-	}
+// PUSH TO MESSAGES
+function pushMessage(message) {
+	document.getElementsByClassName("messages")[0].innerHTML += `<div class="flash" onclick="this.style.display='none'">${message}</div >`;
 }
 
 // FOOTER
 function placeFooter() {
 	main.style.minHeight = (window.innerHeight - footer.offsetHeight) + "px";
 }
+
+pushMessage("hi");

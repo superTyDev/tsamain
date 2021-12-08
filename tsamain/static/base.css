@@ -121,6 +121,7 @@ nav.shrink a {
 
 /* ALERTS */
 .messages {
+	z-index: 3;
 	position: fixed;
 	bottom: 0px;
 	right: 0px;
@@ -135,14 +136,10 @@ nav.shrink a {
 	box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
 	padding: 15px;
 	font-size: 100%;
-	animation: fade 1.5s linear 5s;
+	animation: fade 1s linear 5s;
 	animation-direction: reverse;
 	animation-fill-mode: forwards;
-}
-.flash.hide {
-	animation: fade 1.5s linear;
-	animation-direction: reverse;
-	animation-fill-mode: forwards;
+	margin-top: 10px;
 }
 
 /* MAIN PAGE */
@@ -335,12 +332,12 @@ footer p {
 /* ANIMATIONS */
 @-webkit-keyframes fade {
 	from {
-		opacity: 0;
 		display: none;
+		opacity: 0;
 	}
 	to {
 		opacity: 1;
-		display: inherit;
+		display: block;
 	}
 }
 @keyframes fade {
@@ -350,40 +347,7 @@ footer p {
 	}
 	to {
 		opacity: 1;
-		display: inherit;
-	}
-}
-@-webkit-keyframes AnimationName {
-	0% {
-		background-position: 0% 50%;
-	}
-	50% {
-		background-position: 100% 50%;
-	}
-	100% {
-		background-position: 0% 50%;
-	}
-}
-@-moz-keyframes AnimationName {
-	0% {
-		background-position: 0% 50%;
-	}
-	50% {
-		background-position: 100% 50%;
-	}
-	100% {
-		background-position: 0% 50%;
-	}
-}
-@keyframes AnimationName {
-	0% {
-		background-position: 0% 50%;
-	}
-	50% {
-		background-position: 100% 50%;
-	}
-	100% {
-		background-position: 0% 50%;
+		display: block;
 	}
 }
 

@@ -51,7 +51,7 @@
 	</nav>
 	<div class="messages">
 		{% for message in get_flashed_messages() %}
-		<div class="flash" onclick="this.classList.add('hide')">
+		<div class="flash" onclick="this.style.display='none'">
 			{{ message }}
 		</div>
 		{% endfor %}
