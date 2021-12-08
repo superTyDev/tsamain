@@ -9,7 +9,7 @@ window.addEventListener("resize", placeNav);
 navbar.onload = setTimeout(placeNav, 300);
 
 // NAVBAR
-function placeNav(event) {
+function placeNav() {
 	header.style.minHeight =
 		(window.innerHeight - navbar.offsetHeight).toString() + "px";
 	sticky = window.innerHeight - navbar.offsetHeight - 5;
