@@ -15,3 +15,9 @@ function openPay(elem) {
 	document.getElementsByClassName("tabcontent")[buttonIndex].style.display = "block";
 	elem.classList.add("active");
 }
+
+$(function () {
+  $('.cc-number').formatCardNumber();
+  $('.cc-expires').formatCardExpiry();
+  $('.cc-cvc').formatCardCVC();
+});
