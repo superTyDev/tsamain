@@ -90,18 +90,26 @@ def create():
 
             if not title:
                 error = 'Title is required.'
+            elif not date:
+                error = 'Date is required.'
+            elif not price:
+                error = 'Price is required.'
+            elif not desc:
+                error = 'Description is required.'
 
             if error is not None:
                 flash(error)
             else:
                 db = get_db()
                 db.execute(
-                'INSERT INTO events (title, body, author_id)'
-                ' VALUES (?, ?, ?)',
-                (title, date, g.user['id'])
+                    'INSERT INTO events (title, body, author_id)'
+                    ' VALUES (?, ?, ?)',
+                    (title, date, g.user['id'])
                 )
                 db.commit()
                 return redirect(url_for('event.dashboard'))
     else:
-        flash("No auth")
+        flash("No Auth")
+        return redirect(url_for('event.dashboard'))
+		
     return render_template('event/create.html')

@@ -231,6 +231,7 @@ input[type="password"],
 input[list],
 input[type="number"],
 input[type="tel"],
+input[type="date"],
 select {
 	width: 100%;
 	padding: 15px;

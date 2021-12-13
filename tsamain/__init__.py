@@ -11,7 +11,7 @@ def create_app(test_config=None):
         SECRET_KEY='dev',
         DATABASE=os.path.join(app.instance_path, 'tsamain.sqlite'),
     )
-    app.config['upload/']
+    app.config['UPLOAD_FOLDER'] = "upload"
 
     if test_config is None:
         # load the instance config, if it exists, when not testing
@@ -25,6 +25,10 @@ def create_app(test_config=None):
         os.makedirs(app.instance_path)
     except OSError:
         pass
+
+    @app.context_processor
+    def handle_context():
+        return dict(os=os)
 
     @app.before_request
     def load_logged_in_user():

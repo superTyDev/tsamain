@@ -2,28 +2,29 @@
 %}
 <main>
 	<div>
-		<h1>Login</h1>
+		<h1>Create Event</h1>
 		<form method="POST" onsubmit="return validateForm()">
 			<div>
 				<p>Please fill in this form to create an event.</p>
 				<hr />
-				<label for="username">Username</label>
-				<input
-					type="text"
-					name="username"
-					id="username"
-					placeholder="Enter Username"
-					required
-				/>
-				<label for="password">Password</label>
-				<input
-					type="password"
-					name="password"
-					id="password"
-					placeholder="Enter Password"
-					required
-				/>
-				<button type="submit" class="registerbtn">Login</button>
+				<label for="title">Title</label>
+				<input type="text" name="title" placeholder="Enter Brief Title" required />
+
+				<label for="date">Date</label>
+				<input type="date" name="date" placeholder="Enter the Date" required id="datePicker" />
+
+				<label for="guest">Level</label>
+				<input type="radio" name="level" value="guest">
+				<label for="guest">HTML</label><br>
+				<input type="radio" name="level" value="basic">
+				<label for="css">CSS</label><br>
+				<input type="radio" name="level" value="extended">
+				<label for="javascript">JavaScript</label>
+
+				<label for="title">Title</label>
+				<input type="text" name="title" placeholder="Enter Brief Title" required />
+
+				<button type="submit" class="registerbtn">Create Event</button>
 			</div>
 
 			<div>

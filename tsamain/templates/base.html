@@ -12,6 +12,9 @@
 
 	<!-- Load main styles -->
 	<link rel="stylesheet" href="{{ url_for('static', filename='base.css') }}" />
+	{% if (os.path.exists('./tsamain/static/' + request.path.split("/")[-1] + ".css")) %}
+	<link rel="stylesheet" href="{{ url_for('static', filename=request.path.split('/')[-1] + '.css') }}" />
+	{% endif %}
 	{% block style %}{% endblock %}
 
 	<!-- Favicon -->
@@ -91,6 +94,9 @@
 
 	<script src="{{ url_for('static', filename='base.js') }}"></script>
 	{% block script %}{% endblock %}
+	{% if (os.path.exists('./tsamain/static/' + request.path.split("/")[-1] + ".js")) %}
+	<script src="{{ url_for('static', filename=request.path.split('/')[-1] + '.js') }}"></script>
+	{% endif %}
 </body>
 
 </html>

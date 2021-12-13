@@ -1,6 +1,4 @@
-{% extends 'base.html' %} {% block title %}Home{% endblock %} {% block style %}
-<link rel="stylesheet" href="{{ url_for('static', filename='index.css') }}" />
-{% endblock %} {% block header %}
+{% extends 'base.html' %} {% block title %}Home{% endblock %} {% block header %}
 <header>
 	<div class="info">
 		<div class="column">
@@ -194,6 +192,4 @@
 		</div>
 	</div>
 </main>
-{% endblock %} {% block script %}
-<script src="{{ url_for('static', filename='index.js') }}"></script>
 {% endblock %}
