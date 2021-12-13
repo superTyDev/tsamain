@@ -66,4 +66,4 @@ function placeFooter() {
 	main.style.minHeight = (window.innerHeight - footer.offsetHeight) + "px";
 }
 
-pushMessage("hi");
+// pushMessage("hi");

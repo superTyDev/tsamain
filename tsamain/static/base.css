@@ -127,19 +127,21 @@ nav.shrink a {
 	right: 0px;
 	left: 0px;
 	margin: 5% 20%;
+	pointer-events: none;
+	opacity: .8;
 }
 .flash {
 	text-align: center;
 	font-weight: bold;
 	background-color: var(--color-primary);
 	color: var(--color-theme-text);
-	box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+	box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.6);
 	padding: 15px;
 	font-size: 100%;
-	animation: fade 1s linear 5s;
-	animation-direction: reverse;
-	animation-fill-mode: forwards;
 	margin-top: 10px;
+	animation: fade .5s ease 2s;
+	animation-direction: reverse;	
+	animation-fill-mode: forwards;
 }
 
 /* MAIN PAGE */
@@ -332,22 +334,18 @@ footer p {
 /* ANIMATIONS */
 @-webkit-keyframes fade {
 	from {
-		display: none;
 		opacity: 0;
 	}
 	to {
 		opacity: 1;
-		display: block;
 	}
 }
 @keyframes fade {
 	from {
-		display: none;
 		opacity: 0;
 	}
 	to {
 		opacity: 1;
-		display: block;
 	}
 }
 
@@ -431,6 +429,6 @@ footer p {
 		max-width: 100%;
 	}
 	footer a {
-		width: 25%;
+		width: calc(100% / 3);
 	}
 }
