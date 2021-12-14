@@ -42,11 +42,13 @@ def create_app(test_config=None):
             ).fetchone()
 
     @app.route("/")
+    def index():
+        request.path = "index"
+        return render_template("index.html")
+        
     @app.route("/<request>")
-    def index(request="index.html"):
-        if request.find(".") == -1:
-            request += ".html"
-        return render_template(request)
+    def main(request):
+        return render_template(request + ".html")
 
     from . import db
     db.init_app(app)

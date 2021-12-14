@@ -249,6 +249,11 @@ select:focus {
 	background-color: var(--color-input-focus);
 	outline: none;
 }
+input[type="checkbox"]:checked {
+		background-color: red;
+		color: red;
+		border-color: red;
+}
 button[type="submit"] {
 	background-color: var(--color-primary);
 	color: white;
