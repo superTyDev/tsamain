@@ -16,17 +16,17 @@
 				<label for="level">Attendance Level</label>
 				<div class="check">
 					<label class="container">
-						<input type="checkbox">
+						<input type="checkbox" name="level" value="g">
 						<span class="checkmark"></span>
 						Guest
 					</label>
 					<label class="container">
-						<input type="checkbox">
+						<input type="checkbox" name="level" value="b">
 						<span class="checkmark"></span>
 						Basic
 					</label>
 					<label class="container">
-						<input type="checkbox">
+						<input type="checkbox" name="level" value="e">
 						<span class="checkmark"></span>
 						Extended
 					</label>
@@ -36,9 +36,7 @@
 				<input name="price" type="number" value="1" min="0" max="99.99" step=".5" required />
 
 				<label for="desc">Description</label>
-				<textarea name="desc" placeholder="Enter a Description" required></textarea>
-
-				<label for="tags">Tags</label>
+				<textarea name="desc" placeholder="Enter a Description" rows="4" required></textarea>
 
 				<button type="submit" class="registerbtn">Create Event</button>
 			</div>
