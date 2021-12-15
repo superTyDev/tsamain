@@ -1,7 +1,10 @@
 import functools
+import os
 from flask import (
-    Blueprint, flash, g, redirect, render_template, request, session, url_for, make_response, jsonify
+    Blueprint, flash, g, redirect, render_template, request, session, url_for, make_response
 )
+from werkzeug.utils import secure_filename
+from werkzeug.datastructures import  FileStorage
 from werkzeug.security import check_password_hash, generate_password_hash
 
 from tsamain.auth import login_required
@@ -58,9 +61,8 @@ def initdb():
     response.mimetype = "text/plain"
     return response
 
-
-@bp.route('/loadevents', methods=('GET', 'POST'))
-def loadevents():
+@bp.route('/schedule', methods=('GET', 'POST'))
+def schedule():
     if 'num' in request.args:
         num = request.args.get('num')
     else:
@@ -78,7 +80,7 @@ def eventid(eventid):
     if eventid:
         db = get_db()
         info = db.execute(
-            'SELECT * FROM events WHERE eventid = ? ', (eventid,)
+            'SELECT * FROM events WHERE eventid = ?', (eventid,)
         ).fetchone()
 
     else:
@@ -89,9 +91,9 @@ def eventid(eventid):
     return render_template('event/id.html', info=info)
 
 
-@bp.route('/create', methods=('GET', 'POST'))
+@bp.route('/creator', methods=('GET', 'POST'))
 @login_required
-def create():
+def creator():
     if g.user["userlevel"] >= 2:
         if request.method == 'POST':
             title = request.form['title']
@@ -99,6 +101,7 @@ def create():
             level = request.form.getlist('level')
             price = request.form['price']
             desc = request.form['desc']
+            
             error = None
 
             if not title:
@@ -113,23 +116,41 @@ def create():
                 error = 'Description is required.'
 
             level = " ".join(level)
-            print(level)
 
             if error is not None:
                 flash(error)
             else:
-
                 db = get_db()
-                db.execute(
+                cursor = db.execute(
                     'INSERT INTO events (eventtitle, eventdate, eventlevel, eventprice, eventdesc, authorid)'
                     ' VALUES (?, ?, ?, ?, ?, ?)',
                     (title, date, level, price, desc, g.user['userid'])
                 )
                 db.commit()
-
+                
+                if 'video' in request.files:
+                    f = request.files['video']
+                    f.save(secure_filename(str(cursor.lastrowid) + "." + f.filename.split(".")[-1]))
+          
+                if 'hero' in request.files:
+                    f = request.files['hero']
+                    f.save(secure_filename(str(cursor.lastrowid) + "." + f.filename.split(".")[-1]))
+                
+                flash(f"Event {cursor.lastrowid} created successfully")
                 return redirect(url_for('event.dashboard'))
     else:
         flash("No Auth")
         return redirect(url_for('event.dashboard'))
-
+		
     return render_template('event/create.html')
+    
+@bp.route('/create', methods=('GET', 'POST'))
+@login_required
+def create():
+    if g.user["userlevel"] >= 2:
+        return render_template('event/create.html')
+    else:
+        flash("No Auth")
+        return redirect(url_for('event.dashboard'))
+		
+    

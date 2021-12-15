@@ -3,15 +3,15 @@
 <main>
 	<div>
 		<h1>Create Event</h1>
-		<form method="POST" onsubmit="return validateForm()">
+		<form method="POST" onsubmit="return validateForm()" enctype = "multipart/form-data" action="{{url_for('event.creator')}}">
 			<div>
 				<p>Please fill in this form to create an event.</p>
 				<hr />
 				<label for="title">Title</label>
 				<input type="text" name="title" placeholder="Enter Brief Title" required />
 
-				<label for="date">Date</label>
-				<input type="date" name="date" placeholder="Enter the Date" required id="datePicker" />
+				<label for="date">Start Time</label>
+				<input type="datetime-local" name="date" placeholder="Enter the Date" required id="datePicker" />
 
 				<label for="level">Attendance Level</label>
 				<div class="check">
@@ -38,7 +38,8 @@
 				<label for="desc">Description</label>
 				<textarea name="desc" placeholder="Enter a Description" rows="4" required></textarea>
 
-
+    <p>Optional</p>
+				<hr />
 
 				<label for="hero">Hero Image</label>
 				<div class="box" ondrop="dropHandler(event);" ondragover="dragOverHandler(event);">

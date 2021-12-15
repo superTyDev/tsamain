@@ -234,7 +234,7 @@ input[type="password"],
 input[list],
 input[type="number"],
 input[type="tel"],
-input[type="date"],
+input[type="datetime-local"],
 textarea,
 select {
 	width: 100%;
@@ -251,8 +251,8 @@ input[type="password"]:focus ,
 input[list]:focus ,
 input[type="number"]:focus ,
 input[type="tel"]:focus ,
-input[type="date"]:focus ,
-textarea:focus ,
+input[type="datetime-local"]:focus ,
+textarea:focus,
 select:focus {
 	background-color: var(--color-input-focus);
 	outline: none;
