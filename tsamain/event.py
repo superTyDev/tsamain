@@ -1,7 +1,7 @@
 import functools
 import os
 from flask import (
-    Blueprint, flash, g, redirect, render_template, request, session, url_for, make_response
+    Blueprint, flash, g, redirect, render_template, request, session, url_for, make_response, current_app
 )
 from werkzeug.utils import secure_filename
 from werkzeug.datastructures import  FileStorage
@@ -130,11 +130,11 @@ def creator():
                 
                 if 'video' in request.files:
                     f = request.files['video']
-                    f.save(secure_filename(str(cursor.lastrowid) + "." + f.filename.split(".")[-1]))
+                    f.save(os.path.join("tsamain", current_app.config['UPLOAD_FOLDER'], secure_filename(str(cursor.lastrowid) + "." + f.filename.split(".")[-1])))
           
                 if 'hero' in request.files:
                     f = request.files['hero']
-                    f.save(secure_filename(str(cursor.lastrowid) + "." + f.filename.split(".")[-1]))
+                    f.save(os.path.join("tsamain", current_app.config['UPLOAD_FOLDER'], secure_filename(str(cursor.lastrowid) + "." + f.filename.split(".")[-1])))
                 
                 flash(f"Event {cursor.lastrowid} created successfully")
                 return redirect(url_for('event.dashboard'))
