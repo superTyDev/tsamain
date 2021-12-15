@@ -1,7 +1,6 @@
 import functools
-
 from flask import (
-    Blueprint, flash, g, redirect, render_template, request, session, url_for, make_response
+    Blueprint, flash, g, redirect, render_template, request, session, url_for, make_response, jsonify
 )
 from werkzeug.security import check_password_hash, generate_password_hash
 
@@ -60,13 +59,26 @@ def initdb():
     return response
 
 
+@bp.route('/loadevents', methods=('GET', 'POST'))
+def loadevents():
+    if 'num' in request.args:
+        num = request.args.get('num')
+    else:
+        num = 5
+
+    db = get_db()
+    info = db.execute(
+        'SELECT * FROM events WHERE eventdate > DATE() ORDER BY eventdate ASC LIMIT ?', (num,)).fetchall()
+    return render_template('event/schedule.html', info=info)
+
+
 @bp.route('/<int:eventid>', methods=('GET', 'POST'))
 def eventid(eventid):
     error = None
     if eventid:
         db = get_db()
         info = db.execute(
-            'SELECT * FROM events WHERE eventid = ?', (eventid,)
+            'SELECT * FROM events WHERE eventid = ? ', (eventid,)
         ).fetchone()
 
     else:
@@ -106,7 +118,7 @@ def create():
             if error is not None:
                 flash(error)
             else:
-                
+
                 db = get_db()
                 db.execute(
                     'INSERT INTO events (eventtitle, eventdate, eventlevel, eventprice, eventdesc, authorid)'
@@ -114,12 +126,10 @@ def create():
                     (title, date, level, price, desc, g.user['userid'])
                 )
                 db.commit()
-                
-                
-                
+
                 return redirect(url_for('event.dashboard'))
     else:
         flash("No Auth")
         return redirect(url_for('event.dashboard'))
-		
+
     return render_template('event/create.html')

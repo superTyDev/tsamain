@@ -16,7 +16,7 @@ def register():
         email = request.form['email']
         username = request.form['username']
         password = request.form['password']
-        
+
         db = get_db()
         error = None
 
@@ -26,7 +26,7 @@ def register():
             error = 'Username is required.'
         elif not password:
             error = 'Password is required.'
-        
+
         if not 'userlevel' in request.form:
             userlevel = 1
         else:
@@ -87,5 +87,5 @@ def login_required(view):
         if g.user is None:
             flash("Please Log In")
             return redirect(url_for('auth.login'))
-        return view(**kwargs) 
+        return view(**kwargs)
     return wrapped_view

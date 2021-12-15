@@ -1,0 +1,21 @@
+{% extends 'base.html' %} {% block title %}Schedule{% endblock %} {% block
+content %}
+<main>
+	<div class="upcoming">
+		<div class="row" id="upcoming-expand">
+			{% for row in info %}
+			<div class="card-outside">
+				<div class="card">
+					<img src="{{ url_for('static', filename='orchestra.jpg') }}" alt="Avatar" style="width: 100%" />
+					<div class="container">
+						<h4><b>{{ row[1] }}</b></h4>
+						<p>{{ row[5] }}<br />on {{ row[2] }} </p>
+						<p>{{ row[3] }}</p>
+					</div>
+				</div>
+			</div>
+			{% endfor %}
+		</div>
+	</div>
+</main>
+{% endblock %}

@@ -33,10 +33,29 @@
 				</div>
 
 				<label for="price">Price</label>
-				<input name="price" type="number" value="1" min="0" max="99.99" step=".5" required />
+				<input name="price" type="number" value="1" min="0" max="99.99" step=".01" required />
 
 				<label for="desc">Description</label>
 				<textarea name="desc" placeholder="Enter a Description" rows="4" required></textarea>
+
+
+
+				<label for="hero">Hero Image</label>
+				<div class="box" ondrop="dropHandler(event);" ondragover="dragOverHandler(event);">
+					<input type="file" name="hero" id="hero" class="inputfile"
+						data-multiple-caption="{count} files selected" multiple accept="image/*" />
+					<label for="hero"><i class="fa fa-upload"></i><span>Choose a file</span></label>
+				</div>
+
+				<label for="video">Event Video</label>
+				<div class="box" ondrop="dropHandler(event);" ondragover="dragOverHandler(event);">
+					<input type="file" name="video" id="video" class="inputfile"
+						data-multiple-caption="{count} files selected" multiple accept="video/*" />
+					<label for="video"><i class="fa fa-upload"></i><span>Choose a file</span></label>
+				</div>
+
+				<label for="stream">Event Stream</label>
+				<input type="text" name="stream" placeholder="Enter https:// web address" />
 
 				<button type="submit" class="registerbtn">Create Event</button>
 			</div>

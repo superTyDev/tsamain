@@ -265,7 +265,7 @@ button[type="submit"] {
 	border: none;
 	cursor: pointer;
 	width: 100%;
-	opacity: 0.9;
+	opacity: 0.8;
 }
 button[type="submit"]:hover {
 	opacity: 1;
