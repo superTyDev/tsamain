@@ -16,34 +16,6 @@ bp = Blueprint('event', __name__, url_prefix='/event')
 @bp.route('/dashboard', methods=('GET', 'POST'))
 @login_required
 def dashboard():
-    if request.method == 'POST':
-        email = request.form['email']
-        username = request.form['username']
-        password = request.form['password']
-        db = get_db()
-        error = None
-
-        if not email:
-            error = 'Email is required.'
-        elif not username:
-            error = 'Username is required.'
-        elif not password:
-            error = 'Password is required.'
-
-        if error is None:
-            try:
-                db.execute(
-                    "INSERT INTO user (email, username, password) VALUES (?, ?, ?)",
-                    (email, username, generate_password_hash(password)),
-                )
-                db.commit()
-            except db.IntegrityError:
-                error = f"User {username} is already registered."
-            else:
-                return redirect(url_for("auth.login"))
-
-        flash(error)
-
     return render_template('event/dashboard.html')
 
 
@@ -66,11 +38,10 @@ def schedule():
     if 'num' in request.args:
         num = request.args.get('num')
     else:
-        num = 5
+        num = 20
 
     db = get_db()
-    info = db.execute(
-        'SELECT * FROM events WHERE eventdate > DATE() ORDER BY eventdate ASC LIMIT ?', (num,)).fetchall()
+    info = db.execute('SELECT e.eventtitle, e.eventdate, e.eventlevel, e.eventprice, d.eventdesc, d.eventhero FROM events e LEFT JOIN details d ON e.eventid = d.deventid WHERE eventdate > DATE() ORDER BY eventdate ASC LIMIT ?', (num,)).fetchall()
     return render_template('event/schedule.html', info=info)
 
 
@@ -100,7 +71,6 @@ def creator():
             date = request.form['date']
             level = request.form.getlist('level')
             price = request.form['price']
-            desc = request.form['desc']
             
             error = None
 
@@ -112,29 +82,51 @@ def creator():
                 error = "Select at least one level"
             elif not price:
                 error = 'Price is required.'
-            elif not desc:
-                error = 'Description is required.'
 
-            level = " ".join(level)
+            level = ", ".join(level)
 
             if error is not None:
                 flash(error)
             else:
                 db = get_db()
                 cursor = db.execute(
-                    'INSERT INTO events (eventtitle, eventdate, eventlevel, eventprice, eventdesc, authorid)'
-                    ' VALUES (?, ?, ?, ?, ?, ?)',
-                    (title, date, level, price, desc, g.user['userid'])
+                    'INSERT INTO events (eventtitle, eventdate, eventlevel, eventprice, authorid)'
+                    ' VALUES (?, ?, ?, ?, ?)',
+                    (title, date, level, price, g.user['userid'])
                 )
                 db.commit()
                 
+                if 'desc' in request.form:
+                    desc = request.form['desc']
+                else:
+                    desc = None
+                
                 if 'video' in request.files:
                     f = request.files['video']
-                    f.save(os.path.join("tsamain", current_app.config['UPLOAD_FOLDER'], secure_filename(str(cursor.lastrowid) + "." + f.filename.split(".")[-1])))
+                    vpath = os.path.join("tsamain", current_app.config['UPLOAD_FOLDER'], secure_filename(str(cursor.lastrowid) + "." + f.filename.split(".")[-1]))
+                    
+                    f.save(vpath)
+                else:
+                    vpath = None
           
                 if 'hero' in request.files:
                     f = request.files['hero']
-                    f.save(os.path.join("tsamain", current_app.config['UPLOAD_FOLDER'], secure_filename(str(cursor.lastrowid) + "." + f.filename.split(".")[-1])))
+                    hpath = os.path.join("tsamain", current_app.config['UPLOAD_FOLDER'], secure_filename(str(cursor.lastrowid) + "." + f.filename.split(".")[-1]))                    
+                    f.save(hpath)
+                else:
+                    hpath = None
+
+                if 'stream' in request.form:
+                    slink = request.form['stream']
+                else:
+                    slink = None
+
+                db.execute(
+                    'INSERT INTO details (deventid, eventdesc, eventhero, eventvideo, eventstream)'
+                    ' VALUES (?, ?, ?, ?, ?)',
+                    (cursor.lastrowid, desc, hpath, vpath, slink)
+                )
+                db.commit()
                 
                 flash(f"Event {cursor.lastrowid} created successfully")
                 return redirect(url_for('event.dashboard'))

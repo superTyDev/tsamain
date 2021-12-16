@@ -1,5 +1,6 @@
 DROP TABLE IF EXISTS user;
 DROP TABLE IF EXISTS events;
+DROP TABLE IF EXISTS details;
 DROP TABLE IF EXISTS registrations;
 
 CREATE TABLE user (
@@ -16,11 +17,21 @@ CREATE TABLE events (
   eventdate DATETIME NOT NULL,
   eventlevel TEXT NOT NULL,
   eventprice FLOAT(4, 2) NOT NULL,
-  eventdesc TEXT NOT NULL,
+  
   authorid INTEGER NOT NULL,
   created TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
   FOREIGN KEY (authorid) REFERENCES user (userid)
 );
+
+CREATE TABLE details (
+  detailid INTEGER PRIMARY KEY AUTOINCREMENT,
+		deventid INTEGER NOT NULL,
+		eventdesc TEXT DEFAULT NULL,
+		eventhero TEXT DEFAULT NULL,
+		eventvideo TEXT DEFAULT NULL,
+		eventstream TEXT DEFAULT NULL,
+		FOREIGN KEY (deventid) REFERENCES events (eventid)
+ );
 
 CREATE TABLE registrations (
   reguser INTEGER,

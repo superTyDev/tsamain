@@ -6,15 +6,28 @@ content %}
 			{% for row in info %}
 			<div class="card-outside">
 				<div class="card">
-					<img src="{{ url_for('static', filename='orchestra.jpg') }}" alt="Avatar" style="width: 100%" />
+								{% if row[5] %}
+					<img src="{{ url_for('static', filename = 'upload/' + row[5].split("/")[-1]) }}" alt="{{ row[0] }}" style="width: 100%" />
+					   {% endif %}
 					<div class="container">
-						<h4><b>{{ row[1] }}</b></h4>
-						<p>{{ row[5] }}<br />on {{ row[2] }} </p>
-						<p>{{ row[3] }}</p>
+						<h6>{{ datetime.strftime(datetime.strptime(row[1], "%Y-%m-%dT%H:%M"), "%-I:%M, %b. %-d") }}</h6>
+						<h4><b>{{ row[0] }}</b></h4>
+						<p>{{ row[4] }}</p>
+						<div class="banner">{{ row[2] }}</div>
+						<div class="corner">
+										{% if row[3] %}
+					       	${{ row[3] }}
+					     {% else %}
+					         Free
+						    {% endif %}
+						</div>
 					</div>
 				</div>
 			</div>
 			{% endfor %}
+				<div class="more">
+			    	<a href="#more" onclick="expandUpcoming(this)">More</a>
+			 </div>
 		</div>
 	</div>
 </main>

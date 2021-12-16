@@ -16,17 +16,17 @@
 				<label for="level">Attendance Level</label>
 				<div class="check">
 					<label class="container">
-						<input type="checkbox" name="level" value="g">
+						<input type="checkbox" name="level" value="Guest">
 						<span class="checkmark"></span>
 						Guest
 					</label>
 					<label class="container">
-						<input type="checkbox" name="level" value="b">
+						<input type="checkbox" name="level" value="Basic">
 						<span class="checkmark"></span>
 						Basic
 					</label>
 					<label class="container">
-						<input type="checkbox" name="level" value="e">
+						<input type="checkbox" name="level" value="Extended">
 						<span class="checkmark"></span>
 						Extended
 					</label>
@@ -34,12 +34,12 @@
 
 				<label for="price">Price</label>
 				<input name="price" type="number" value="1" min="0" max="99.99" step=".01" required />
+				
+				<p>Optional</p>
+				<hr />
 
 				<label for="desc">Description</label>
 				<textarea name="desc" placeholder="Enter a Description" rows="4" required></textarea>
-
-    <p>Optional</p>
-				<hr />
 
 				<label for="hero">Hero Image</label>
 				<div class="box" ondrop="dropHandler(event);" ondragover="dragOverHandler(event);">
