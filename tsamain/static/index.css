@@ -1,230 +1,230 @@
 /* HEADER */
 header {
-	background-color: var(--color-primary);
-	background: linear-gradient(239deg, var(--color-primary), #0d324d);
-	color: var(--color-text-header);
-	background-size: 400% 400%;
-	-webkit-animation: AnimationName 30s ease infinite;
-	-moz-animation: AnimationName 30s ease infinite;
-	animation: AnimationName 30s ease infinite;
+    background-color: var(--color-primary);
+    background: linear-gradient(239deg, var(--color-primary), #0d324d);
+    color: var(--color-text-header);
+    background-size: 400% 400%;
+    -webkit-animation: AnimationName 30s ease infinite;
+    -moz-animation: AnimationName 30s ease infinite;
+    animation: AnimationName 30s ease infinite;
 
-	min-height: 100vh;
-	width: 100%;
-	transition: 0.3s;
-	position: relative;
+    min-height: 100vh;
+    width: 100%;
+    transition: 0.3s;
+    position: relative;
 }
 header .info {
-	position: absolute;
-	top: 50%;
-	left: 20%;
-	right: 20%;
-	transform: translateY(-50%);
-	text-shadow: 0 0 4px #222;
-	box-sizing: border-box;
+    position: absolute;
+    top: 50%;
+    left: 20%;
+    right: 20%;
+    transform: translateY(-50%);
+    text-shadow: 0 0 4px #222;
+    box-sizing: border-box;
 }
 header .info:after {
-	content: "";
-	display: table;
-	clear: both;
+    content: "";
+    display: table;
+    clear: both;
 }
 header .info .column {
-	width: 50%;
-	float: left;
-	overflow: hidden;
+    width: 50%;
+    float: left;
+    overflow: hidden;
 }
 header .info .title {
-	font-size: 5vh;
+    font-size: 5vh;
 }
 header .info .title h1 {
-	margin: 0 auto;
+    margin: 0 auto;
 }
 header .info .slide {
-	display: none;
+    display: none;
 }
 header .info h3 {
-	margin: 20px 0;
-	text-shadow: 3px 3px 5px #00000088;
-	border-radius: 2px;
-	transition: text-shadow 0.4s;
+    margin: 20px 0;
+    text-shadow: 3px 3px 5px #00000088;
+    border-radius: 2px;
+    transition: text-shadow 0.4s;
 }
 header .info h3:hover {
-	text-shadow: 1px 1px 5px #00000088;
+    text-shadow: 1px 1px 5px #00000088;
 }
 .morebutton:hover .jump {
-	padding-right: 5px;
-	padding-left: 25px;
+    padding-right: 5px;
+    padding-left: 25px;
 }
 header .info a {
-	text-decoration: none;
-	color: var(--color-text-header);
+    text-decoration: none;
+    color: var(--color-text-header);
 }
 header .info .jump {
-	transition: padding 1s cubic-bezier(0.68, -0.55, 0.265, 1.55);
-	padding-right: 25px;
-	padding-left: 5px;
-	font-style: normal;
+    transition: padding 1s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+    padding-right: 25px;
+    padding-left: 5px;
+    font-style: normal;
 }
 .fade {
-	-webkit-animation-name: fade;
-	-webkit-animation-duration: 1.5s;
-	animation-name: fade;
-	animation-duration: 1.5s;
+    -webkit-animation-name: fade;
+    -webkit-animation-duration: 1.5s;
+    animation-name: fade;
+    animation-duration: 1.5s;
 }
 header .info .rotateColumn {
-	position: relative;
-	perspective: 1000px;
-	background-color: transparent;
-	overflow: visible;
-	max-height: 60vh;
+    position: relative;
+    perspective: 1000px;
+    background-color: transparent;
+    overflow: visible;
+    max-height: 60vh;
 }
 .rotateColumn .slide-card {
-	position: relative;
-	width: 100%;
-	height: 100%;
-	text-align: center;
-	transition: transform 0.6s;
-	transform-style: preserve-3d;
-	box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
-	transform: rotateY(-20deg);
+    position: relative;
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    transition: transform 0.6s;
+    transform-style: preserve-3d;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+    transform: rotateY(-20deg);
 }
 .slide-card .slide-card-inner {
-	display: none;
-	overflow: hidden;
+    display: none;
+    overflow: hidden;
 }
 .slide-card .slide-title,
 .slide-card .slide-time {
-	position: absolute;
-	top: 0px;
-	left: 0px;
-	right: 0px;
-	text-align: center;
-	text-transform: uppercase;
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    right: 0px;
+    text-align: center;
+    text-transform: uppercase;
 
-	font-size: 200%;
-	background-color: var(--color-primary);
-	background-image: linear-gradient(
-		to right,
-		var(--color-primary-dark),
-		var(--color-primary)
-	);
-	/* box-shadow: 0 4px 8px 0 rgb(0, 0, 0, 0.5);
+    font-size: 200%;
+    background-color: var(--color-primary);
+    background-image: linear-gradient(
+        to right,
+        var(--color-primary-dark),
+        var(--color-primary)
+    );
+    /* box-shadow: 0 4px 8px 0 rgb(0, 0, 0, 0.5);
 	transform: translate(-5px, -5px); */
 }
 .slide-card .slide-time {
-	top: inherit;
-	bottom: 0px;
-	font-size: 100%;
+    top: inherit;
+    bottom: 0px;
+    font-size: 100%;
 }
 header .info img,
 header .info video {
-	object-fit: cover;
-	max-height: 60vh;
+    object-fit: cover;
+    max-height: 60vh;
 }
 .more a {
-	display: block;
+    display: block;
 }
 .slant {
-	background: var(--color-primary-dark);
-	clip-path: polygon(0 20%, 100% 0, 100% 80%, 0 100%);
-	padding: 10rem 20%;
-	color: var(--color-text-theme);
+    background: var(--color-primary-dark);
+    clip-path: polygon(0 20%, 100% 0, 100% 80%, 0 100%);
+    padding: 10rem 20%;
+    color: var(--color-text-theme);
 }
 .slant .more {
-	width: 50%;
-	min-width: 150px;
-	margin: auto;
+    width: 50%;
+    min-width: 150px;
+    margin: auto;
 }
 .slant .more a {
-	padding: 5px 10px;
-	border-radius: 2px;
-	text-decoration: none;
-	text-align: center;
-	width: 100%;
-	color: var(--color-text-theme);
-	border: 2px solid var(--color-text-theme);
+    padding: 5px 10px;
+    border-radius: 2px;
+    text-decoration: none;
+    text-align: center;
+    width: 100%;
+    color: var(--color-text-theme);
+    border: 2px solid var(--color-text-theme);
 }
 .slant .more a:hover {
-	background-color: var(--color-background);
-	color: var(--color-text);
+    background-color: var(--color-background);
+    color: var(--color-text);
 }
 .accounts .table-cont {
-	width: 100%;
-	overflow-x: auto;
-	padding: 0;
+    width: 100%;
+    overflow-x: auto;
+    padding: 0;
 }
 .accounts .card {
- padding: 5px 20px;
-	margin: 15px 0px;
+    padding: 5px 20px;
+    margin: 15px 0px;
 }
 .accounts ul {
-  list-style: none;
-  padding-left: 0;
+    list-style: none;
+    padding-left: 0;
 }
 .accounts ul li:before {
-  content: '✓';
-  color: var(--color-primary);
-  padding-right: 5px;
+    content: "✓";
+    color: var(--color-primary);
+    padding-right: 5px;
 }
 .accounts .more {
-	width: 50%;
-	min-width: 150px;
-	margin: auto;
-	border: 2px solid var(--color-primary);
-	border-radius: 2px;
+    width: 50%;
+    min-width: 150px;
+    margin: auto;
+    border: 2px solid var(--color-primary);
+    border-radius: 2px;
 }
 .accounts .more a {
-	display: block;
-	padding: 5px 10px;
-	color: var(--color-primary);
-	text-decoration: none;
-	text-align: center;
-	width: 100%;
+    display: block;
+    padding: 5px 10px;
+    color: var(--color-primary);
+    text-decoration: none;
+    text-align: center;
+    width: 100%;
 }
 .accounts .more a:hover {
-	background-color: var(--color-primary);
-	color: var(--color-text-theme);
+    background-color: var(--color-primary);
+    color: var(--color-text-theme);
 }
 
 /* RESPONSIVE STYLES */
 @media screen and (max-width: 1200px) {
-	header .info {
-		left: 10%;
-		right: 10%;
-	}
+    header .info {
+        left: 10%;
+        right: 10%;
+    }
 }
 @media (max-width: 900px) {
-	header .info {
-		top: 10%;
-		transform: none;
-	}
-	header .info .column {
-		width: 100%;
-		float: none;
-		display: block;
-	}
-	header .info .rotateColumn {
-		max-height: 40vh;
-	}
-	.rotateColumn .slide-card {
-		transform: rotateX(20deg);
-	}
-	header .info img,
-	header .info video {
-		min-height: 30vh;
-		width: 100%;
-	}
+    header .info {
+        top: 10%;
+        transform: none;
+    }
+    header .info .column {
+        width: 100%;
+        float: none;
+        display: block;
+    }
+    header .info .rotateColumn {
+        max-height: 40vh;
+    }
+    .rotateColumn .slide-card {
+        transform: rotateX(20deg);
+    }
+    header .info img,
+    header .info video {
+        min-height: 30vh;
+        width: 100%;
+    }
 }
 @media screen and (min-width: 800px) {
-	.accounts .card-outside {
-		width: 33.3%;
-		float: left;
-	}
-	.accounts .card {
-		margin: 15px 10px;
-	}
+    .accounts .card-outside {
+        width: 33.3%;
+        float: left;
+    }
+    .accounts .card {
+        margin: 15px 10px;
+    }
 }
 @media (max-width: 600px) {
-	header .info .title {
-		font-size: 8vw;
-	}
+    header .info .title {
+        font-size: 8vw;
+    }
 }

@@ -1,47 +1,51 @@
 {% extends 'base.html' %} {% block title %}Schedule{% endblock %} {% block
 content %}
 <main>
-	<div class="upcoming">
-		<div class="row" id="upcoming-expand">
-			{% for row in info %}
-			<a class="card-outside" href="/event/{{ row['eventid'] }}">
-				<div class="card">
-					{% if row['eventhero'] %}
-					<img
-						src="{{ os.path.join(url_for('static', filename = 'upload'), row['eventhero']) }}"
-						alt="{{ row[0] }}"
-						style="width: 100%"
-						loading="lazy"
-					/>
-					{% else %}
-					<div
-						class="img"
-						style="background-color: #{% for i in range(6) %}{{ random.choice('ABCDEF0123456789') }}{% endfor %}"
-					>
-						{{ row['eventtitle'][0].title() }}
-					</div>
-					{% endif %}
-					<div class="container">
-						<h6>
-							{{ datetime.strptime(row['eventdate'],
-							"%Y-%m-%dT%H:%M").strftime("%#I:%M %p, %b. %#d") }}
-						</h6>
-						<h4><b>{{ row['eventtitle'] }}</b></h4>
-						<p>{% if row['eventdesc'] %}{{ row['eventdesc'] }}{% endif %}</p>
-						<div class="banner">{{ row['eventlevel'] }}</div>
-						<div class="corner">
-							{% if row['eventprice'] %} ${{ '{:.2f}'.format(row['eventprice'])
-							}} {% else %} Free {% endif %}
-						</div>
-						<div class="more_info"></div>
-					</div>
-				</div>
-			</a>
-			{% endfor %}
-			<div class="more">
-				<a href="#more" onclick="expandUpcoming(this)">More</a>
-			</div>
-		</div>
-	</div>
+    <div class="upcoming">
+        <div class="row" id="upcoming-expand">
+            {% for row in info %}
+            <a class="card-outside" href="/event/{{ row['eventid'] }}">
+                <div class="card">
+                    {% if row['eventhero'] %}
+                    <img
+                        src="{{ os.path.join(url_for('static', filename = 'upload'), row['eventhero']) }}"
+                        alt="{{ row[0] }}"
+                        style="width: 100%"
+                        loading="lazy"
+                    />
+                    {% else %}
+                    <div
+                        class="img"
+                        style="background-color: #{% for i in range(6) %}{{ random.choice('ABCDEF0123456789') }}{% endfor %}"
+                    >
+                        {{ row['eventtitle'][0].title() }}
+                    </div>
+                    {% endif %}
+                    <div class="container">
+                        <h6>
+                            {{ datetime.strptime(row['eventdate'],
+                            "%Y-%m-%dT%H:%M").strftime("%#I:%M %p, %b. %#d") }}
+                        </h6>
+                        <h4><b>{{ row['eventtitle'] }}</b></h4>
+                        <p>
+                            {% if row['eventdesc'] %}{{ row['eventdesc'] }}{%
+                            endif %}
+                        </p>
+                        <div class="banner">{{ row['eventlevel'] }}</div>
+                        <div class="corner">
+                            {% if row['eventprice'] %} ${{
+                            '{:.2f}'.format(row['eventprice']) }} {% else %}
+                            Free {% endif %}
+                        </div>
+                        <div class="more_info"></div>
+                    </div>
+                </div>
+            </a>
+            {% endfor %}
+            <div class="more">
+                <a href="#more" onclick="expandUpcoming(this)">More</a>
+            </div>
+        </div>
+    </div>
 </main>
 {% endblock %}
