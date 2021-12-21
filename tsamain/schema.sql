@@ -25,12 +25,12 @@ CREATE TABLE events (
 
 CREATE TABLE details (
   detailid INTEGER PRIMARY KEY AUTOINCREMENT,
-		deventid INTEGER NOT NULL,
-		eventdesc TEXT DEFAULT NULL,
-		eventhero TEXT DEFAULT NULL,
-		eventvideo TEXT DEFAULT NULL,
-		eventstream TEXT DEFAULT NULL,
-		FOREIGN KEY (deventid) REFERENCES events (eventid)
+  deventid INTEGER NOT NULL,
+  eventdesc TEXT DEFAULT NULL,
+  eventhero TEXT DEFAULT NULL,
+  eventvideo TEXT DEFAULT NULL,
+  eventstream TEXT DEFAULT NULL,
+  FOREIGN KEY (deventid) REFERENCES events (eventid)
  );
 
 CREATE TABLE registrations (

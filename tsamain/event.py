@@ -99,12 +99,13 @@ def creator():
                 )
                 db.commit()
 
-                if 'desc' in request.form:
+                if 'desc' in request.form and request.form['desc'] != "":
                     desc = request.form['desc']
                 else:
                     desc = None
 
-                if 'video' in request.files:
+                if 'video' in request.files and request.files['video'].filename != "":
+                    print(f"-{request.files['video']}-")
                     f = request.files['video']
                     vpath = secure_filename(
                         str(cursor.lastrowid) + "." + f.filename.split(".")[-1])
@@ -114,9 +115,8 @@ def creator():
                 else:
                     vpath = None
 
-                if 'hero' in request.files:
+                if 'hero' in request.files and request.files['hero'].filename != "":
                     f = request.files['hero']
-                    print()
                     hpath = secure_filename(
                         str(cursor.lastrowid) + "." + f.filename.split(".")[-1])
                     f.save(os.path.join(
