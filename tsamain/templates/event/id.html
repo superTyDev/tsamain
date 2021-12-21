@@ -1,15 +1,15 @@
 {% extends 'base.html' %} {% block title %}{{ info['eventtitle'] }}{% endblock
-%} 
-{% block header %}
-{% if (os.path.exists('./tsamain/static/' + request.path.split("/")[-1] + ".jpg")) %}
-	<script src="{{ url_for('static', filename=request.path.split('/')[-1] + '.js') }}"></script>
-	{% endif %}
-{% endblock %}
-{% block content %}
+%} {% block header %} {% if (os.path.exists('./tsamain/static/' +
+request.path.split("/")[-1] + ".jpg")) %}
+<img
+	src="{{ url_for('static', filename = 'upload/' + row[5].split('/')[-1]) }}"
+	alt="{{ row[0] }}"
+	style="width: 100%"
+/>
+{% endif %} {% endblock %} {% block content %}
 <main>
 	<div>
-		<h1>{{}}</h1>
-		
+		<h1>{{ info['eventtitle'] }}</h1>
 	</div>
 </main>
 {% endblock %}

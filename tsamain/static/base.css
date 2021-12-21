@@ -7,6 +7,7 @@
 	--color-background: #121212;
 	--color-nav: #2e2e2e;
 	--color-card: #1e1e1e;
+	--color-card-hover: #272727;
 	--color-text: white;
 	--color-text-header: white;
 	--color-text-nav: var(--color-primary);
@@ -21,6 +22,7 @@
 	--color-background: white;
 	--color-nav: white;
 	--color-card: white;
+	--color-card-hover: white;
 	--color-text: black;
 	--color-text-header: white;
 	--color-text-nav: var(--color-primary-dark);
@@ -35,6 +37,7 @@
 	--color-background: #ecececec;
 	--color-nav: #bbbbbb;
 	--color-card: #dddddd;
+	--color-card-hover: #cccccc;
 	--color-text: black;
 	--color-text-header: white;
 	--color-text-nav: var(--color-primary-dark);
@@ -128,7 +131,7 @@ nav.shrink a {
 	left: 0px;
 	margin: 5% 20%;
 	pointer-events: none;
-	opacity: .8;
+	opacity: 0.8;
 }
 .flash {
 	text-align: center;
@@ -139,8 +142,8 @@ nav.shrink a {
 	padding: 15px;
 	font-size: 100%;
 	margin-top: 10px;
-	animation: fade .5s ease 2s;
-	animation-direction: reverse;	
+	animation: fade 0.5s ease 2s;
+	animation-direction: reverse;
 	animation-fill-mode: forwards;
 }
 
@@ -194,6 +197,9 @@ main > div {
 	color: var(--color-text-theme);
 }
 .row > .card-outside {
+	display: block;
+	text-decoration: none;
+	color: var(--color-text);
 	flex: 100%;
 	max-width: 100%;
 	margin-bottom: 20px;
@@ -212,17 +218,43 @@ main > div {
 	margin-bottom: 0;
 	box-sizing: border-box;
 	height: 100%;
+	position: relative;
+	overflow: hidden;
 }
 .card:hover {
+	background-color: var(--color-card-hover);
 	box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
 }
 .card img {
 	border-radius: 2px 2px 0 0;
+	height: 15vh !important;
 	max-height: 20vh;
 	object-fit: cover;
 }
+.card .img {
+	border-radius: 2px 2px 0 0;
+	height: 15vh;
+	width: 100%;
+	text-align: center;
+	vertical-align: middle;
+	font-size: 10vh;
+}
 .card .container {
 	padding: 6px 16px;
+}
+.card .corner {
+	width: 200px;
+	background: #e43;
+	position: absolute;
+	top: 15px;
+	left: -65px;
+	text-align: center;
+	line-height: 35px;
+	letter-spacing: 1px;
+	color: #f0f0f0;
+	transform: rotate(-45deg);
+	-webkit-transform: rotate(-45deg);
+	box-shadow: 0 0 3px rgba(0, 0, 0, 0.3);
 }
 
 /* -FORMS */
@@ -246,12 +278,12 @@ select {
 	caret-color: var(--color-text);
 	color: var(--color-text);
 }
-input[type="text"]:focus ,
-input[type="password"]:focus ,
-input[list]:focus ,
-input[type="number"]:focus ,
-input[type="tel"]:focus ,
-input[type="datetime-local"]:focus ,
+input[type="text"]:focus,
+input[type="password"]:focus,
+input[list]:focus,
+input[type="number"]:focus,
+input[type="tel"]:focus,
+input[type="datetime-local"]:focus,
 textarea:focus,
 select:focus {
 	background-color: var(--color-input-focus);
@@ -278,57 +310,57 @@ button[type="submit"]:hover {
 	margin: 5px 0 22px 0;
 }
 .check .container {
-  display: block;
-  position: relative;
-  padding-left: 35px;
-  margin: 5px 0 2px 0;
-  cursor: pointer;
-  -webkit-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
-  user-select: none;
+	display: block;
+	position: relative;
+	padding-left: 35px;
+	margin: 5px 0 2px 0;
+	cursor: pointer;
+	-webkit-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	user-select: none;
 }
 .container input {
-  position: absolute;
-  opacity: 0;
-  cursor: pointer;
-  height: 0;
-  width: 0;
+	position: absolute;
+	opacity: 0;
+	cursor: pointer;
+	height: 0;
+	width: 0;
 }
 .checkmark {
-  position: absolute;
-  top: 0;
-  left: 0;
-  height: 20px;
-  width: 20px;
-  background-color: #eee;
-  transition: .5s background-color;
+	position: absolute;
+	top: 0;
+	left: 0;
+	height: 20px;
+	width: 20px;
+	background-color: #eee;
+	transition: 0.5s background-color;
 }
 .container:hover input ~ .checkmark {
-  background-color: #ccc;
+	background-color: #ccc;
 }
 .container input:checked ~ .checkmark {
-  background-color: var(--color-primary);
-  color: var(--color-text-theme);
+	background-color: var(--color-primary);
+	color: var(--color-text-theme);
 }
 .checkmark:after {
-  content: "";
-  position: absolute;
-  display: none;
+	content: "";
+	position: absolute;
+	display: none;
 }
 .container input:checked ~ .checkmark:after {
-  display: block;
+	display: block;
 }
 .container .checkmark:after {
-  left: 6px;
-  top: 2px;
-  width: 5px;
-  height: 10px;
-  border: solid white;
-  border-width: 0 3px 3px 0;
-  -webkit-transform: rotate(45deg);
-  -ms-transform: rotate(45deg);
-  transform: rotate(45deg);
+	left: 6px;
+	top: 2px;
+	width: 5px;
+	height: 10px;
+	border: solid white;
+	border-width: 0 3px 3px 0;
+	-webkit-transform: rotate(45deg);
+	-ms-transform: rotate(45deg);
+	transform: rotate(45deg);
 }
 #theme {
 	width: inherit;
@@ -452,7 +484,7 @@ footer p {
 	}
 	footer a {
 		width: calc(100% / 6);
-	}	
+	}
 }
 @media screen and (max-width: 800px) {
 	.row > .card-outside ~ .card-outside {

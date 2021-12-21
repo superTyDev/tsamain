@@ -4,7 +4,7 @@ from flask import (
     Blueprint, flash, g, redirect, render_template, request, session, url_for, make_response, current_app
 )
 from werkzeug.utils import secure_filename
-from werkzeug.datastructures import  FileStorage
+from werkzeug.datastructures import FileStorage
 from werkzeug.security import check_password_hash, generate_password_hash
 
 from tsamain.auth import login_required
@@ -33,6 +33,7 @@ def initdb():
     response.mimetype = "text/plain"
     return response
 
+
 @bp.route('/schedule', methods=('GET', 'POST'))
 def schedule():
     if 'num' in request.args:
@@ -41,7 +42,7 @@ def schedule():
         num = 20
 
     db = get_db()
-    info = db.execute('SELECT e.eventtitle, e.eventdate, e.eventlevel, e.eventprice, d.eventdesc, d.eventhero FROM events e LEFT JOIN details d ON e.eventid = d.deventid WHERE eventdate > DATE() ORDER BY eventdate ASC LIMIT ?', (num,)).fetchall()
+    info = db.execute('SELECT e.eventtitle, e.eventdate, e.eventlevel, e.eventprice, d.eventdesc, d.eventhero, e.eventid FROM events e LEFT JOIN details d ON e.eventid = d.deventid WHERE eventdate > DATE() ORDER BY eventdate ASC LIMIT ?', (num,)).fetchall()
     return render_template('event/schedule.html', info=info)
 
 
@@ -51,14 +52,16 @@ def eventid(eventid):
     if eventid:
         db = get_db()
         info = db.execute(
-            'SELECT * FROM events WHERE eventid = ?', (eventid,)
+            'SELECT e.eventtitle, e.eventdate, e.eventlevel, e.eventprice, d.eventdesc, d.eventhero FROM events e LEFT JOIN details d ON e.eventid = d.deventid WHERE eventid = ?', (
+                eventid,)
         ).fetchone()
 
     else:
         flash('Enter an Event')
         return render_template('schedule.html')
 
-    flash(error)
+    if error is not None:
+        flash(error)
     return render_template('event/id.html', info=info)
 
 
@@ -71,7 +74,7 @@ def creator():
             date = request.form['date']
             level = request.form.getlist('level')
             price = request.form['price']
-            
+
             error = None
 
             if not title:
@@ -95,24 +98,29 @@ def creator():
                     (title, date, level, price, g.user['userid'])
                 )
                 db.commit()
-                
+
                 if 'desc' in request.form:
                     desc = request.form['desc']
                 else:
                     desc = None
-                
+
                 if 'video' in request.files:
                     f = request.files['video']
-                    vpath = os.path.join("tsamain", current_app.config['UPLOAD_FOLDER'], secure_filename(str(cursor.lastrowid) + "." + f.filename.split(".")[-1]))
-                    
-                    f.save(vpath)
+                    vpath = secure_filename(
+                        str(cursor.lastrowid) + "." + f.filename.split(".")[-1])
+
+                    f.save(os.path.join(
+                        "tsamain", current_app.config['UPLOAD_FOLDER'], vpath))
                 else:
                     vpath = None
-          
+
                 if 'hero' in request.files:
                     f = request.files['hero']
-                    hpath = os.path.join("tsamain", current_app.config['UPLOAD_FOLDER'], secure_filename(str(cursor.lastrowid) + "." + f.filename.split(".")[-1]))                    
-                    f.save(hpath)
+                    print()
+                    hpath = secure_filename(
+                        str(cursor.lastrowid) + "." + f.filename.split(".")[-1])
+                    f.save(os.path.join(
+                        "tsamain", current_app.config['UPLOAD_FOLDER'], hpath))
                 else:
                     hpath = None
 
@@ -127,22 +135,21 @@ def creator():
                     (cursor.lastrowid, desc, hpath, vpath, slink)
                 )
                 db.commit()
-                
+
                 flash(f"Event {cursor.lastrowid} created successfully")
                 return redirect(url_for('event.dashboard'))
     else:
         flash("No Auth")
         return redirect(url_for('event.dashboard'))
-		
+
     return render_template('event/create.html')
-    
-@bp.route('/create', methods=('GET', 'POST'))
-@login_required
+
+
+@ bp.route('/create', methods=('GET', 'POST'))
+@ login_required
 def create():
     if g.user["userlevel"] >= 2:
         return render_template('event/create.html')
     else:
         flash("No Auth")
         return redirect(url_for('event.dashboard'))
-		
-    
