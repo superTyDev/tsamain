@@ -48,10 +48,11 @@ def schedule():
 
 @bp.route('/<int:eventid>', methods=('GET', 'POST'))
 def eventid(eventid):
+    request.path = "id"
     error = None
     if eventid:
         db = get_db()
-        info = db.execute(
+        row = db.execute(
             'SELECT e.eventtitle, e.eventdate, e.eventlevel, e.eventprice, d.eventdesc, d.eventhero FROM events e LEFT JOIN details d ON e.eventid = d.deventid WHERE eventid = ?', (
                 eventid,)
         ).fetchone()
@@ -62,7 +63,7 @@ def eventid(eventid):
 
     if error is not None:
         flash(error)
-    return render_template('event/id.html', info=info)
+    return render_template('event/id.html', row=row)
 
 
 @bp.route('/creator', methods=('GET', 'POST'))

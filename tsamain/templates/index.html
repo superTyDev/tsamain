@@ -1,241 +1,158 @@
 {% extends 'base.html' %} {% block title %}Home{% endblock %} {% block header %}
 <header>
-    <div class="info">
-        <div class="column">
-            <div class="title fade">
-                <h1>Prism<br />Concerts</h1>
-            </div>
-            <div class="slideshow">
-                <h2 class="slide fade">A Creative Showcase</h2>
-                <h2 class="slide fade">A Collection of Art</h2>
-                <h2 class="slide fade">A Multitude of Talent</h2>
-            </div>
-            <h3 class="morebutton fade">
-                <a href="#more">Learn More <i class="jump">↴</i></a>
-            </h3>
-        </div>
-        <div class="column rotateColumn">
-            <div class="slideshow slide-card">
-                <div class="slide-card-inner">
-                    <div class="slide-title">Boo Orchestra</div>
-                    <video autoplay muted loop>
-                        <source src="static/winter.mp4" type="video/mp4" />
-                        <img src="static/orchestra.jpg" alt="Orchestra" />
-                    </video>
-                    <div class="slide-time">many days left</div>
-                </div>
-                {% for i in range (3) %}
-                <div class="slide-card-inner">
-                    <div class="slide-title">Oregon Orchestra</div>
-                    <video autoplay muted loop>
-                        <source src="static/sailing.mp4" type="video/mp4" />
-                        <img src="static/orchestra.jpg" alt="Orchestra" />
-                    </video>
-                    <div class="slide-time">{{i}} days left</div>
-                </div>
-                {% endfor %}
-            </div>
-        </div>
-    </div>
+	<div class="info">
+		<div class="column">
+			<div class="title fade">
+				<h1>Prism<br />Concerts</h1>
+			</div>
+			<div class="slideshow">
+				<h2 class="slide fade">A Creative Showcase</h2>
+				<h2 class="slide fade">A Collection of Art</h2>
+				<h2 class="slide fade">A Multitude of Talent</h2>
+			</div>
+			<h3 class="morebutton fade">
+				<a href="#more">Learn More <i class="jump">↴</i></a>
+			</h3>
+		</div>
+		<div class="column rotateColumn">
+			<div class="slideshow slide-card">
+				<div class="slide-card-inner">
+					<div class="slide-title">Boo Orchestra</div>
+					<video autoplay muted loop>
+						<source src="static/winter.mp4" type="video/mp4" />
+						<img src="static/orchestra.jpg" alt="Orchestra" />
+					</video>
+					<div class="slide-time">many days left</div>
+				</div>
+				{% for i in range (3) %}
+				<div class="slide-card-inner">
+					<div class="slide-title">Oregon Orchestra</div>
+					<video autoplay muted loop>
+						<source src="static/sailing.mp4" type="video/mp4" />
+						<img src="static/orchestra.jpg" alt="Orchestra" />
+					</video>
+					<div class="slide-time">{{i}} days left</div>
+				</div>
+				{% endfor %}
+			</div>
+		</div>
+	</div>
 </header>
 {% endblock %} {% block content %}
 <main id="more">
-    <div class="upcoming">
-        <h2>Upcoming</h2>
-        <div class="row">
-            <div class="card-outside">
-                <div class="card">
-                    <img
-                        src="static/orchestra.jpg"
-                        alt="Avatar"
-                        style="width: 100%"
-                    />
-                    <div class="container">
-                        <h4><b>Oregon Orchestra</b></h4>
-                        <p>Featuring Orange Orangutan<br />on May 24th, 2022</p>
-                    </div>
-                </div>
-            </div>
+	<div class="upcoming">
+		<h2>Upcoming</h2>
+		<div class="row">
+			{% for row in info %}
+			<div
+				class="card-outside"
+				href="/event/{{ row['eventid'] }}"
+				onclick="location.href=`/event/{{ row['eventid'] }}`;"
+			>
+				<div class="card">
+					{% if row['eventhero'] %}
+					<img
+						src="{{ os.path.join(url_for('static', filename = 'upload'), row['eventhero']) }}"
+						alt="{{ row[0] }}"
+						style="width: 100%"
+						loading="lazy"
+					/>
+					{% else %}
+					<div
+						class="img"
+						style="background-color: #{% for i in range(6) %}{{ random.choice('ABCDEF0123456789') }}{% endfor %}"
+					>
+						{{ row['eventtitle'][0].title() }}
+					</div>
+					{% endif %}
+					<div class="container">
+						<h6>
+							{{ datetime.strptime(row['eventdate'],
+							"%Y-%m-%dT%H:%M").strftime("%#I:%M %p, %b. %#d") }}
+						</h6>
+						<h4><b>{{ row['eventtitle'] }}</b></h4>
+						<p>{% if row['eventdesc'] %}{{ row['eventdesc'] }}{% endif %}</p>
+						<div class="banner">{{ row['eventlevel'] }}</div>
+						<div class="corner">
+							{% if row['eventprice'] %} ${{ '{:.2f}'.format(row['eventprice'])
+							}} {% else %} Free {% endif %}
+						</div>
+						<div class="more_info">
+							<a href="/event/{{ row['eventid'] }}">More</a>
+							<a href="#more">Add To Cart</a>
+						</div>
+					</div>
+				</div>
+			</div>
+			{% endfor %}
 
-            <div class="card-outside">
-                <div class="card">
-                    <img
-                        src="static/orchestra.jpg"
-                        alt="Avatar"
-                        style="width: 100%"
-                    />
-                    <div class="container">
-                        <h4><b>Culinary show</b></h4>
-                        <p>
-                            Featuring the culinary team<br />on May 24th, 2022
-                        </p>
-                    </div>
-                </div>
-            </div>
-
-            <div class="card-outside">
-                <div class="card">
-                    <img
-                        src="static/orchestra.jpg"
-                        alt="Avatar"
-                        style="width: 100%"
-                    />
-                    <div class="container">
-                        <h4><b>Martial Arts show</b></h4>
-                        <p>
-                            Featuring the Martial Arts team<br />on May 24th,
-                            2022
-                        </p>
-                    </div>
-                </div>
-            </div>
-
-            <div class="card-outside">
-                <div class="card">
-                    <img
-                        src="static/orchestra.jpg"
-                        alt="Avatar"
-                        style="width: 100%"
-                    />
-                    <div class="container">
-                        <h4><b>Designing Show</b></h4>
-                        <p>
-                            Featuring the designing team<br />on May 24th, 2022
-                        </p>
-                    </div>
-                </div>
-            </div>
-
-            <div class="card-outside">
-                <div class="card">
-                    <img
-                        src="static/orchestra.jpg"
-                        alt="Avatar"
-                        style="width: 100%"
-                    />
-                    <div class="container">
-                        <h4><b>Boo Orchestra</b></h4>
-                        <p>Featuring Orange Orangutan<br />on June 4th, 2022</p>
-                    </div>
-                </div>
-            </div>
-
-            <div class="card-outside">
-                <div class="card">
-                    <img
-                        src="static/orchestra.jpg"
-                        alt="Avatar"
-                        style="width: 100%"
-                    />
-                    <div class="container">
-                        <h4><b>Culinary show</b></h4>
-                        <p>
-                            Featuring the culinary team<br />on June 4th, 2022
-                        </p>
-                    </div>
-                </div>
-            </div>
-
-            <div class="card-outside">
-                <div class="card">
-                    <img
-                        src="static/orchestra.jpg"
-                        alt="Avatar"
-                        style="width: 100%"
-                    />
-                    <div class="container">
-                        <h4><b>Martial Arts show</b></h4>
-                        <p>
-                            Featuring the Martial Arts team<br />on June 4th,
-                            2022
-                        </p>
-                    </div>
-                </div>
-            </div>
-
-            <div class="card-outside">
-                <div class="card">
-                    <img
-                        src="static/orchestra.jpg"
-                        alt="Avatar"
-                        style="width: 100%"
-                    />
-                    <div class="container">
-                        <h4><b>Designing Show</b></h4>
-                        <p>
-                            Featuring the designing team<br />on June 4th, 2022
-                        </p>
-                    </div>
-                </div>
-            </div>
-
-            <div class="more">
-                <a href="/schedule">View More</a>
-            </div>
-        </div>
-    </div>
-    <div class="slant">
-        <h2>About</h2>
-        <p>
-            Donec non commodo enim, nec condimentum nulla. Fusce nulla dui,
-            commodo non metus nec, facilisis blandit lectus.
-        </p>
-        <p>
-            Donec non commodo enim, nec condimentum nulla. Fusce nulla dui,
-            commodo non metus nec, facilisis blandit lectus.
-        </p>
-        <div class="more">
-            <a href="/about">Learn More</a>
-        </div>
-    </div>
-    <div class="accounts">
-        <h2>Accounts</h2>
-        <div class="table-cont">
-            <div class="card-outside">
-                <div class="card">
-                    <h3 class="plan">Guest</h3>
-                    <div class="info">
-                        <ul>
-                            <li>Anonymously Attend Free Events</li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-            <div class="card-outside">
-                <div class="card">
-                    <h3 class="plan">Basic</h3>
-                    <div class="info">
-                        <ul>
-                            <li>Attend Free & Paid Events</li>
-                            <li>Choose from 2 Virtual Avatars</li>
-                            <li>Book 10 days in Advance</li>
-                            <li>$5 Credit For Registering</li>
-                            <li>Free Forever</li>
-                            <li>No Credit Card Required</li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-            <div class="card-outside">
-                <div class="card">
-                    <h3 class="plan">Extended</h3>
-                    <div class="info">
-                        <ul>
-                            <li>Attend Free, Paid, and Specialty Events</li>
-                            <li>Choose From 5 Virtual Avatars</li>
-                            <li>Book Anytime</li>
-                            <li>$5 Credit For Registering</li>
-                            <li>25% Off Tickets</li>
-                            <li>Host Your Own Events</li>
-                            <li>One Time Purchase</li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="more">
-            <a href="{{ url_for('auth.register') }}">Sign Up</a>
-        </div>
-    </div>
+			<div class="more">
+				<a href="{{ url_for('event.schedule') }}">View More</a>
+			</div>
+		</div>
+	</div>
+	<div class="slant">
+		<h2>About</h2>
+		<p>
+			Donec non commodo enim, nec condimentum nulla. Fusce nulla dui, commodo
+			non metus nec, facilisis blandit lectus.
+		</p>
+		<p>
+			Donec non commodo enim, nec condimentum nulla. Fusce nulla dui, commodo
+			non metus nec, facilisis blandit lectus.
+		</p>
+		<div class="more">
+			<a href="/about">Learn More</a>
+		</div>
+	</div>
+	<div class="accounts">
+		<h2>Accounts</h2>
+		<div class="table-cont">
+			<div class="card-outside">
+				<div class="card">
+					<h3 class="plan">Guest</h3>
+					<div class="info">
+						<ul>
+							<li>Anonymously Attend Free Events</li>
+						</ul>
+					</div>
+				</div>
+			</div>
+			<div class="card-outside">
+				<div class="card">
+					<h3 class="plan">Basic</h3>
+					<div class="info">
+						<ul>
+							<li>Attend Free & Paid Events</li>
+							<li>Choose from 2 Virtual Avatars</li>
+							<li>Book 10 days in Advance</li>
+							<li>$5 Credit For Registering</li>
+							<li>Free Forever</li>
+							<li>No Credit Card Required</li>
+						</ul>
+					</div>
+				</div>
+			</div>
+			<div class="card-outside">
+				<div class="card">
+					<h3 class="plan">Extended</h3>
+					<div class="info">
+						<ul>
+							<li>Attend Free, Paid, and Specialty Events</li>
+							<li>Choose From 5 Virtual Avatars</li>
+							<li>Book Anytime</li>
+							<li>$5 Credit For Registering</li>
+							<li>25% Off Tickets</li>
+							<li>Host Your Own Events</li>
+							<li>One Time Purchase</li>
+						</ul>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="more">
+			<a href="{{ url_for('auth.register') }}">Sign Up</a>
+		</div>
+	</div>
 </main>
 {% endblock %}
