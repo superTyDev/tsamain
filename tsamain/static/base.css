@@ -201,12 +201,12 @@ main > div {
 	text-decoration: none;
 	color: var(--color-text);
 	flex: 100%;
-	max-width: 100%;
+	/* max-width: 100%; */
 	margin-bottom: 20px;
 }
 .row > .card-outside ~ .card-outside {
 	flex: 25%;
-	max-width: 25%;
+	/* max-width: 25%; */
 }
 .card {
 	box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
@@ -473,7 +473,7 @@ footer p {
 @media screen and (max-width: 1200px) {
 	.row > .card-outside ~ .card-outside {
 		flex: 33.3%;
-		max-width: 33.3%;
+		/* max-width: 33.3%; */
 	}
 	header .info {
 		left: 10%;
@@ -511,7 +511,7 @@ footer p {
 @media screen and (max-width: 800px) {
 	.row > .card-outside ~ .card-outside {
 		flex: 50%;
-		max-width: 50%;
+		/* max-width: 50%; */
 	}
 }
 @media (max-width: 600px) {
@@ -546,7 +546,7 @@ footer p {
 	}
 	.row > .card-outside ~ .card-outside {
 		flex: 100%;
-		max-width: 100%;
+		/* max-width: 100%; */
 	}
 	footer a {
 		width: calc(100% / 3);
