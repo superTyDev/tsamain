@@ -5,7 +5,6 @@ content %}
 		<h1>Register</h1>
 		<div class="tab">
 			<button class="tablinks" onclick="openPay(this)">Basic</button>
-			<button class="tablinks" onclick="openPay(this)">Extended</button>
 			<button class="tablinks" onclick="openPay(this)">Developer</button>
 		</div>
 		<div class="tabcontent fade">
@@ -44,67 +43,6 @@ content %}
 						By creating an account you agree to our
 						<a href="/legal">Terms & Privacy</a>.
 					</p>
-					<button type="submit" class="registerbtn">Register</button>
-				</div>
-
-				<div>
-					<p>
-						Already have an account?
-						<a href="{{ url_for('auth.login') }}">Login</a>.
-					</p>
-				</div>
-			</form>
-		</div>
-		<div class="tabcontent fade">
-			<form method="POST">
-				<div>
-					<p>
-						Please fill in this form to create an
-						<strong>extended</strong> account.
-					</p>
-					<hr />
-					<label for="email">Email</label>
-					<input type="text" name="email" placeholder="Enter Email" required />
-					<label for="username">Username</label>
-					<input
-						type="text"
-						name="username"
-						placeholder="Create Username"
-						required
-					/>
-					<label for="password">Password</label>
-					<input
-						type="password"
-						name="password"
-						placeholder="Create Password"
-						required
-					/>
-
-					<label for="credit-number">Payment</label>
-					<input
-						class="cc-number"
-						maxlength="19"
-						name="credit-number"
-						pattern="\d*"
-						placeholder="Card Number"
-						type="tel"
-					/><input
-						class="cc-expires"
-						maxlength="7"
-						name="credit-expires"
-						pattern="\d*"
-						placeholder="MM / YY"
-						type="tel"
-					/><input
-						class="cc-cvc"
-						maxlength="4"
-						name="credit-cvc"
-						pattern="\d*"
-						placeholder="CVC"
-						type="tel"
-					/>
-
-					<p><a href="/legal">Terms & Privacy</a>.</p>
 					<button type="submit" class="registerbtn">Register</button>
 				</div>
 
