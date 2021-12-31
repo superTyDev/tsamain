@@ -48,7 +48,7 @@ def create_app(test_config=None):
         request.path = "index"
 
         db = get_db()
-        info = db.execute('SELECT e.eventtitle, e.eventdate, e.eventlevel, e.eventprice, d.eventdesc, d.eventhero, e.eventid FROM events e LEFT JOIN details d ON e.eventid = d.deventid WHERE eventdate > DATE() ORDER BY eventdate ASC LIMIT ?', (10,)).fetchall()
+        info = db.execute('SELECT e.eventtitle, e.eventdate, e.eventlevel, e.eventprice, d.eventdesc, d.eventhero, e.eventid FROM events e LEFT JOIN edetails d ON e.eventid = d.deventid WHERE eventdate > DATE() ORDER BY eventdate ASC LIMIT ?', (10,)).fetchall()
 
         return render_template("index.html", info=info)
 

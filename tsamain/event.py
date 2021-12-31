@@ -16,7 +16,16 @@ bp = Blueprint('event', __name__, url_prefix='/event')
 @bp.route('/dashboard', methods=('GET', 'POST'))
 @login_required
 def dashboard():
-    return render_template('event/dashboard.html')
+    db = get_db()
+    error = None
+    info = db.execute(
+        'SELECT e.eventtitle, e.eventdate, e.eventlevel, e.eventprice, d.eventdesc, d.eventhero, e.eventid, c.cartid FROM cart c LEFT JOIN events e ON c.ceventid = e.eventid LEFT JOIN edetails d ON c.ceventid = d.deventid WHERE (c.cuserid = ? and c.purchased = 1)', (g.user['userid'],)).fetchall()
+    db.commit()
+
+    if error is not None:
+        flash(error)
+
+    return render_template('event/dashboard.html', info=info)
 
 
 @bp.route('/initdb')
@@ -42,7 +51,7 @@ def schedule():
         num = 20
 
     db = get_db()
-    info = db.execute('SELECT e.eventtitle, e.eventdate, e.eventlevel, e.eventprice, d.eventdesc, d.eventhero, e.eventid FROM events e LEFT JOIN details d ON e.eventid = d.deventid WHERE eventdate > DATE() ORDER BY eventdate ASC LIMIT ?', (num,)).fetchall()
+    info = db.execute('SELECT e.eventtitle, e.eventdate, e.eventlevel, e.eventprice, d.eventdesc, d.eventhero, e.eventid FROM events e LEFT JOIN edetails d ON e.eventid = d.deventid WHERE eventdate > DATE() ORDER BY eventdate ASC LIMIT ?', (num,)).fetchall()
     return render_template('event/schedule.html', info=info)
 
 
@@ -53,7 +62,7 @@ def eventid(eventid):
     if eventid:
         db = get_db()
         row = db.execute(
-            'SELECT e.eventtitle, e.eventdate, e.eventlevel, e.eventprice, d.eventdesc, d.eventhero FROM events e LEFT JOIN details d ON e.eventid = d.deventid WHERE eventid = ?', (
+            'SELECT e.eventtitle, e.eventdate, e.eventlevel, e.eventprice, d.eventdesc, d.eventhero FROM events e LEFT JOIN edetails d ON e.eventid = d.deventid WHERE eventid = ?', (
                 eventid,)
         ).fetchone()
 
@@ -131,7 +140,7 @@ def creator():
                     slink = None
 
                 db.execute(
-                    'INSERT INTO details (deventid, eventdesc, eventhero, eventvideo, eventstream)'
+                    'INSERT INTO edetails (deventid, eventdesc, eventhero, eventvideo, eventstream)'
                     ' VALUES (?, ?, ?, ?, ?)',
                     (cursor.lastrowid, desc, hpath, vpath, slink)
                 )

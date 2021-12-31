@@ -1,7 +1,8 @@
 DROP TABLE IF EXISTS user;
+DROP TABLE IF EXISTS udetails;
 DROP TABLE IF EXISTS events;
-DROP TABLE IF EXISTS details;
-DROP TABLE IF EXISTS registrations;
+DROP TABLE IF EXISTS edetails;
+DROP TABLE IF EXISTS cart;
 
 CREATE TABLE user (
   userid INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -9,6 +10,15 @@ CREATE TABLE user (
   username TEXT UNIQUE NOT NULL,
   password TEXT NOT NULL,
   userlevel INT NOT NULL DEFAULT 0
+);
+
+CREATE TABLE udetails (
+  udetailid INTEGER PRIMARY KEY AUTOINCREMENT,
+  duserid INTEGER NOT NULL,
+  gift FLOAT(4, 2) NOT NULL DEFAULT 0,
+  creditcard INTEGER DEFAULT NULL,
+  dateregistered TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  FOREIGN KEY (duserid) REFERENCES user (userid)
 );
 
 CREATE TABLE events (
@@ -23,7 +33,7 @@ CREATE TABLE events (
   FOREIGN KEY (authorid) REFERENCES user (userid)
 );
 
-CREATE TABLE details (
+CREATE TABLE edetails (
   detailid INTEGER PRIMARY KEY AUTOINCREMENT,
   deventid INTEGER NOT NULL,
   eventdesc TEXT DEFAULT NULL,
@@ -33,10 +43,11 @@ CREATE TABLE details (
   FOREIGN KEY (deventid) REFERENCES events (eventid)
  );
 
-CREATE TABLE registrations (
-  reguser INTEGER,
-  regevent INTEGER,
-  regdate TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  FOREIGN KEY (reguser) REFERENCES user (userid),
-  FOREIGN KEY (regevent) REFERENCES event (eventid)
+CREATE TABLE cart (
+  cartid INTEGER PRIMARY KEY AUTOINCREMENT,
+  ceventid INTEGER NOT NULL,
+  cuserid INTEGER NOT NULL,
+  purchased INTEGER NOT NULL DEFAULT 0,
+  FOREIGN KEY (cuserid) REFERENCES user (userid),
+  FOREIGN KEY (ceventid) REFERENCES event (eventid)
 );

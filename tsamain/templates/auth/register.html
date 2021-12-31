@@ -1,192 +1,172 @@
 {% extends 'base.html' %} {% block title %}Register{% endblock %} {% block
 content %}
 <main>
-    <div>
-        <h1>Register</h1>
-        <div class="tab">
-            <button class="tablinks" onclick="openPay(this)">Basic</button>
-            <button class="tablinks" onclick="openPay(this)">Extended</button>
-            <button class="tablinks" onclick="openPay(this)">Developer</button>
-        </div>
-        <div class="tabcontent fade">
-            <form method="POST">
-                <div>
-                    <p>
-                        Please fill in this form to create a
-                        <strong>basic</strong> account.
-                    </p>
-                    <hr />
-                    <label for="email">Email</label>
-                    <input
-                        type="text"
-                        name="email"
-                        placeholder="Enter Email"
-                        required
-                    />
-                    <label for="username">Username</label>
-                    <input
-                        type="text"
-                        name="username"
-                        placeholder="Create Username"
-                        required
-                    />
-                    <label for="password">Password</label>
-                    <input
-                        type="password"
-                        name="password"
-                        placeholder="Create Password"
-                        required
-                    />
-                    <label for="rpassword">Repeat Password</label>
-                    <input
-                        type="password"
-                        name="rpassword"
-                        placeholder="Re enter Password"
-                        required
-                    />
+	<div>
+		<h1>Register</h1>
+		<div class="tab">
+			<button class="tablinks" onclick="openPay(this)">Basic</button>
+			<button class="tablinks" onclick="openPay(this)">Extended</button>
+			<button class="tablinks" onclick="openPay(this)">Developer</button>
+		</div>
+		<div class="tabcontent fade">
+			<form method="POST">
+				<div>
+					<p>
+						Please fill in this form to create a
+						<strong>basic</strong> account.
+					</p>
+					<hr />
+					<label for="email">Email</label>
+					<input type="text" name="email" placeholder="Enter Email" required />
+					<label for="username">Username</label>
+					<input
+						type="text"
+						name="username"
+						placeholder="Create Username"
+						required
+					/>
+					<label for="password">Password</label>
+					<input
+						type="password"
+						name="password"
+						placeholder="Create Password"
+						required
+					/>
+					<label for="rpassword">Repeat Password</label>
+					<input
+						type="password"
+						name="rpassword"
+						placeholder="Re enter Password"
+						required
+					/>
 
-                    <p>
-                        By creating an account you agree to our
-                        <a href="/legal">Terms & Privacy</a>.
-                    </p>
-                    <button type="submit" class="registerbtn">Register</button>
-                </div>
+					<p>
+						By creating an account you agree to our
+						<a href="/legal">Terms & Privacy</a>.
+					</p>
+					<button type="submit" class="registerbtn">Register</button>
+				</div>
 
-                <div>
-                    <p>
-                        Already have an account?
-                        <a href="{{ url_for('auth.login') }}">Login</a>.
-                    </p>
-                </div>
-            </form>
-        </div>
-        <div class="tabcontent fade">
-            <form method="POST">
-                <div>
-                    <p>
-                        Please fill in this form to create an
-                        <strong>extended</strong> account.
-                    </p>
-                    <hr />
-                    <label for="email">Email</label>
-                    <input
-                        type="text"
-                        name="email"
-                        placeholder="Enter Email"
-                        required
-                    />
-                    <label for="username">Username</label>
-                    <input
-                        type="text"
-                        name="username"
-                        placeholder="Create Username"
-                        required
-                    />
-                    <label for="password">Password</label>
-                    <input
-                        type="password"
-                        name="password"
-                        placeholder="Create Password"
-                        required
-                    />
+				<div>
+					<p>
+						Already have an account?
+						<a href="{{ url_for('auth.login') }}">Login</a>.
+					</p>
+				</div>
+			</form>
+		</div>
+		<div class="tabcontent fade">
+			<form method="POST">
+				<div>
+					<p>
+						Please fill in this form to create an
+						<strong>extended</strong> account.
+					</p>
+					<hr />
+					<label for="email">Email</label>
+					<input type="text" name="email" placeholder="Enter Email" required />
+					<label for="username">Username</label>
+					<input
+						type="text"
+						name="username"
+						placeholder="Create Username"
+						required
+					/>
+					<label for="password">Password</label>
+					<input
+						type="password"
+						name="password"
+						placeholder="Create Password"
+						required
+					/>
 
-                    <label for="credit-number">Payment</label>
-                    <input
-                        class="cc-number"
-                        maxlength="19"
-                        name="credit-number"
-                        pattern="\d*"
-                        placeholder="Card Number"
-                        type="tel"
-                    /><input
-                        class="cc-expires"
-                        maxlength="7"
-                        name="credit-expires"
-                        pattern="\d*"
-                        placeholder="MM / YY"
-                        type="tel"
-                    /><input
-                        class="cc-cvc"
-                        maxlength="4"
-                        name="credit-cvc"
-                        pattern="\d*"
-                        placeholder="CVC"
-                        type="tel"
-                    />
+					<label for="credit-number">Payment</label>
+					<input
+						class="cc-number"
+						maxlength="19"
+						name="credit-number"
+						pattern="\d*"
+						placeholder="Card Number"
+						type="tel"
+					/><input
+						class="cc-expires"
+						maxlength="7"
+						name="credit-expires"
+						pattern="\d*"
+						placeholder="MM / YY"
+						type="tel"
+					/><input
+						class="cc-cvc"
+						maxlength="4"
+						name="credit-cvc"
+						pattern="\d*"
+						placeholder="CVC"
+						type="tel"
+					/>
 
-                    <p>
-                        Disclaimer: This website was made by high schoolers.
-                        Although it is secure (https) and the server info is
-                        encrypted, you may not want to submit your credit card.
-                        <a href="/legal">Terms & Privacy</a>.
-                    </p>
-                    <button type="submit" class="registerbtn">Register</button>
-                </div>
+					<p><a href="/legal">Terms & Privacy</a>.</p>
+					<button type="submit" class="registerbtn">Register</button>
+				</div>
 
-                <div>
-                    <p>
-                        Already have an account?
-                        <a href="{{ url_for('auth.login') }}">Login</a>.
-                    </p>
-                </div>
-            </form>
-        </div>
-        <div class="tabcontent fade">
-            <form method="POST">
-                <div>
-                    <p>
-                        Please fill in this form to create a
-                        <strong>developer</strong> account.
-                    </p>
-                    <hr />
-                    <label for="email">Email</label>
-                    <input
-                        type="text"
-                        name="email"
-                        placeholder="Enter Email"
-                        required
-                    />
-                    <label for="username">Username</label>
-                    <input
-                        type="text"
-                        name="username"
-                        placeholder="Create Username"
-                        required
-                    />
-                    <label for="password">Password</label>
-                    <input
-                        type="password"
-                        name="password"
-                        placeholder="Create Password"
-                        required
-                    />
-                    <label for="userlevel">Auth Level</label>
-                    <input
-                        name="userlevel"
-                        type="number"
-                        value="1"
-                        min="1"
-                        max="3"
-                        steps="1"
-                    />
+				<div>
+					<p>
+						Already have an account?
+						<a href="{{ url_for('auth.login') }}">Login</a>.
+					</p>
+				</div>
+			</form>
+		</div>
+		<div class="tabcontent fade">
+			<form method="POST">
+				<div>
+					<p>
+						Please fill in this form to create a
+						<strong>developer</strong> account.
+					</p>
+					<hr />
+					<label for="email">Email</label>
+					<input type="text" name="email" placeholder="Enter Email" required />
+					<label for="username">Username</label>
+					<input
+						type="text"
+						name="username"
+						placeholder="Create Username"
+						required
+					/>
+					<label for="password">Password</label>
+					<input
+						type="password"
+						name="password"
+						placeholder="Create Password"
+						required
+					/>
+					<label for="userlevel">Auth Level</label>
+					<input
+						name="userlevel"
+						type="number"
+						value="1"
+						min="1"
+						max="3"
+						steps="1"
+					/>
 
-                    <p>
-                        Disclaimer: A developer account must be approved by the
-                        site admin before it takes effect.
-                        <a href="/legal">Terms & Privacy</a>.
-                    </p>
-                    <button type="submit" class="registerbtn">Register</button>
-                </div>
+					<p>
+						Disclaimer: A developer account must be approved by the site admin
+						before it takes effect.
+						<a href="/legal">Terms & Privacy</a>.
+					</p>
+					<button type="submit" class="registerbtn">Register</button>
+				</div>
 
-                <div>
-                    <p>
-                        Already have an account?
-                        <a href="{{ url_for('auth.login') }}">Login</a>.
-                    </p>
-                </div>
-            </form>
-        </div>
-    </div>
+				<div>
+					<p>
+						Already have an account?
+						<a href="{{ url_for('auth.login') }}">Login</a>.
+					</p>
+				</div>
+			</form>
+		</div>
+	</div>
 </main>
 {% endblock %}{% block script %}
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>

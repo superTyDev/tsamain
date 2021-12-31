@@ -14,7 +14,6 @@ content %}
 					<img
 						src="{{ os.path.join(url_for('static', filename = 'upload'), row['eventhero']) }}"
 						alt="{{ row[0] }}"
-						style="width: 100%"
 						loading="lazy"
 					/>
 					{% else %}
@@ -38,8 +37,17 @@ content %}
 							}} {% else %} Free {% endif %}
 						</div>
 						<div class="more_info">
-							<a href="/event/{{ row['eventid'] }}">More</a>
-							<a href="#more">Add To Cart</a>
+							<a href="/event/{{ row['eventid'] }}"> More </a>
+							<form method="POST" action="{{url_for('auth.cartmanage')}}">
+								<button
+									type="submit"
+									name="addcart"
+									type="submit"
+									value="{{ row['eventid'] }}"
+								>
+									<span>Add To Cart</span>
+								</button>
+							</form>
 						</div>
 					</div>
 				</div>

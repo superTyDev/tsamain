@@ -1,0 +1,76 @@
+{% extends 'base.html' %} {% block title %}Cart{% endblock %} {% block content
+%}
+<main>
+	<div>
+		{% if info %}
+		<div class="row" id="upcoming-expand">
+			{% for row in info %}
+			<div
+				class="list-outside"
+				href="/event/{{ row['eventid'] }}"
+				onclick="location.href=`/event/{{ row['eventid'] }}`;"
+			>
+				<div class="list">
+					{% if row['eventhero'] %}
+					<img
+						src="{{ os.path.join(url_for('static', filename = 'upload'), row['eventhero']) }}"
+						alt="{{ row[0] }}"
+						loading="lazy"
+					/>
+					{% else %}
+					<div
+						class="img"
+						style="background-color: #{% for i in range(6) %}{{ random.choice('ABCDEF0123456789') }}{% endfor %}"
+					>
+						{{ row['eventtitle'][0].title() }}
+					</div>
+					{% endif %}
+					<div class="container">
+						<h4>
+							{{ row['eventtitle'] }} - {{ datetime.strptime(row['eventdate'],
+							"%Y-%m-%dT%H:%M").strftime("%#I:%M %p, %b. %#d") }}
+						</h4>
+						<div class="corner">
+							{% if row['eventprice'] %} ${{ '{:.2f}'.format(row['eventprice'])
+							}} {% else %} Free {% endif %}
+						</div>
+						<div class="more_info">
+							<a href="/event/{{ row['eventid'] }}"> More </a>
+							<form method="POST" action="{{url_for('auth.cartmanage')}}">
+								<button
+									type="submit"
+									name="removecart"
+									type="submit"
+									value="{{ row['cartid'] }}"
+								>
+									<span>Remove From Cart</span>
+								</button>
+							</form>
+						</div>
+					</div>
+				</div>
+			</div>
+			{% endfor %}
+			<div class="more">
+				<a href="#expand" onclick="expandUpcoming(this)">More</a>
+			</div>
+		</div>
+		{% else %}
+		<p>
+			Visit <a href="{{ url_for('event.schedule') }}">the schedule</a> to view
+			events and make reservations.
+		</p>
+		{% endif %}
+	</div>
+	<div class="cart-head">
+		Cart ({{info|length}})<span class="cart-right">{{ totalprice }}</span>
+		<form method="POST" action="{{url_for('auth.cartmanage')}}">
+			<button type="submit" name="purchase" type="submit" value="purchase">
+				<span>Purchase</span>
+			</button>
+		</form>
+	</div>
+</main>
+{% endblock %} {% block script %}
+<script src="{{ url_for('static', filename='schedule.js') }}"></script>
+{% endblock %}
