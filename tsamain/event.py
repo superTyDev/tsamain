@@ -3,10 +3,12 @@ import os
 from flask import (
     Blueprint, flash, g, redirect, render_template, request, session, url_for, make_response, current_app
 )
+from flask_socketio import SocketIO
 from werkzeug.utils import secure_filename
 from werkzeug.datastructures import FileStorage
 from werkzeug.security import check_password_hash, generate_password_hash
 
+from tsamain import socketio
 from tsamain.auth import login_required
 from tsamain.db import get_db, init_db
 
@@ -163,3 +165,22 @@ def create():
     else:
         flash("No Auth")
         return redirect(url_for('event.dashboard'))
+
+
+@ bp.route("/room", methods=('GET', 'POST'))
+def room():
+    return render_template('event/room.html')
+
+
+rooms = []
+
+
+@socketio.on("connection")
+def connection():
+    curRoom = None
+    print("tyson was here")
+
+
+# @current_app.on("joinRoom")
+def joinRoom(data):
+    print("data")

@@ -1,2 +1,4 @@
 Flask
 flask-talisman
+flask-socketio
+simple-websocket
