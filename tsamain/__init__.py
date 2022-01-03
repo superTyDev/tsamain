@@ -45,7 +45,7 @@ def create_app(test_config=None):
             g.user = get_db().execute(
                 'SELECT * FROM user WHERE userid = ?', (userid,)
             ).fetchone()
-
+    
     @app.route("/")
     def index():
         request.path = "index"

@@ -171,16 +171,20 @@ def create():
 def room():
     return render_template('event/room.html')
 
+@ bp.route("/s", methods=('GET', 'POST'))
+def s():
+    return render_template('event/s.html')
+
+
 
 rooms = []
 
 
-@socketio.on("connection")
-def connection():
-    curRoom = None
-    print("tyson was here")
+@socketio.on("connect")
+def onConnect():
+    print("tyson was here **+*-*+*-")
 
 
-# @current_app.on("joinRoom")
+@socketio.on("joinRoom")
 def joinRoom(data):
     print("data")
