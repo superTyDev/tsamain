@@ -12,7 +12,6 @@ AFRAME.registerComponent("dynamic-room", {
 
 		// Setup networked-scene
 		var networkedComp = {
-			app: "tsaevent",
 			room: params.room,
 			debug: true,
 			connectOnLoad: false,
@@ -54,25 +53,13 @@ AFRAME.registerComponent("dynamic-room", {
 		if (params.username) {
 			username = params.username;
 		} else {
-			username = "user-" + makeId(5).toLowerCase();
-			username = prompt("Choose a username", username);
+			username = prompt("Choose a username");
 		}
 
 		var myNametag = document.getElementById("player").querySelector(".nametag");
 		myNametag.setAttribute("text", "value", username);
-        switchAvatar();
+		switchAvatar();
 
 		document.querySelector("a-scene").components["networked-scene"].connect();
-	},
-
-	makeId: function (length) {
-		var text = "";
-		var possible =
-			"ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
-
-		for (var i = 0; i < length; i++)
-			text += possible.charAt(Math.floor(Math.random() * possible.length));
-
-		return text;
 	},
 });

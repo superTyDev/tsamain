@@ -3,7 +3,7 @@ import os
 from flask import (
     Blueprint, flash, g, redirect, render_template, request, session, url_for, make_response, current_app
 )
-from flask_socketio import SocketIO
+from flask_socketio import join_room, leave_room, send
 from werkzeug.utils import secure_filename
 from werkzeug.datastructures import FileStorage
 from werkzeug.security import check_password_hash, generate_password_hash
@@ -171,20 +171,35 @@ def create():
 def room():
     return render_template('event/room.html')
 
+
 @ bp.route("/s", methods=('GET', 'POST'))
 def s():
     return render_template('event/s.html')
 
 
-
-rooms = []
-
-
-@socketio.on("connect")
-def onConnect():
-    print("tyson was here **+*-*+*-")
+print("--> init")
 
 
-@socketio.on("joinRoom")
-def joinRoom(data):
-    print("data")
+@socketio.on("connection")
+def on_connect(data):
+    print("--> connect")
+
+
+@socketio.on('joinRoom')
+def on_join(data):
+    print("--> join")
+
+    username = data['username']
+    room = data['room']
+    join_room(room)
+    send(username + ' has entered the room.', to=room)
+
+
+@socketio.on('disconnect')
+def on_leave(data):
+    print("--> leave")
+
+    username = data['username']
+    room = data['room']
+    leave_room(room)
+    send(username + ' has left the room.', to=room)
