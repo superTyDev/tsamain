@@ -180,14 +180,14 @@ def s():
 print("--> init")
 
 
-@socketio.on("connection")
+@socketio.on('connection')
 def on_connect(data):
-    print("--> connect")
+    print("--> connect", data["id"])
 
 
 @socketio.on('joinRoom')
 def on_join(data):
-    print("--> join")
+    print("--> join", data.id)
 
     username = data['username']
     room = data['room']
@@ -196,7 +196,7 @@ def on_join(data):
 
 
 @socketio.on('disconnect')
-def on_leave(data):
+def on_leave():
     print("--> leave")
 
     username = data['username']
