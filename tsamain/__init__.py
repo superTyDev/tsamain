@@ -3,7 +3,10 @@ from datetime import datetime
 import random
 from flask import Flask, request, render_template, g, session
 from flask_talisman import Talisman
+from flask_socketio import SocketIO
 from tsamain.db import get_db
+
+socketio = SocketIO()
 
 
 def create_app(test_config=None):
@@ -67,5 +70,7 @@ def create_app(test_config=None):
 
     if os.getenv("FLASK_ENV") != "development":
         Talisman(app, content_security_policy=None)
+
+    socketio.init_app(app)
 
     return app

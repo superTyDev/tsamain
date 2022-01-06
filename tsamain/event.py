@@ -1,12 +1,14 @@
-import functools
+import json
+import time
 import os
 from flask import (
     Blueprint, flash, g, redirect, render_template, request, session, url_for, make_response, current_app
 )
+from flask_socketio import join_room, leave_room, send
 from werkzeug.utils import secure_filename
 from werkzeug.datastructures import FileStorage
-from werkzeug.security import check_password_hash, generate_password_hash
 
+from tsamain import socketio
 from tsamain.auth import login_required
 from tsamain.db import get_db, init_db
 
@@ -163,3 +165,62 @@ def create():
     else:
         flash("No Auth")
         return redirect(url_for('event.dashboard'))
+
+
+@ bp.route("/room", methods=('GET', 'POST'))
+def room():
+    return render_template('event/room.html')
+
+
+@ bp.route("/s", methods=('GET', 'POST'))
+def s():
+    return render_template('event/s.html')
+
+
+print("--> init")
+rooms = {}
+
+
+@socketio.on('connection')
+def on_connect(data):
+    print("\n\n--> connect")
+
+
+@socketio.on('joinRoom')
+def on_join(data):
+    print("\n\n--> join", request.sid)
+    room = data['room']
+
+    if not room in rooms:
+        rooms[room] = {
+            "name": room,
+            "occupants": {},
+        }
+
+    joinedTime = int(time.time())
+    rooms[room]["occupants"][request.sid] = joinedTime
+    session['curRoom'] = room
+
+    print(f"{request.sid} joined room {room}")
+    join_room(room)
+
+    socketio.emit("connectSuccess", json.dumps(joinedTime))
+    occupants = {"occupants": rooms[room]["occupants"]}
+    print(occupants)
+    socketio.emit("occupantsChanged", occupants, room=room)
+
+
+@ socketio.on("send")
+def send(data):
+    socketio.emit("send", data, to=data["to"])
+
+
+@ socketio.on("broadcast")
+def broadcast(data):
+    socketio.emit("broadcast", data,
+                  room=session['curRoom'], broadcast=True)
+
+
+@ socketio.on('disconnect')
+def on_leave():
+    print("\n\n--> leave")
