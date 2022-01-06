@@ -1,5 +1,4 @@
 import functools
-from datetime import datetime
 import os
 from flask import (
     Blueprint, flash, g, redirect, render_template, request, session, url_for, make_response, current_app
@@ -180,32 +179,37 @@ def s():
 
 print("--> init")
 
-rooms = []
-
 
 @socketio.on('connection')
 def on_connect(data):
-    print("user connected", data.sid)
-    session['curRoom'] = None
+    print("\n\n--> connect")
 
 
 @socketio.on('joinRoom')
 def on_join(data):
-    print("--> join", data.sid)
+    print("\n\n--> join", data.id)
 
     if not rooms[data]:
-        rooms[data] = {
-            name: data,
-            occupants: {},
-        }
+			     rooms[data] = {
+			        	name: data,
+			        	occupants: {},
+		    	 };
 
-    joinedTime = datatime.datetime.now()
     username = data['username']
     room = data['room']
     join_room(room)
     send(username + ' has entered the room.', to=room)
 
+@socketio.on("send")
+def send(data):
+    socketio.to(data.to).emit("send", data)
+
+
+@socketio.on("broadcast")
+def broadcast(data):
+    socketio.to(session["curRoom"]).broadcast.emit("broadcast", data)
+
 
 @socketio.on('disconnect')
 def on_leave():
-    print("--> leave")
+    print("\n\n--> leave")
