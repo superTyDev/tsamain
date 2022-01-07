@@ -1,1 +1,1 @@
-web: python app.py
+web: gunicorn  --worker-class eventlet -w 1 tsamain:create_app
