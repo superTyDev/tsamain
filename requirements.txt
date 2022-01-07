@@ -1,7 +1,9 @@
-Flask
+Flask==1.1.2
 flask-talisman
 Flask-SocketIO==4.3.1
 python-engineio==3.13.2
 python-socketio==4.6.0 
-eventlet==0.30.2
+gevent==20.6.2
+gevent-websocket==0.10.1
+greenlet==0.4.16 
 gunicorn
