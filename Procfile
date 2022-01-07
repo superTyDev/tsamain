@@ -1,1 +1,1 @@
-web: gunicorn  --worker-class eventlet -w 1 tsamain:create_app
+web: gunicorn geventwebsocket.gunicorn.workers.GeventWebSocketWorker -w 1 tsamain:create_app
