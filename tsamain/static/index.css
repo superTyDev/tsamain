@@ -37,6 +37,7 @@ header .info .title {
 }
 header .info .title h1 {
     margin: 0 auto;
+	line-height: 120%;
 }
 header .info .slide {
     display: none;

@@ -406,7 +406,6 @@ hr {
 	background-color: unset;
 
 	display: inline-block;
-	float: left;
 	color: var(--color-primary);
 	border: 2px solid var(--color-primary);
 	margin-top: 5px;
@@ -429,6 +428,9 @@ footer {
 	background-color: var(--color-nav);
 	color: var(--color-text-nav);
 	padding: 10px;
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: center;
 }
 footer .links {
 	overflow: auto;
