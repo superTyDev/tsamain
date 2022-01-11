@@ -1,1 +1,1 @@
-web: gunicorn -k eventlet -w 1 sapp:app
+web: gunicorn -k eventlet -w 1 app:app
