@@ -7,23 +7,15 @@ content %}
 			{% if info %}
 			<div class="row" id="upcoming-expand">
 				{% for row in info %}
-				<div
-					class="list-outside"
-					href="/event/{{ row['eventid'] }}"
-					onclick="location.href=`/event/{{ row['eventid'] }}`;"
-				>
+				<div class="list-outside" href="/event/{{ row['eventid'] }}"
+					onclick="location.href=`/event/{{ row['eventid'] }}`;">
 					<div class="list">
 						{% if row['eventhero'] %}
-						<img
-							src="{{ os.path.join(url_for('static', filename = 'upload'), row['eventhero']) }}"
-							alt="{{ row[0] }}"
-							loading="lazy"
-						/>
+						<img src="{{ os.path.join(url_for('static', filename = 'upload'), row['eventhero']) }}"
+							alt="{{ row[0] }}" loading="lazy" />
 						{% else %}
-						<div
-							class="img"
-							style="background-color: #{% for i in range(6) %}{{ random.choice('ABCDEF0123456789') }}{% endfor %}"
-						>
+						<div class="img"
+							style="background-color: #{% for i in range(6) %}{{ random.choice('ABCDEF0123456789') }}{% endfor %}">
 							{{ row['eventtitle'][0].title() }}
 						</div>
 						{% endif %}
@@ -38,14 +30,16 @@ content %}
 								%}
 							</div>
 							<div class="more_info">
+								{% if (datetime.strptime(row['eventdate'],
+								'%Y-%m-%dT%H:%M') - datetime.now()).total_seconds() < 3600 %}
+								<a href="/event/live/{{ row['eventid'] }}"> Attend </a>
+								{% else %}
+								<a href="about:blank#blocked" class="disabled"> Attend </a>
+								{% endif %}
+
 								<a href="/event/{{ row['eventid'] }}"> More </a>
 								<form method="POST" action="{{url_for('auth.cartmanage')}}">
-									<button
-										type="submit"
-										name="removecart"
-										type="submit"
-										value="{{ row['cartid'] }}"
-									>
+									<button type="submit" name="removecart" type="submit" value="{{ row['cartid'] }}">
 										<span>Remove From Cart</span>
 									</button>
 								</form>
@@ -65,8 +59,7 @@ content %}
 			</p>
 			{% endif %}
 		</div>
-		<span
-			><a href="{{ url_for('event.create') }}">Create Event</a> |
+		<span><a href="{{ url_for('event.create') }}">Create Event</a> |
 			<a href="{{ url_for('auth.cart') }}">View Cart</a>
 		</span>
 	</div>

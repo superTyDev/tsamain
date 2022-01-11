@@ -57,6 +57,19 @@ def schedule():
     return render_template('event/schedule.html', info=info)
 
 
+@bp.route('/live/<int:eventid>', methods=('GET', 'POST'))
+def eventroom(eventid):
+    request.path = "room"
+
+    error = None
+    if eventid:
+        db = get_db()
+        row = db.execute(
+            'SELECT e.eventtitle, e.eventdate, e.eventlevel, e.eventprice, d.eventdesc, d.eventhero FROM events e LEFT JOIN edetails d ON e.eventid = d.deventid WHERE eventid = ?', (
+                eventid,)
+        ).fetchone()
+
+
 @bp.route('/<int:eventid>', methods=('GET', 'POST'))
 def eventid(eventid):
     request.path = "id"
