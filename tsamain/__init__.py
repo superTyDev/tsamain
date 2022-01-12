@@ -6,7 +6,7 @@ from flask_talisman import Talisman
 from flask_socketio import SocketIO
 from tsamain.db import get_db
 
-socketio = SocketIO(async_mode="threading")
+socketio = SocketIO()
 
 
 def create_app(test_config=None):

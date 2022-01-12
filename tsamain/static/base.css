@@ -191,7 +191,7 @@ select:focus {
 }
 button[type="submit"] {
 	background-color: var(--color-primary);
-	color: white;
+	color: var(--color-text-theme);
 	padding: 16px 20px;
 	margin: 8px 0;
 	border: none;
@@ -292,7 +292,7 @@ hr {
 	bottom: 0;
 	right: 0;
 	left: 0;
-	height: 100px;
+	height: 400px;
 
 	background-color: var(--color-background);
 	background: linear-gradient(transparent, var(--color-background));
@@ -303,8 +303,10 @@ hr {
 	bottom: 20%;
 	width: 50%;
 	min-width: 100px;
-	color: var(--color-primary-dark);
-	border: 2px solid var(--color-primary-dark);
+	background-color: var(--color-primary);
+	color: var(--color-text-theme);
+	border: 2px solid var(--color-primary);
+	filter: brightness(80%);
 	border-radius: 2px;
 
 	transform: translate(-50%, -50%);
@@ -313,8 +315,7 @@ hr {
 	font-weight: bold;
 }
 .row .more a:hover {
-	background-color: var(--color-primary-dark);
-	color: var(--color-text-theme);
+	filter: brightness(100%);
 }
 .row > .list-outside {
 	display: block;
@@ -435,6 +436,9 @@ footer {
 }
 footer .links {
 	overflow: auto;
+	display: flex;
+	justify-content: center;
+    flex-wrap: wrap;
 }
 footer a {
 	color: var(--color-text-nav);
