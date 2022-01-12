@@ -118,8 +118,8 @@ nav.shrink a {
 	padding: 14px 16px;
 	font-size: 20px;
 }
-.sticky + main {
-	padding-top: 60px;
+main.extra {
+	margin-top: 60px;
 }
 
 /* ALERTS */
@@ -150,11 +150,12 @@ nav.shrink a {
 /* MAIN PAGE */
 main {
 	padding-top: 2rem;
+	padding-bottom: 4rem;
 	min-height: 100vh;
 }
 main > div {
 	position: relative;
-	padding: 2rem 20%;
+	padding: 0rem 20%;
 }
 
 /* -FORMS */
@@ -295,7 +296,7 @@ hr {
 	height: 400px;
 
 	background-color: var(--color-background);
-	background: linear-gradient(transparent, var(--color-background));
+	background: linear-gradient(to bottom, transparent, var(--color-background) 85%);
 }
 .row .more a {
 	position: absolute;
@@ -306,7 +307,7 @@ hr {
 	background-color: var(--color-primary);
 	color: var(--color-text-theme);
 	border: 2px solid var(--color-primary);
-	filter: brightness(80%);
+	filter: brightness(60%);
 	border-radius: 2px;
 
 	transform: translate(-50%, -50%);

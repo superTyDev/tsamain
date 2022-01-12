@@ -15,8 +15,10 @@ window.onscroll = stickyNav;
 function stickyNav() {
     if (window.pageYOffset >= sticky) {
         navbar.classList.add("sticky");
+        main.classList.add("extra");
     } else {
         navbar.classList.remove("sticky");
+        main.classList.remove("extra");
     }
 
     if (
