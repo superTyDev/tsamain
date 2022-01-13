@@ -17,14 +17,21 @@
 		<div class="column rotateColumn">
 			<div class="slideshow slide-card">
 				{% for row in featured %}
-				<div class="slide-card-inner" onclick="location.href=`/event/{{ row['eventid'] }}`;">
+				<div
+					class="slide-card-inner"
+					onclick="location.href=`/event/{{ row['eventid'] }}`;"
+				>
 					<div class="slide-title">{{ row['eventtitle'] }}</div>
 					<video autoplay muted loop>
-						<source src="{{ os.path.join(url_for('static', filename = 'upload'), row['eventvideo']) }}" />
-						<img src="{{ os.path.join(url_for('static', filename = 'upload'), row['eventhero']) }}"
-							alt="{{ row['eventtitle'] }}" />
+						<source
+							src="{{ os.path.join(url_for('static', filename = 'upload'), row['eventvideo']) }}"
+						/>
+						<img
+							src="{{ os.path.join(url_for('static', filename = 'upload'), row['eventhero']) }}"
+							alt="{{ row['eventtitle'] }}"
+						/>
 					</video>
-					<div class="slide-time">{{ row['eventdate'] }}</div>
+					<div class="slide-time">UPCOMMING - {{ row['eventdate'] }}</div>
 				</div>
 				{% endfor %}
 			</div>
@@ -37,15 +44,24 @@
 		<h2>Upcoming</h2>
 		<div class="row">
 			{% for row in info %}
-			<div class="card-outside" href="/event/{{ row['eventid'] }}"
-				onclick="location.href=`/event/{{ row['eventid'] }}`;">
+			<div
+				class="card-outside"
+				href="/event/{{ row['eventid'] }}"
+				onclick="location.href=`/event/{{ row['eventid'] }}`;"
+			>
 				<div class="card">
 					{% if row['eventhero'] %}
-					<img src="{{ os.path.join(url_for('static', filename = 'upload'), row['eventhero']) }}"
-						alt="{{ row[0] }}" style="width: 100%" loading="lazy" />
+					<img
+						src="{{ os.path.join(url_for('static', filename = 'upload'), row['eventhero']) }}"
+						alt="{{ row[0] }}"
+						style="width: 100%"
+						loading="lazy"
+					/>
 					{% else %}
-					<div class="img"
-						style="background-color: #{% for i in range(6) %}{{ random.choice('ABCDEF0123456789') }}{% endfor %}">
+					<div
+						class="img"
+						style="background-color: #{% for i in range(6) %}{{ random.choice('ABCDEF0123456789') }}{% endfor %}"
+					>
 						{{ row['eventtitle'][0].title() }}
 					</div>
 					{% endif %}

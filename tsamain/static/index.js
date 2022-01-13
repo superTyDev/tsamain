@@ -13,7 +13,7 @@ document.body.onload = function () {
 	for (var i = 0; i < slideCards.length; i++) {
 		startTimer(slideCards[i].getElementsByClassName("slide-time")[0]);
 	}
-}
+};
 
 // NAVBAR
 function placeNav() {
@@ -49,13 +49,37 @@ function showSlides(n) {
 
 // COUNTDOWN TIMER
 function startTimer(display) {
-	var timer = new Date(display.innerHTML) - new Date();
-	console.log((new Date(display.innerHTML) - new Date()).getDay())
-	setInterval(function () {
-		timer += -1000;
-		console.log(timer)
+	var timer =
+		new Date(display.innerHTML.replace("UPCOMMING - ", "")) - new Date();
 
-		display.textContent = timer.getDay() + " Days " + timer.getHours() + " Hours " + timer.getMinutes() + " Minutes " + timer.getSeconds() + "Seconds";
+	timer = new Date(timer - 1000);
+
+	display.textContent =
+		timer.getDay() +
+		" Days " +
+		timer.getHours() +
+		" Hours " +
+		timer.getMinutes() +
+		" Minutes " +
+		timer.getSeconds() +
+		" Seconds";
+
+	if (--timer < 0) {
+		display.textContent = "LIVE";
+	}
+
+	setInterval(function () {
+		timer = new Date(timer - 1000);
+
+		display.textContent =
+			timer.getDay() +
+			" Days " +
+			timer.getHours() +
+			" Hours " +
+			timer.getMinutes() +
+			" Minutes " +
+			timer.getSeconds() +
+			" Seconds";
 
 		if (--timer < 0) {
 			display.textContent = "LIVE";
