@@ -9,6 +9,14 @@ from tsamain.db import get_db
 
 bp = Blueprint('auth', __name__, url_prefix='/auth')
 
+def login_required(view):
+    @ functools.wraps(view)
+    def wrapped_view(**kwargs):
+        if g.user is None:
+            flash("Please Log In")
+            return redirect(url_for('auth.login', next=request.url))
+        return view(**kwargs)
+    return wrapped_view
 
 @bp.route('/register', methods=('GET', 'POST'))
 def register():
@@ -63,6 +71,8 @@ def login():
     if request.method == 'POST':
         username = request.form['username']
         password = request.form['password']
+        next_url = request.form.get("next")
+        
         db = get_db()
         error = None
         user = db.execute(
@@ -77,6 +87,8 @@ def login():
         if error is None:
             session.clear()
             session['userid'] = user['userid']
+            if next_url:
+                return redirect(next_url)
             return redirect(url_for('index'))
 
         flash(error)
@@ -85,6 +97,7 @@ def login():
 
 
 @ bp.route('/cart', methods=('GET', 'POST'))
+@login_required
 def cart():
     db = get_db()
     error = None
@@ -101,8 +114,8 @@ def cart():
 
     return render_template('auth/cart.html', info=info, totalprice=totalprice)
 
-
 @ bp.route('/cartmanage', methods=('GET', 'POST'))
+@login_required
 def cartmanage():
     if request.method == 'POST':
         error = None
@@ -144,13 +157,3 @@ def cartmanage():
 def logout():
     session.clear()
     return redirect(url_for('index'))
-
-
-def login_required(view):
-    @ functools.wraps(view)
-    def wrapped_view(**kwargs):
-        if g.user is None:
-            flash("Please Log In")
-            return redirect(url_for('auth.login'))
-        return view(**kwargs)
-    return wrapped_view

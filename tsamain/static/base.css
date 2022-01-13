@@ -301,22 +301,25 @@ hr {
 .row .more a {
 	position: absolute;
 	left: 50%;
-	bottom: 20%;
+	bottom: 5%;
 	width: 50%;
 	min-width: 100px;
-	background-color: var(--color-primary);
-	color: var(--color-text-theme);
-	border: 2px solid var(--color-primary);
-	filter: brightness(60%);
+	background-color: var(--color-background);
+	color: var(--color-primary-dark);
+	border: 2px solid var(--color-primary-dark);
 	border-radius: 2px;
 
 	transform: translate(-50%, -50%);
 	text-align: center;
 	text-decoration: none;
 	font-weight: bold;
+	opacity: 0.8;
 }
 .row .more a:hover {
-	filter: brightness(100%);
+	background-color: var(--color-primary);
+	border-color: var(--color-primary);
+	color: var(--color-text-theme);
+	opacity: 1;
 }
 .row > .list-outside {
 	display: block;

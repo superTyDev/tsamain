@@ -24,6 +24,11 @@
                     required
                 />
                 <button type="submit" class="registerbtn">Login</button>
+                <input
+    type="hidden"
+    name="next"
+    value="{{ request.args.get('next', '') }}"
+/>
             </div>
 
             <div>
