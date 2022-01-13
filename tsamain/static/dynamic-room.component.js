@@ -7,7 +7,7 @@ AFRAME.registerComponent("dynamic-room", {
 		var params = this.getUrlParams();
 
 		if (!params.room) {
-			window.alert("Please add a room name in the URL, eg. ?room=myroom");
+			params.room = document.dataset.id;
 		}
 
 		// Setup networked-scene
@@ -53,7 +53,7 @@ AFRAME.registerComponent("dynamic-room", {
 		if (params.username) {
 			username = params.username;
 		} else {
-			username = prompt("Choose a username");
+			username = document.dataset.username;
 		}
 
 		var myNametag = document.getElementById("player").querySelector(".nametag");

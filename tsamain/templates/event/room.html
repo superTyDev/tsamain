@@ -1,125 +1,175 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-id="{{ eventid }}" data-username=" {{ name }}">
+	<head>
+		<meta charset="utf-8" />
+		<title>Prism Concerts Event</title>
+		<meta
+			name="description"
+			content="A live virtual event for Prism Concerts."
+		/>
+		<link
+			rel="shortcut icon"
+			href="{{ url_for('static', filename='prism.ico') }}"
+		/>
 
-<head>
-	<meta charset="utf-8" />
-	<title>Prism Concerts Event</title>
-	<meta name="description" content="A live virtual event for Prism Concerts." />
-	<link rel="shortcut icon" href="{{ url_for('static', filename='prism.ico') }}" />
+		<script src="https://aframe.io/releases/1.2.0/aframe.min.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.3.0/socket.io.slim.js"></script>
+		<script src="https://cdn.jsdelivr.net/gh/donmccurdy/aframe-extras@v6.1.1/dist/aframe-extras.min.js"></script>
 
-	<script src="https://aframe.io/releases/1.2.0/aframe.min.js"></script>
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.3.0/socket.io.slim.js"></script>
-	<script src="https://cdn.jsdelivr.net/gh/donmccurdy/aframe-extras@v6.1.1/dist/aframe-extras.min.js"></script>
+		<script src="https://unpkg.com/networked-aframe@^0.7.0/dist/networked-aframe.min.js"></script>
+		<script src="https://unpkg.com/aframe-randomizer-components@^3.0.1/dist/aframe-randomizer-components.min.js"></script>
+		<script src="https://unpkg.com/aframe-environment-component@1.3.1/dist/aframe-environment-component.min.js"></script>
 
-	<script src="https://unpkg.com/networked-aframe@^0.7.0/dist/networked-aframe.min.js"></script>
-	<script
-		src="https://unpkg.com/aframe-randomizer-components@^3.0.1/dist/aframe-randomizer-components.min.js"></script>
-	<script
-		src="https://unpkg.com/aframe-environment-component@1.3.1/dist/aframe-environment-component.min.js"></script>
+		<script src="{{ url_for('static', filename='spawn-in-circle.component.js') }}"></script>
+		<script src="{{ url_for('static', filename='dynamic-room.component.js') }}"></script>
 
-	<script src="{{ url_for('static', filename='spawn-in-circle.component.js') }}"></script>
-	<script src="{{ url_for('static', filename='dynamic-room.component.js') }}"></script>
+		<style>
+			.hud {
+				background-color: rgba(100, 100, 255, 0.5);
+			}
 
-	<style>
-		.hud {
-			background-color: rgba(100, 100, 255, 0.5);
-		}
+			.hud button {
+				width: 100%;
+				padding: 20px;
+			}
+		</style>
+	</head>
 
-		.hud button {
-			width: 100%;
-			padding: 20px;
-		}
-	</style>
-</head>
+	<body>
+		<div class="hud" style="position: fixed; z-index: 1; top: 20px; left: 20px">
+			<button onclick="switchAvatar()">Costume</button>
+		</div>
+		<a-scene dynamic-room>
+			<a-assets>
+				<img
+					id="marble"
+					src="{{ url_for('static', filename='marble-1024.jpg') }}"
+					crossorigin="anonymous"
+				/>
 
-<body>
-	<div class="hud" style="position: fixed; z-index: 1; top: 20px; left: 20px">
-		<button onclick="switchAvatar()">Costume</button>
-	</div>
-	<a-scene dynamic-room>
-		<a-assets>
-			<img id="marble" src="{{ url_for('static', filename='marble-1024.jpg') }}" crossorigin="anonymous" />
+				<!-- Templates -->
+				<!-- Avatar -->
+				<template id="avatar-template">
+					<a-entity>
+						<a-entity
+							class="nametag"
+							text="value: unnamed; align:center;"
+							position="0 0.7 0"
+							rotation="0 180 0"
+							scale="8 8 8"
+						></a-entity>
 
-			<!-- Templates -->
-			<!-- Avatar -->
-			<template id="avatar-template">
-				<a-entity>
-					<a-entity class="nametag" text="value: unnamed; align:center;" position="0 0.7 0" rotation="0 180 0"
-						scale="8 8 8"></a-entity>
-
-					<a-entity class="avatar">
-						<a-box class="head" color="#5985ff" scale="0.45 0.75 0.45" random-color></a-box>
-						<a-sphere class="head" color="#5985ff" scale="0.45 0.5 0.37" random-color></a-sphere>
-						<a-entity class="face" position="0 0.05 0">
-							<a-sphere class="eye" color="#efefef" position="0.16 0.1 -0.35" scale="0.16 0.16 0.16">
-								<a-sphere class="pupil" color="#000" position="0 0 -1" scale="0.2 0.2 0.2"></a-sphere>
-							</a-sphere>
-							<a-sphere class="eye" color="#efefef" position="-0.16 0.1 -0.35" scale="0.16 0.16 0.16">
-								<a-sphere class="pupil" color="#000" position="0 0 -1" scale="0.2 0.2 0.2"></a-sphere>
-							</a-sphere>
+						<a-entity class="avatar">
+							<a-box
+								class="head"
+								color="#5985ff"
+								scale="0.45 0.75 0.45"
+								random-color
+							></a-box>
+							<a-sphere
+								class="head"
+								color="#5985ff"
+								scale="0.45 0.5 0.37"
+								random-color
+							></a-sphere>
+							<a-entity class="face" position="0 0.05 0">
+								<a-sphere
+									class="eye"
+									color="#efefef"
+									position="0.16 0.1 -0.35"
+									scale="0.16 0.16 0.16"
+								>
+									<a-sphere
+										class="pupil"
+										color="#000"
+										position="0 0 -1"
+										scale="0.2 0.2 0.2"
+									></a-sphere>
+								</a-sphere>
+								<a-sphere
+									class="eye"
+									color="#efefef"
+									position="-0.16 0.1 -0.35"
+									scale="0.16 0.16 0.16"
+								>
+									<a-sphere
+										class="pupil"
+										color="#000"
+										position="0 0 -1"
+										scale="0.2 0.2 0.2"
+									></a-sphere>
+								</a-sphere>
+							</a-entity>
 						</a-entity>
 					</a-entity>
-				</a-entity>
-			</template>
+				</template>
 
-			<!-- /Templates -->
-		</a-assets>
+				<!-- /Templates -->
+			</a-assets>
 
-		<a-entity environment="preset: arches"></a-entity>
-		<a-entity light="type: ambient; color: #888"></a-entity>
+			<a-entity environment="preset: arches"></a-entity>
+			<a-entity light="type: ambient; color: #888"></a-entity>
 
-		<a-entity id="player" networked="template:#avatar-template;attachTemplateToLocal:true;" position="0 5.5 0"
-			movement-controls look-controls>
-			<a-entity id="camera" camera position="0 0 -0.5"></a-entity>
-		</a-entity>
+			<a-entity
+				id="player"
+				networked="template:#avatar-template;attachTemplateToLocal:true;"
+				position="0 5.5 0"
+				movement-controls
+				look-controls
+			>
+				<a-entity id="camera" camera position="0 0 -0.5"></a-entity>
+			</a-entity>
 
-		<a-entity position="0 5 0" geometry="primitive: plane; width: 10; height: 10;" rotation="-90 0 0"
-			material="src: #marble; repeat: 50 50; transparent: true; metalness:0; roughness: 1;"></a-entity>
-	</a-scene>
+			<a-entity
+				position="0 5 0"
+				geometry="primitive: plane; width: 10; height: 10;"
+				rotation="-90 0 0"
+				material="src: #marble; repeat: 50 50; transparent: true; metalness:0; roughness: 1;"
+			></a-entity>
+		</a-scene>
 
-	<script>
-		var costume = 0;
-		// Define custom schema for syncing avatar color, set by random-color, and name tag
-		NAF.schemas.add({
-			template: "#avatar-template",
-			components: [
-				"position",
-				"rotation",
-				{
-					selector: ".head",
-					component: "material",
-					property: "color",
-				},
-				{
-					selector: ".head",
-					component: "visible",
-				},
-				{
-					selector: ".nametag",
-					component: "text",
-					property: "value",
-				},
-			],
-		});
-		function switchAvatar() {
-			var heads = document.querySelectorAll("#player .head");
-			console.log(costume);
-			costume += 1;
+		<script>
+			var costume = 0;
+			// Define custom schema for syncing avatar color, set by random-color, and name tag
+			NAF.schemas.add({
+				template: "#avatar-template",
+				components: [
+					"position",
+					"rotation",
+					{
+						selector: ".head",
+						component: "material",
+						property: "color",
+					},
+					{
+						selector: ".head",
+						component: "visible",
+					},
+					{
+						selector: ".nametag",
+						component: "text",
+						property: "value",
+					},
+				],
+			});
+			function switchAvatar() {
+				var heads = document.querySelectorAll("#player .head");
+				console.log(costume);
+				costume += 1;
 
-			if (costume >= heads.length) {
-				costume = 0;
-			}
-
-			for (var i = 0; i < heads.length; i++) {
-				if (i == costume) {
-					heads[i].setAttribute("visible", true);
-				} else {
-					heads[i].setAttribute("visible", false);
+				if (costume >= heads.length) {
+					costume = 0;
 				}
-				console.log(heads[i].getAttribute("visible"));
-			}
-		}
-	</script>
-</body>
 
+				for (var i = 0; i < heads.length; i++) {
+					if (i == costume) {
+						heads[i].setAttribute("visible", true);
+					} else {
+						heads[i].setAttribute("visible", false);
+					}
+					console.log(heads[i].getAttribute("visible"));
+				}
+			}
+		</script>
+	</body>
 </html>

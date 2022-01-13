@@ -68,6 +68,12 @@ def eventroom(eventid):
             'SELECT e.eventtitle, e.eventdate, e.eventlevel, e.eventprice, d.eventdesc, d.eventhero FROM events e LEFT JOIN edetails d ON e.eventid = d.deventid WHERE eventid = ?', (
                 eventid,)
         ).fetchone()
+        if g.user['username']:
+            name = g.user['username']
+        else:
+            name = time.time()
+
+        return render_template('room.html', eventid=eventid, row=row, name=name)
 
 
 @bp.route('/<int:eventid>', methods=('GET', 'POST'))
