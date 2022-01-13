@@ -27,6 +27,7 @@ CREATE TABLE events (
   eventdate DATETIME NOT NULL,
   eventlevel TEXT NOT NULL,
   eventprice FLOAT(4, 2) NOT NULL,
+  eventfeature INTEGER DEFAULT NULL,
   
   authorid INTEGER NOT NULL,
   created TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,

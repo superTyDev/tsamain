@@ -6,9 +6,9 @@
 				<h1>Prism<br />Concerts</h1>
 			</div>
 			<div class="slideshow">
-				<h2 class="slide fade">A Creative Showcase</h2>
-				<h2 class="slide fade">A Collection of Art</h2>
-				<h2 class="slide fade">A Multitude of Talent</h2>
+				<h2 class="slide fade">A Connection to Community</h2>
+				<h2 class="slide fade">A Connection to Culture</h2>
+				<h2 class="slide fade">A Connection to You</h2>
 			</div>
 			<h3 class="morebutton fade">
 				<a href="#more">Learn More <i class="jump">↴</i></a>
@@ -16,22 +16,15 @@
 		</div>
 		<div class="column rotateColumn">
 			<div class="slideshow slide-card">
-				<div class="slide-card-inner">
-					<div class="slide-title">Boo Orchestra</div>
+				{% for row in featured %}
+				<div class="slide-card-inner" onclick="location.href=`/event/{{ row['eventid'] }}`;">
+					<div class="slide-title">{{ row['eventtitle'] }}</div>
 					<video autoplay muted loop>
-						<source src="static/winter.mp4" type="video/mp4" />
-						<img src="static/orchestra.jpg" alt="Orchestra" />
+						<source src="{{ os.path.join(url_for('static', filename = 'upload'), row['eventvideo']) }}" />
+						<img src="{{ os.path.join(url_for('static', filename = 'upload'), row['eventhero']) }}"
+							alt="{{ row['eventtitle'] }}" />
 					</video>
-					<div class="slide-time">many days left</div>
-				</div>
-				{% for i in range (3) %}
-				<div class="slide-card-inner">
-					<div class="slide-title">Oregon Orchestra</div>
-					<video autoplay muted loop>
-						<source src="static/sailing.mp4" type="video/mp4" />
-						<img src="static/orchestra.jpg" alt="Orchestra" />
-					</video>
-					<div class="slide-time">{{i}} days left</div>
+					<div class="slide-time">{{ row['eventdate'] }}</div>
 				</div>
 				{% endfor %}
 			</div>
@@ -44,24 +37,15 @@
 		<h2>Upcoming</h2>
 		<div class="row">
 			{% for row in info %}
-			<div
-				class="card-outside"
-				href="/event/{{ row['eventid'] }}"
-				onclick="location.href=`/event/{{ row['eventid'] }}`;"
-			>
+			<div class="card-outside" href="/event/{{ row['eventid'] }}"
+				onclick="location.href=`/event/{{ row['eventid'] }}`;">
 				<div class="card">
 					{% if row['eventhero'] %}
-					<img
-						src="{{ os.path.join(url_for('static', filename = 'upload'), row['eventhero']) }}"
-						alt="{{ row[0] }}"
-						style="width: 100%"
-						loading="lazy"
-					/>
+					<img src="{{ os.path.join(url_for('static', filename = 'upload'), row['eventhero']) }}"
+						alt="{{ row[0] }}" style="width: 100%" loading="lazy" />
 					{% else %}
-					<div
-						class="img"
-						style="background-color: #{% for i in range(6) %}{{ random.choice('ABCDEF0123456789') }}{% endfor %}"
-					>
+					<div class="img"
+						style="background-color: #{% for i in range(6) %}{{ random.choice('ABCDEF0123456789') }}{% endfor %}">
 						{{ row['eventtitle'][0].title() }}
 					</div>
 					{% endif %}
