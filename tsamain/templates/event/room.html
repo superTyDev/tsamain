@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" data-id="{{ eventid }}" data-username=" {{ name }}">
+<html lang="en">
 	<head>
 		<meta charset="utf-8" />
 		<title>Prism Concerts Event</title>
@@ -35,12 +35,20 @@
 		</style>
 	</head>
 
-	<body>
-		<div class="hud" style="position: fixed; z-index: 1; top: 20px; left: 20px">
+	<body data-id="{{ eventid }}" data-username=" {{ name }}">
+		<!-- <div class="hud" style="position: fixed; z-index: 1; top: 20px; left: 20px">
 			<button onclick="switchAvatar()">Costume</button>
-		</div>
+		</div> -->
 		<a-scene dynamic-room>
 			<a-assets>
+				<video
+					autoplay
+					muted
+					loop
+					id="theater"
+					src="{{ '/static/upload/' + row['eventvideo'] }}"
+					crossorigin="anonymous"
+				></video>
 				<img
 					id="marble"
 					src="{{ url_for('static', filename='marble-1024.jpg') }}"
@@ -120,6 +128,13 @@
 				<a-entity id="camera" camera position="0 0 -0.5"></a-entity>
 			</a-entity>
 
+			<a-video
+				material="src: #theater"
+				width="16"
+				height="9"
+				position="0 10 -20"
+				play-on-click
+			></a-video>
 			<a-entity
 				position="0 5 0"
 				geometry="primitive: plane; width: 10; height: 10;"

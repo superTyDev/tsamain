@@ -21,7 +21,7 @@ def dashboard():
     db = get_db()
     error = None
     info = db.execute(
-        'SELECT e.eventtitle, e.eventdate, e.eventlevel, e.eventprice, d.eventdesc, d.eventhero, e.eventid, c.cartid FROM cart c LEFT JOIN events e ON c.ceventid = e.eventid LEFT JOIN edetails d ON c.ceventid = d.deventid WHERE (c.cuserid = ? and c.purchased = 1)', (g.user['userid'],)).fetchall()
+        'SELECT e.eventtitle, e.eventdate, e.eventlevel, e.eventprice, d.eventdesc, d.eventhero, e.eventid, c.cartid FROM cart c LEFT JOIN events e ON c.ceventid = e.eventid LEFT JOIN edetails d ON c.ceventid = d.deventid WHERE (c.cuserid = ? and c.purchased = 1) ORDER BY eventdate ASC', (g.user['userid'],)).fetchall()
     db.commit()
 
     if error is not None:
@@ -53,7 +53,7 @@ def schedule():
         num = 20
 
     db = get_db()
-    info = db.execute('SELECT e.eventtitle, e.eventdate, e.eventlevel, e.eventprice, d.eventdesc, d.eventhero, e.eventid FROM events e LEFT JOIN edetails d ON e.eventid = d.deventid WHERE eventdate > DATE() ORDER BY eventdate ASC LIMIT ?', (num,)).fetchall()
+    info = db.execute('SELECT e.eventtitle, e.eventdate, e.eventlevel, e.eventprice, d.eventdesc, d.eventhero, e.eventid FROM events e LEFT JOIN edetails d ON e.eventid = d.deventid WHERE eventdate > DATE() - 1 ORDER BY eventdate ASC LIMIT ?', (num,)).fetchall()
     return render_template('event/schedule.html', info=info)
 
 
@@ -65,7 +65,7 @@ def eventroom(eventid):
     if eventid:
         db = get_db()
         row = db.execute(
-            'SELECT e.eventtitle, e.eventdate, e.eventlevel, e.eventprice, d.eventdesc, d.eventhero FROM events e LEFT JOIN edetails d ON e.eventid = d.deventid WHERE eventid = ?', (
+            'SELECT e.eventtitle, e.eventdate, e.eventlevel, e.eventprice, d.eventdesc, d.eventhero, d.eventvideo FROM events e LEFT JOIN edetails d ON e.eventid = d.deventid WHERE eventid = ?', (
                 eventid,)
         ).fetchone()
         if g.user['username']:
@@ -73,7 +73,7 @@ def eventroom(eventid):
         else:
             name = time.time()
 
-        return render_template('room.html', eventid=eventid, row=row, name=name)
+        return render_template('event/room.html', eventid=eventid, row=row, name=name)
 
 
 @bp.route('/<int:eventid>', methods=('GET', 'POST'))
@@ -89,7 +89,7 @@ def eventid(eventid):
 
     else:
         flash('Enter an Event')
-        return render_template('schedule.html')
+        return render_template('event/schedule.html')
 
     if error is not None:
         flash(error)
@@ -186,16 +186,6 @@ def create():
         return redirect(url_for('event.dashboard'))
 
 
-@ bp.route("/room", methods=('GET', 'POST'))
-def room():
-    return render_template('event/room.html')
-
-
-@ bp.route("/s", methods=('GET', 'POST'))
-def s():
-    return render_template('event/s.html')
-
-
 print("--> init")
 rooms = {}
 
@@ -223,7 +213,7 @@ def on_join(data):
     print(f"{request.sid} joined room {room}")
     join_room(room)
 
-    socketio.emit("connectSuccess", json.dumps(joinedTime))
+    socketio.emit("connectSuccess", {"joinedTime": joinedTime})
     occupants = {"occupants": rooms[room]["occupants"]}
     print(occupants)
     socketio.emit("occupantsChanged", occupants, room=room)

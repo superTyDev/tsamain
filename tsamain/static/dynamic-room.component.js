@@ -7,7 +7,7 @@ AFRAME.registerComponent("dynamic-room", {
 		var params = this.getUrlParams();
 
 		if (!params.room) {
-			params.room = document.dataset.id;
+			params.room = document.body.dataset.id;
 		}
 
 		// Setup networked-scene
@@ -53,7 +53,7 @@ AFRAME.registerComponent("dynamic-room", {
 		if (params.username) {
 			username = params.username;
 		} else {
-			username = document.dataset.username;
+			username = document.body.dataset.username;
 		}
 
 		var myNametag = document.getElementById("player").querySelector(".nametag");
@@ -61,5 +61,24 @@ AFRAME.registerComponent("dynamic-room", {
 		switchAvatar();
 
 		document.querySelector("a-scene").components["networked-scene"].connect();
+	},
+});
+AFRAME.registerComponent("play-on-click", {
+	init: function () {
+		this.onClick = this.onClick.bind(this);
+	},
+	play: function () {
+		window.addEventListener("click", this.onClick);
+	},
+	pause: function () {
+		window.removeEventListener("click", this.onClick);
+	},
+	onClick: function (evt) {
+		var videoEl = this.el.getAttribute("material").src;
+		if (!videoEl) {
+			return;
+		}
+		this.el.object3D.visible = true;
+		videoEl.play();
 	},
 });

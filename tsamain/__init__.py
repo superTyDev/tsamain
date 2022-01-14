@@ -56,9 +56,9 @@ def create_app(test_config=None):
         request.path = "index"
 
         db = get_db()
-        info = db.execute('SELECT e.eventtitle, e.eventdate, e.eventlevel, e.eventprice, d.eventdesc, d.eventhero, e.eventid FROM events e LEFT JOIN edetails d ON e.eventid = d.deventid WHERE eventdate > DATE() ORDER BY eventdate ASC LIMIT ?', (10,)).fetchall()
+        info = db.execute('SELECT e.eventtitle, e.eventdate, e.eventlevel, e.eventprice, d.eventdesc, d.eventhero, e.eventid FROM events e LEFT JOIN edetails d ON e.eventid = d.deventid WHERE eventdate > DATE() - 1 ORDER BY eventdate ASC LIMIT ?', (10,)).fetchall()
         featured = db.execute(
-            'SELECT e.eventtitle, e.eventdate, d.eventhero, d.eventvideo, e.eventid FROM events e LEFT JOIN edetails d ON e.eventid = d.deventid WHERE (e.eventdate > DATE() AND e.eventfeature = 1 AND d.eventvideo NOT NULL AND d.eventhero NOT NULL) ORDER BY eventdate ASC LIMIT 3',).fetchall()
+            'SELECT e.eventtitle, e.eventdate, d.eventhero, d.eventvideo, e.eventid FROM events e LEFT JOIN edetails d ON e.eventid = d.deventid WHERE (e.eventdate > DATE() - 1 AND e.eventfeature = 1 AND d.eventvideo NOT NULL AND d.eventhero NOT NULL) ORDER BY eventdate ASC LIMIT 3',).fetchall()
 
         return render_template("index.html", info=info, featured=featured)
 
