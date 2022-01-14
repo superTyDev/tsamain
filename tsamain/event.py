@@ -53,7 +53,7 @@ def schedule():
         num = 20
 
     db = get_db()
-    info = db.execute('SELECT e.eventtitle, e.eventdate, e.eventlevel, e.eventprice, d.eventdesc, d.eventhero, e.eventid FROM events e LEFT JOIN edetails d ON e.eventid = d.deventid WHERE eventdate > DATE() - 1 ORDER BY eventdate ASC LIMIT ?', (num,)).fetchall()
+    info = db.execute("SELECT e.eventtitle, e.eventdate, e.eventlevel, e.eventprice, d.eventdesc, d.eventhero, e.eventid FROM events e LEFT JOIN edetails d ON e.eventid = d.deventid WHERE eventdate > DATE('now', '-2 hours') ORDER BY eventdate ASC LIMIT ?", (num,)).fetchall()
     return render_template('event/schedule.html', info=info)
 
 
