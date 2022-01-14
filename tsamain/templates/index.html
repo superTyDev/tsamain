@@ -22,13 +22,14 @@
 					onclick="location.href=`/event/{{ row['eventid'] }}`;"
 				>
 					<div class="slide-title">{{ row['eventtitle'] }}</div>
-					<video autoplay muted loop>
+					<video autoplay muted loop loading="lazy">
 						<source
 							src="{{ os.path.join(url_for('static', filename = 'upload'), row['eventvideo']) }}"
 						/>
 						<img
 							src="{{ os.path.join(url_for('static', filename = 'upload'), row['eventhero']) }}"
 							alt="{{ row['eventtitle'] }}"
+							loading="lazy"
 						/>
 					</video>
 					<div class="slide-time">UPCOMMING - {{ row['eventdate'] }}</div>
