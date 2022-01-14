@@ -233,3 +233,13 @@ def broadcast(data):
 @ socketio.on('disconnect')
 def on_leave():
     print("\n\n--> leave")
+    if (rooms[session['curRoom']]):
+        print("user disconnected", request.sid)
+
+        del rooms[session['curRoom']]['occupants'][request.sid]
+        occupants = {"occupants": rooms[session['curRoom']]['occupants']}
+        socketio.emit("occupantsChanged", occupants, room=session['curRoom'])
+
+        if not occupants:
+            print("everybody left room")
+            del rooms[session['curRoom']]
