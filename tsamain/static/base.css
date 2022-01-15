@@ -76,27 +76,37 @@ a {
 /* NAVIGATION BAR */
 nav {
 	z-index: 2;
-	position: relative;
-	overflow: hidden;
 	background-color: var(--color-nav);
 	display: flex;
 	align-items: flex-start;
 }
-nav a, nav > span {
+nav a,
+nav span {
 	color: var(--color-text-nav);
 	text-align: center;
 	text-decoration: none;
 	font-weight: bold;
 	transition: 0.5s;
 	font-size: 25px;
+	display: inline-block;
 	padding: 16px 16px;
 }
+.nav-more {
+	font-size: 15px;
+	font-weight: normal;
+	display: block;
+	padding: 0;
+	margin-top: -5px;
+}
 .nav-filler {
-		flex-grow: 1;
+	flex-grow: 1;
 }
 nav a:hover {
+	color: var(--color-text-theme);
 	background-color: var(--color-primary-light);
-	color: black;
+}
+nav a:hover .nav-more {
+	color: var(--color-text-theme);
 }
 nav .icon {
 	display: none;
@@ -113,20 +123,29 @@ nav.shrink a {
 	padding: 14px 16px;
 	font-size: 20px;
 }
-.dropdown {
-  position: relative;
-  display: inline-block;
+.nav-dropdown {
+	align-self: flex-start;
+	position: relative;
 }
-.dropdown-content {
-  display: none;
-  position: absolute;
-  background-color: #f1f1f1;
-  min-width: 160px;
-  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-  z-index: 1;
+.nav-dropdown-content {
+	display: none;
+	position: absolute;
+	background-color: var(--color-nav);
+	min-width: 160px;
+	box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+	z-index: 1;
+	filter: brightness(150%);
 }
-.dropdown:hover .dropdown-content {display: block;}
-.dropdown:hover .dropbtn {background-color: #3e8e41;}
+.nav-dropdown-content a {
+	display: block;
+}
+.nav-dropdown:hover .nav-dropdown-content {
+	display: block;
+}
+.nav-dropdown:hover .nav-dropbtn {
+	color: var(--color-text-theme);
+	background-color: var(--color-primary-light);
+}
 main.extra {
 	margin-top: 60px;
 }
@@ -305,7 +324,11 @@ hr {
 	height: 400px;
 
 	background-color: var(--color-background);
-	background: linear-gradient(to bottom, transparent, var(--color-background) 85%);
+	background: linear-gradient(
+		to bottom,
+		transparent,
+		var(--color-background) 85%
+	);
 }
 .row .more a {
 	position: absolute;
@@ -451,7 +474,7 @@ footer .links {
 	overflow: auto;
 	display: flex;
 	justify-content: center;
-    flex-wrap: wrap;
+	flex-wrap: wrap;
 }
 footer a {
 	color: var(--color-text-nav);
