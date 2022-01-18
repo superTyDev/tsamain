@@ -3,26 +3,10 @@
 	<div class="info">
 		<div class="column">
 			<div class="title fade">
-				<svg class="knockout-text-container" width="100%" height="100%">
-					<rect
-						class="knockout-text-bg"
-						width="100%"
-						height="100%"
-						fill="#000"
-						x="0"
-						y="0"
-						fill-opacity="1"
-						mask="url(#knockout-text)"
-					/>
-
-					<mask id="knockout-text">
-						<rect width="100%" height="100%" fill="#fff" x="0" y="0" />
-						<text x="50%" y="100" fill="#000" text-anchor="middle">Prism</text>
-						<text x="50%" y="175" fill="#000" text-anchor="middle">
-							Concerts
-						</text>
-					</mask>
-				</svg>
+				<img
+					src="{{ url_for('static', filename='full_logo.png') }}"
+					alt="Prism Concerts Logo"
+				/>
 			</div>
 			<div class="slideshow">
 				<h2 class="slide fade">High Class<br />High School Entertainments</h2>
