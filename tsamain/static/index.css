@@ -39,28 +39,6 @@ header .info .title h1 {
 	margin: 0 auto;
 	line-height: 120%;
 }
-.knockout {
-	/* Ensure the bottom layer is full screen */
-	height: 100vh;
-	width: 100%;
-	/* Add a colorful texture and cutom font-styling */
-	background-image: linear-gradient(to left, #ff4e50, #f9d423);
-	text-transform: uppercase;
-}
-
-/* Knockout text font sizing for each line */
-
-text:nth-child(2) {
-	font-size: 5em;
-}
-
-text:nth-child(3) {
-	font-size: 5.1em;
-}
-
-text:nth-child(4) {
-	font-size: 15em;
-}
 header .info .slide {
 	display: none;
 }
