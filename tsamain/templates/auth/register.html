@@ -1,3 +1,4 @@
+from flask import flash
 {% extends 'base.html' %} {% block title %}Register{% endblock %} {% block
 content %}
 <main>
@@ -30,6 +31,8 @@ content %}
 						type="password"
 						name="password"
 						placeholder="Create Password"
+					        if len(password) < 8:
+							flash('Password must be greater than 8 characters', category='error')
 						required
 					/>
 					<label for="rpassword">Repeat Password</label>
