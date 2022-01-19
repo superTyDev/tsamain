@@ -9,57 +9,54 @@ header {
 	animation: AnimationName 30s ease infinite;
 
 	min-height: 100vh;
+	height: 100%;
 	width: 100%;
 	transition: 0.3s;
-	position: relative;
-}
-header .info {
-	position: absolute;
-	top: 50%;
-	left: 20%;
-	right: 20%;
-	transform: translateY(-50%);
+	
+	padding: 1% 20%;
 	text-shadow: 0 0 4px #222;
-	box-sizing: border-box;
+	
+	display: flex;
+	align-items: stretch;
+ justify-content: center;
 }
-header .info:after {
-	content: "";
-	display: table;
-	clear: both;
+header .column {
+	flex: 1;
+	display: flex;
 }
-header .info .column {
-	width: 50%;
-	float: left;
-	overflow: hidden;
+header .column .filler {
+				flex: 2;
 }
-header .info .title {
-	font-size: 5vh;
+header .column img {
+	width: 100%;
+	height: auto;
+	object-fit: contain;
 }
-header .info .title h1 {
+header .title h1 {
 	margin: 0 auto;
 	line-height: 120%;
 }
-header .info .slide {
+header .slide {
 	display: none;
 }
-header .info h3 {
+header h3 {
 	margin: 20px 0;
 	text-shadow: 3px 3px 5px #00000088;
 	border-radius: 2px;
 	transition: text-shadow 0.4s;
 }
-header .info h3:hover {
+header h3:hover {
 	text-shadow: 1px 1px 5px #00000088;
 }
 .morebutton:hover .jump {
 	padding-right: 5px;
 	padding-left: 25px;
 }
-header .info a {
+header a {
 	text-decoration: none;
 	color: var(--color-text-header);
 }
-header .info .jump {
+header .jump {
 	transition: padding 1s cubic-bezier(0.68, -0.55, 0.265, 1.55);
 	padding-right: 25px;
 	padding-left: 5px;
@@ -71,17 +68,17 @@ header .info .jump {
 	animation-name: fade;
 	animation-duration: 1.5s;
 }
-header .info .rotateColumn {
+header .rotateColumn {
 	position: relative;
 	perspective: 1000px;
 	background-color: transparent;
-	overflow: visible;
+	overflow-y: visible;
 	max-height: 60vh;
 }
 .rotateColumn .slide-card {
 	position: relative;
 	width: 100%;
-	height: 100%;
+	height: max(50vh, 100%);
 	text-align: center;
 	transition: transform 0.6s;
 	transform-style: preserve-3d;
@@ -91,6 +88,7 @@ header .info .rotateColumn {
 .slide-card .slide-card-inner {
 	display: none;
 	overflow: hidden;
+	height: 100%;
 }
 .slide-card .slide-title,
 .slide-card .slide-time {
@@ -116,10 +114,12 @@ header .info .rotateColumn {
 	bottom: 0px;
 	font-size: 100%;
 }
-header .info img,
-header .info video {
+header img,
+header video {
 	object-fit: cover;
 	max-height: 60vh;
+	max-width: 100%;
+	height: 100%;
 }
 .more a {
 	display: block;

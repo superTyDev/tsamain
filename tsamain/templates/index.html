@@ -1,13 +1,11 @@
 {% extends 'base.html' %} {% block title %}Home{% endblock %} {% block header %}
 <header>
-	<div class="info">
 		<div class="column">
-			<div class="title fade">
+				<div class="logo">
 				<img
-					src="{{ url_for('static', filename='full_logo.png') }}"
-					alt="Prism Concerts Logo"
+					src="{{ url_for('static', filename='logo_600.png') }}"
+					alt="Prism Concerts"
 				/>
-			</div>
 			<div class="slideshow">
 				<h2 class="slide fade">High Class<br />High School Entertainments</h2>
 				<h2 class="slide fade">High Class<br />High School Entertainments</h2>
@@ -16,6 +14,7 @@
 			<h3 class="morebutton fade">
 				<a href="#more">Learn More <i class="jump">↴</i></a>
 			</h3>
+			</div>
 		</div>
 		<div class="column rotateColumn">
 			<div class="slideshow slide-card">
@@ -39,7 +38,6 @@
 				</div>
 				{% endfor %}
 			</div>
-		</div>
 	</div>
 </header>
 {% endblock %} {% block content %}
@@ -97,8 +95,8 @@
 	</div>
 	<div class="slant" id="more">
 		<h2>About</h2>
+		<p>Welcome to our annual prism concert here at George Jenkins High School!  Just like a prism reflects the full range of light, Prism Performances relects a variety of skills and acts.</p>
 		<p>
-			Welcome to our annual prism concert here at George Jenkins high school!
 			Since 2005, when this tradition first started, we had an annual concert
 			with an explosion of events, from music shows to culinary miracles. But,
 			recently there has been a pandemic at our doors which has prevented us

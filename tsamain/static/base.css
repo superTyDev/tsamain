@@ -78,7 +78,7 @@ nav {
 	z-index: 2;
 	background-color: var(--color-nav);
 	display: flex;
-	align-items: flex-start;
+	align-items: center;
 }
 nav a,
 nav span {
@@ -98,8 +98,17 @@ nav span {
 	padding: 0;
 	margin-top: -5px;
 }
-.nav-filler {
-	flex-grow: 1;
+nav>div {
+				flex: 1;
+				display: flex;
+				align-items: flex-start;				
+				justify-content: center;
+}
+.nav-left {
+			justify-content: start;
+}
+.nav-right {
+    justify-content: end;
 }
 nav a:hover {
 	color: var(--color-text-theme);
@@ -124,7 +133,6 @@ nav.shrink a {
 	font-size: 20px;
 }
 .nav-dropdown {
-	align-self: flex-start;
 	position: relative;
 }
 .nav-dropdown-content {

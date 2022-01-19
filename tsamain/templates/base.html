@@ -66,6 +66,7 @@
 		{% block header %}{% endblock %}
 
 		<nav>
+						<div class="nav-left">
 			<a href="/about">
 				<i class="fa fa-info-circle" aria-hidden="true"></i>
 				About
@@ -74,23 +75,22 @@
 				<i class="fa fa-calendar-plus-o" aria-hidden="true"></i>
 				Schedule
 			</a>
+			</div>
+<div class="nav-center">
+					<a href="/"><i class="fa fa-home" aria-hidden="true"></i>HOME</a>
+</div>
+		
 
-			<span class="nav-filler"></span>
 
-			<a href="/"><i class="fa fa-home" aria-hidden="true"></i>HOME</a>
-
-			<span class="nav-filler"></span>
-
-			<div>
+			<div class="nav-right">
 				<div class="nav-dropdown">
 					<a
 						href="{{ url_for('event.dashboard') }}"
 						class="nav-dropbtn"
-						style="margin-top: -5px; padding-top: 10px"
 					>
 						<i class="fa fa-user-circle-o" aria-hidden="true"></i>
 						My Account
-						<span class="nav-more">Hi, Tyson</span>
+						<span class="nav-more"></span>
 					</a>
 					<div class="nav-dropdown-content">
 						{% if g.user %}
