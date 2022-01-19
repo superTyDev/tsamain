@@ -1,72 +1,40 @@
 <!DOCTYPE html>
 <html lang="en" class="theme-dark">
-	<head>
-		<!-- Set info for accessibility -->
-		<meta charset="UTF-8" />
-		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
-		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-		<meta
-			name="description"
-			content="Homepage for the Prism concert series at George Jenkins"
-		/>
 
-		<title>{% block title %}{% endblock %} | Prism Concerts</title>
+<head>
+	<!-- Set info for accessibility -->
+	<meta charset="UTF-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<meta name="description" content="Homepage for the Prism concert series at George Jenkins" />
 
-		<!-- Load main styles -->
-		<link
-			rel="stylesheet"
-			href="{{ url_for('static', filename='base.css') }}"
-		/>
-		{% if (os.path.exists('./tsamain/static/' + request.path.split("/")[-1] +
+	<title>{% block title %}{% endblock %} | Prism Concerts</title>
+
+	<!-- Load main styles -->
+	<link rel="stylesheet" href="{{ url_for('static', filename='base.css') }}" />
+	{% if (os.path.exists('./tsamain/static/' + request.path.split("/")[-1] +
 		".css")) %}
-		<link
-			rel="stylesheet"
-			href="{{ url_for('static', filename=request.path.split('/')[-1] + '.css') }}"
-		/>
-		{% endif %} {% block style %}{% endblock %}
+	<link rel="stylesheet" href="{{ url_for('static', filename=request.path.split('/')[-1] + '.css') }}" />
+	{% endif %} {% block style %}{% endblock %}
 
-		<!-- Favicons -->
-		<link
-			rel="apple-touch-icon"
-			sizes="180x180"
-			href="{{ url_for('static', filename='apple-touch-icon.png') }}"
-		/>
-		<link
-			rel="icon"
-			type="image/png"
-			sizes="32x32"
-			href="{{ url_for('static', filename='favicon-32x32.png') }}"
-		/>
-		<link
-			rel="icon"
-			type="image/png"
-			sizes="16x16"
-			href="{{ url_for('static', filename='favicon-16x16.png') }}"
-		/>
-		<link
-			rel="manifest"
-			href="{{ url_for('static', filename='site.webmanifest') }}"
-		/>
-		<link
-			rel="mask-icon"
-			href="{{ url_for('static', filename='safari-pinned-tab.svg') }}"
-			color="#5bbad5"
-		/>
-		<meta name="msapplication-TileColor" content="#da532c" />
-		<meta name="theme-color" content="#ffffff" />
+	<!-- Favicons -->
+	<link rel="apple-touch-icon" sizes="180x180" href="{{ url_for('static', filename='apple-touch-icon.png') }}" />
+	<link rel="icon" type="image/png" sizes="32x32" href="{{ url_for('static', filename='favicon-32x32.png') }}" />
+	<link rel="icon" type="image/png" sizes="16x16" href="{{ url_for('static', filename='favicon-16x16.png') }}" />
+	<link rel="manifest" href="{{ url_for('static', filename='site.webmanifest') }}" />
+	<link rel="mask-icon" href="{{ url_for('static', filename='safari-pinned-tab.svg') }}" color="#5bbad5" />
+	<meta name="msapplication-TileColor" content="#da532c" />
+	<meta name="theme-color" content="#ffffff" />
 
-		<!-- Load an icon library -->
-		<link
-			rel="stylesheet"
-			href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
-		/>
-	</head>
+	<!-- Load an icon library -->
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
+</head>
 
-	<body>
-		{% block header %}{% endblock %}
+<body>
+	{% block header %}{% endblock %}
 
-		<nav>
-						<div class="nav-left">
+	<nav>
+		<div class="nav-left">
 			<a href="/about">
 				<i class="fa fa-info-circle" aria-hidden="true"></i>
 				About
@@ -75,96 +43,79 @@
 				<i class="fa fa-calendar-plus-o" aria-hidden="true"></i>
 				Schedule
 			</a>
-			</div>
-<div class="nav-center">
-					<a href="/"><i class="fa fa-home" aria-hidden="true"></i>HOME</a>
-</div>
-		
+		</div>
+		<div class="nav-center">
+			<a href="/"><i class="fa fa-home" aria-hidden="true"></i>HOME</a>
+		</div>
 
 
-			<div class="nav-right">
-				<div class="nav-dropdown">
-					<a
-						href="{{ url_for('event.dashboard') }}"
-						class="nav-dropbtn"
-					>
-						<i class="fa fa-user-circle-o" aria-hidden="true"></i>
-						My Account
-						<span class="nav-more"></span>
-					</a>
-					<div class="nav-dropdown-content">
-						{% if g.user %}
-						<a href="{{ url_for('auth.logout') }}">Log Out</a>
-						{% else %}
-						<a href="{{ url_for('auth.register') }}">Register</a>
-						<a href="{{ url_for('auth.login') }}">Sign In</a>
-						{% endif %}
-					</div>
+
+		<div class="nav-right">
+			<div class="nav-dropdown">
+				<a href="{{ url_for('event.dashboard') }}" class="nav-dropbtn">
+					<i class="fa fa-user-circle-o" aria-hidden="true"></i>
+					My Account
+					<span class="nav-more"></span>
+				</a>
+				<div class="nav-dropdown-content">
+					{% if g.user %}
+					<a href="{{ url_for('auth.logout') }}">Log Out</a>
+					{% else %}
+					<a href="{{ url_for('auth.register') }}">Register</a>
+					<a href="{{ url_for('auth.login') }}">Sign In</a>
+					{% endif %}
 				</div>
 			</div>
-
-			<a href="javascript:void(0);" class="icon" onclick="responsiveNavbar()">
-				<i class="fa fa-bars"></i>
-			</a>
-		</nav>
-		<div class="messages">
-			{% for message in get_flashed_messages() %}
-			<div class="flash">{{ message }}</div>
-			{% endfor %}
 		</div>
-		{% block content %}{% endblock %}
 
-		<footer>
-			<form>
-				<label for="theme">Theme:</label>
+		<a href="javascript:void(0);" class="icon" onclick="responsiveNavbar()">
+			<i class="fa fa-bars"></i>
+		</a>
+	</nav>
+	<div class="messages">
+		{% for message in get_flashed_messages() %}
+		<div class="flash">{{ message }}</div>
+		{% endfor %}
+	</div>
+	{% block content %}{% endblock %}
 
-				<select name="theme" id="theme" onchange="setTheme(this.value)">
-					<option value="theme-dark">Dark</option>
-					<option value="theme-light">Light</option>
-					<option value="theme-contrast">Accessible</option>
-				</select>
-			</form>
+	<footer>
+		<form>
+			<label for="theme">Theme:</label>
 
-			<div class="links">
-				<a href="/"><i class="fa fa-home" aria-hidden="true"></i>Home</a>
-				<a href="/about"><i class="fa fa-map" aria-hidden="true"></i>About</a>
-				<a href="{{ url_for('event.schedule') }}"
-					><i class="fa fa-calendar-times-o" aria-hidden="true"></i>Schedule</a
-				>
-				<a href="{{ url_for('auth.register') }}"
-					><i class="fa fa-user-plus" aria-hidden="true"></i>Register</a
-				>
-				<a href="{{ url_for('auth.login') }}"
-					><i class="fa fa-user" aria-hidden="true"></i>Login</a
-				>
-				<a href="{{ url_for('event.dashboard') }}"
-					><i class="fa fa-laptop" aria-hidden="true"></i>Dashboard</a
-				>
-				<a href="{{ url_for('event.create') }}"
-					><i class="fa fa-plus" aria-hidden="true"></i>Create</a
-				>
-				<a href="https://github.com/superTyDev/tsamain"
-					><i class="fa fa-github" aria-hidden="true"></i>GitHub</a
-				>
-				<a href="/legal"><i class="fa fa-legal" aria-hidden="true"></i>Legal</a>
-				<a href="/sitemap"
-					><i class="fa fa-sitemap" aria-hidden="true"></i>Sitemap</a
-				>
-				<a href="/feedback"
-					><i class="fa fa-comment" aria-hidden="true"></i>Feedback</a
-				>
-			</div>
+			<select name="theme" id="theme" onchange="setTheme(this.value)">
+				<option value="theme-dark">Dark</option>
+				<option value="theme-light">Light</option>
+				<option value="theme-contrast">Accessible</option>
+			</select>
+		</form>
 
-			<div class="comments">
-				<p>Made by Tyson McLaws and Pierre Boisvert</p>
-				<p>Sources from ADT at George Jenkins</p>
-			</div>
-		</footer>
+		<div class="links">
+			<a href="/"><i class="fa fa-home" aria-hidden="true"></i>Home</a>
+			<a href="/about"><i class="fa fa-map" aria-hidden="true"></i>About</a>
+			<a href="{{ url_for('event.schedule') }}"><i class="fa fa-calendar-times-o"
+					aria-hidden="true"></i>Schedule</a>
+			<a href="{{ url_for('auth.register') }}"><i class="fa fa-user-plus" aria-hidden="true"></i>Register</a>
+			<a href="{{ url_for('auth.login') }}"><i class="fa fa-user" aria-hidden="true"></i>Login</a>
+			<a href="{{ url_for('event.dashboard') }}"><i class="fa fa-laptop" aria-hidden="true"></i>Dashboard</a>
+			<a href="{{ url_for('event.create') }}"><i class="fa fa-plus" aria-hidden="true"></i>Create</a>
+			<a href="https://github.com/superTyDev/tsamain"><i class="fa fa-github" aria-hidden="true"></i>GitHub</a>
+			<a href="/legal"><i class="fa fa-legal" aria-hidden="true"></i>Legal</a>
+			<a href="/sitemap"><i class="fa fa-sitemap" aria-hidden="true"></i>Sitemap</a>
+			<a href="/feedback"><i class="fa fa-comment" aria-hidden="true"></i>Feedback</a>
+		</div>
 
-		<script src="{{ url_for('static', filename='base.js') }}"></script>
-		{% if (os.path.exists('./tsamain/static/' + request.path.split("/")[-1] +
+		<div class="comments">
+			<p>Made by Tyson McLaws and Pierre Boisvert</p>
+			<p>Sources from ADT at George Jenkins</p>
+		</div>
+	</footer>
+
+	<script src="{{ url_for('static', filename='base.js') }}"></script>
+	{% if (os.path.exists('./tsamain/static/' + request.path.split("/")[-1] +
 		".js")) %}
-		<script src="{{ url_for('static', filename=request.path.split('/')[-1] + '.js') }}"></script>
-		{% endif %} {% block script %}{% endblock %}
-	</body>
+	<script src="{{ url_for('static', filename=request.path.split('/')[-1] + '.js') }}"></script>
+	{% endif %} {% block script %}{% endblock %}
+</body>
+
 </html>

@@ -18,14 +18,14 @@ header {
 	
 	display: flex;
 	align-items: stretch;
- justify-content: center;
 }
 header .column {
 	flex: 1;
 	display: flex;
+	flex-direction: column;
 }
 header .column .filler {
-				flex: 2;
+	flex: 1;
 }
 header .column img {
 	width: 100%;
@@ -69,14 +69,11 @@ header .jump {
 	animation-duration: 1.5s;
 }
 header .rotateColumn {
-	position: relative;
-	perspective: 1000px;
+	perspective: 800px;
 	background-color: transparent;
-	overflow-y: visible;
 	max-height: 60vh;
 }
 .rotateColumn .slide-card {
-	position: relative;
 	width: 100%;
 	height: max(50vh, 100%);
 	text-align: center;
@@ -106,8 +103,9 @@ header .rotateColumn {
 		var(--color-primary-dark),
 		var(--color-primary)
 	);
-	/* box-shadow: 0 4px 8px 0 rgb(0, 0, 0, 0.5);
-	transform: translate(-5px, -5px); */
+	margin: -6px;
+	box-shadow: 0 4px 8px 0 rgb(0, 0, 0, 0.5);
+	transform: translate(-3px, -3px);
 }
 .slide-card .slide-time {
 	top: inherit;

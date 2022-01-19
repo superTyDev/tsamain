@@ -1,11 +1,9 @@
 {% extends 'base.html' %} {% block title %}Home{% endblock %} {% block header %}
 <header>
-		<div class="column">
-				<div class="logo">
-				<img
-					src="{{ url_for('static', filename='logo_600.png') }}"
-					alt="Prism Concerts"
-				/>
+	<div class="column">
+		<div class="filler"></div>
+		<div class="logo">
+			<img src="{{ url_for('static', filename='logo_600.png') }}" alt="Prism Concerts" />
 			<div class="slideshow">
 				<h2 class="slide fade">High Class<br />High School Entertainments</h2>
 				<h2 class="slide fade">High Class<br />High School Entertainments</h2>
@@ -14,30 +12,25 @@
 			<h3 class="morebutton fade">
 				<a href="#more">Learn More <i class="jump">↴</i></a>
 			</h3>
-			</div>
 		</div>
-		<div class="column rotateColumn">
-			<div class="slideshow slide-card">
-				{% for row in featured %}
-				<div
-					class="slide-card-inner"
-					onclick="location.href=`/event/{{ row['eventid'] }}`;"
-				>
-					<div class="slide-title">{{ row['eventtitle'] }}</div>
-					<video autoplay muted loop loading="lazy">
-						<source
-							src="{{ os.path.join(url_for('static', filename = 'upload'), row['eventvideo']) }}"
-						/>
-						<img
-							src="{{ os.path.join(url_for('static', filename = 'upload'), row['eventhero']) }}"
-							alt="{{ row['eventtitle'] }}"
-							loading="lazy"
-						/>
-					</video>
-					<div class="slide-time">UPCOMMING - {{ row['eventdate'] }}</div>
-				</div>
-				{% endfor %}
+		<div class="filler"></div>
+	</div>
+	<div class="column rotateColumn">
+		<div class="filler"></div>
+		<div class="slideshow slide-card">
+			{% for row in featured %}
+			<div class="slide-card-inner" onclick="location.href=`/event/{{ row['eventid'] }}`;">
+				<div class="slide-title">{{ row['eventtitle'] }}</div>
+				<video autoplay muted loop loading="lazy">
+					<source src="{{ os.path.join(url_for('static', filename = 'upload'), row['eventvideo']) }}" />
+					<img src="{{ os.path.join(url_for('static', filename = 'upload'), row['eventhero']) }}"
+						alt="{{ row['eventtitle'] }}" loading="lazy" />
+				</video>
+				<div class="slide-time">UPCOMMING - {{ row['eventdate'] }}</div>
 			</div>
+			{% endfor %}
+		</div>
+		<div class="filler"></div>
 	</div>
 </header>
 {% endblock %} {% block content %}
@@ -46,24 +39,15 @@
 		<h2>Upcoming</h2>
 		<div class="row">
 			{% for row in info %}
-			<div
-				class="card-outside"
-				href="/event/{{ row['eventid'] }}"
-				onclick="location.href=`/event/{{ row['eventid'] }}`;"
-			>
+			<div class="card-outside" href="/event/{{ row['eventid'] }}"
+				onclick="location.href=`/event/{{ row['eventid'] }}`;">
 				<div class="card">
 					{% if row['eventhero'] %}
-					<img
-						src="{{ os.path.join(url_for('static', filename = 'upload'), row['eventhero']) }}"
-						alt="{{ row[0] }}"
-						style="width: 100%"
-						loading="lazy"
-					/>
+					<img src="{{ os.path.join(url_for('static', filename = 'upload'), row['eventhero']) }}"
+						alt="{{ row[0] }}" style="width: 100%" loading="lazy" />
 					{% else %}
-					<div
-						class="img"
-						style="background-color: #{% for i in range(6) %}{{ random.choice('ABCDEF0123456789') }}{% endfor %}"
-					>
+					<div class="img"
+						style="background-color: #{% for i in range(6) %}{{ random.choice('ABCDEF0123456789') }}{% endfor %}">
 						{{ row['eventtitle'][0].title() }}
 					</div>
 					{% endif %}
@@ -95,7 +79,8 @@
 	</div>
 	<div class="slant" id="more">
 		<h2>About</h2>
-		<p>Welcome to our annual prism concert here at George Jenkins High School!  Just like a prism reflects the full range of light, Prism Performances relects a variety of skills and acts.</p>
+		<p>Welcome to our annual prism concert here at George Jenkins High School! Just like a prism reflects the full
+			range of light, Prism Performances relects a variety of skills and acts.</p>
 		<p>
 			Since 2005, when this tradition first started, we had an annual concert
 			with an explosion of events, from music shows to culinary miracles. But,
