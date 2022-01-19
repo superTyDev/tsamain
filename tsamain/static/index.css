@@ -75,7 +75,7 @@ header .rotateColumn {
 }
 .rotateColumn .slide-card {
 	width: 100%;
-	height: max(50vh, 100%);
+	flex: 2;
 	text-align: center;
 	transition: transform 0.6s;
 	transform-style: preserve-3d;
