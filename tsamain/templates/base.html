@@ -36,7 +36,7 @@
 	<nav>
 		<div class="nav-left">
 			<a href="/about">
-				<i class="fa fa-info-circle" aria-hidden="true"></i>
+				<i class="fa fa-map" aria-hidden="true"></i>
 				About
 			</a>
 			<a href="{{ url_for('event.schedule') }}">
@@ -47,8 +47,8 @@
 		<div class="nav-center">
 			<a href="/"><i class="fa fa-home" aria-hidden="true"></i>HOME</a>
 			<a href="javascript:void(0);" class="icon" onclick="responsiveNavbar()">
-	  		<i class="fa fa-bars"></i>
-	 	</a>
+				<i class="fa fa-bars"></i>
+			</a>
 		</div>
 
 		<div class="nav-right">
@@ -63,7 +63,7 @@
 					<a href="{{ url_for('auth.logout') }}">Log Out</a>
 					{% else %}
 					<a href="{{ url_for('auth.register') }}">Register</a>
-					<a href="{{ url_for('auth.login') }}">Sign In</a>
+					<a href="{{ url_for('auth.login') }}">Login</a>
 					{% endif %}
 				</div>
 			</div>
@@ -94,17 +94,15 @@
 					aria-hidden="true"></i>Schedule</a>
 			<a href="{{ url_for('auth.register') }}"><i class="fa fa-user-plus" aria-hidden="true"></i>Register</a>
 			<a href="{{ url_for('auth.login') }}"><i class="fa fa-user" aria-hidden="true"></i>Login</a>
-			<a href="{{ url_for('event.dashboard') }}"><i class="fa fa-laptop" aria-hidden="true"></i>Dashboard</a>
 			<a href="{{ url_for('event.create') }}"><i class="fa fa-plus" aria-hidden="true"></i>Create</a>
 			<a href="https://github.com/superTyDev/tsamain"><i class="fa fa-github" aria-hidden="true"></i>GitHub</a>
-			<a href="/legal"><i class="fa fa-legal" aria-hidden="true"></i>Legal</a>
 			<a href="/sitemap"><i class="fa fa-sitemap" aria-hidden="true"></i>Sitemap</a>
 			<a href="/feedback"><i class="fa fa-comment" aria-hidden="true"></i>Feedback</a>
 		</div>
 
 		<div class="comments">
-			<p>Made by Tyson McLaws and Pierre Boisvert</p>
-			<p>Sources from ADT at George Jenkins</p>
+			<p>Made by Tyson McLaws and Pierre Boisvert. <a href="/legal">See Legal.</a></p>
+			<p>Sources from ADT at George Jenkins. <a href="/credits">See Credits.</a></p>
 		</div>
 	</footer>
 

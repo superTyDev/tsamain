@@ -92,13 +92,6 @@ nav span {
 	padding: 16px 16px;
 	white-space:nowrap;
 }
-.nav-more {
-	font-size: 15px;
-	font-weight: normal;
-	display: block;
-	padding: 0;
-	margin-top: -5px;
-}
 nav>div {
 	flex: 1;
 	display: flex;
@@ -141,10 +134,16 @@ nav.shrink a {
 	display: none;
 	position: absolute;
 	background-color: var(--color-nav);
-	min-width: 160px;
+	width: 100%;
 	box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
 	z-index: 1;
 	filter: brightness(150%);
+}
+.nav-more {
+	font-size: 15px;
+	font-weight: normal;
+	display: block;
+	padding: 0;
 }
 .nav-dropdown-content a {
 	display: block;
@@ -377,8 +376,11 @@ hr {
 	flex: 100%;
 	margin-bottom: 20px;
 }
-.row > .card-outside ~ .card-outside {
+.row > .card-outside:not(.fullwidth) {
 	flex: 25%;
+}
+.row > .fullwidth {
+	flex: 100%;
 }
 .list,
 .card {
@@ -485,7 +487,7 @@ footer .links {
 	justify-content: center;
 	flex-wrap: wrap;
 }
-footer a {
+footer .links a {
 	color: var(--color-text-nav);
 	padding: 10px;
 
@@ -494,7 +496,7 @@ footer a {
 	width: 10%;
 	float: left;
 }
-footer a:hover {
+footer .links a:hover {
 	background-color: var(--color-primary-light);
 	color: black;
 }
@@ -549,9 +551,8 @@ footer p {
 
 /* RESPONSIVE STYLES */
 @media screen and (max-width: 1200px) {
-	.row > .card-outside ~ .card-outside {
+	.row > .card-outside:not(.fullwidth) {
 		flex: 33.3%;
-		/* max-width: 33.3%; */
 	}
 	header .info {
 		left: 10%;
@@ -587,9 +588,8 @@ footer p {
 	}
 }
 @media screen and (max-width: 800px) {
-	.row > .card-outside ~ .card-outside {
+	.row > .card-outside:not(.fullwidth) {
 		flex: 50%;
-		/* max-width: 50%; */
 	}
 }
 @media (max-width: 600px) {
@@ -624,7 +624,7 @@ footer p {
 	.nav-dropdown-content {
 		width: 100%;
 	}
-	.row > .card-outside ~ .card-outside {
+	.row > .card-outside:not(.fullwidth) {
 		flex: 100%;
 	}
 	footer a {
