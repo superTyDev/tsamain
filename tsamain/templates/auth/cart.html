@@ -27,16 +27,21 @@
 					{% endif %}
 					<div class="container">
 						<h4>
-							{{ row['eventtitle'] }} - {{ datetime.strptime(row['eventdate'],
+							{{ row['eventtitle'] }} - {{
+							datetime.strptime(row['eventdate'],
 							"%Y-%m-%dT%H:%M").strftime("%#I:%M %p, %b. %#d") }}
 						</h4>
 						<div class="corner">
-							{% if row['eventprice'] %} ${{ '{:.2f}'.format(row['eventprice'])
-							}} {% else %} Free {% endif %}
+							{% if row['eventprice'] %} ${{
+							'{:.2f}'.format(row['eventprice']) }} {% else %}
+							Free {% endif %}
 						</div>
 						<div class="more_info">
 							<a href="/event/{{ row['eventid'] }}"> More </a>
-							<form method="POST" action="{{url_for('auth.cartmanage')}}">
+							<form
+								method="POST"
+								action="{{url_for('auth.cartmanage')}}"
+							>
 								<button
 									type="submit"
 									name="removecart"
@@ -54,15 +59,20 @@
 		</div>
 		{% else %}
 		<p>
-			Visit <a href="{{ url_for('event.schedule') }}">the schedule</a> to view
-			events and make reservations.
+			Visit <a href="{{ url_for('event.schedule') }}">the schedule</a> to
+			view events and make reservations.
 		</p>
 		{% endif %}
 	</div>
 	<div class="cart-head">
 		Cart ({{info|length}})<span class="cart-right">{{ totalprice }}</span>
 		<form method="POST" action="{{url_for('auth.cartmanage')}}">
-			<button type="submit" name="purchase" type="submit" value="purchase">
+			<button
+				type="submit"
+				name="purchase"
+				type="submit"
+				value="purchase"
+			>
 				<span>Purchase</span>
 			</button>
 		</form>

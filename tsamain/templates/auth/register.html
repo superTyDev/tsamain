@@ -1,6 +1,5 @@
-from flask import flash
-{% extends 'base.html' %} {% block title %}Register{% endblock %} {% block
-content %}
+from flask import flash {% extends 'base.html' %} {% block title %}Register{%
+endblock %} {% block content %}
 <main>
 	<div>
 		<h1>Register</h1>
@@ -18,7 +17,12 @@ content %}
 					</p>
 					<hr />
 					<label for="email">Email</label>
-					<input type="text" name="email" placeholder="Enter Email" required />
+					<input
+						type="text"
+						name="email"
+						placeholder="Enter Email"
+						required
+					/>
 					<label for="username">Username</label>
 					<input
 						type="text"
@@ -27,14 +31,9 @@ content %}
 						required
 					/>
 					<label for="password">Password</label>
-					<input
-						type="password"
-						name="password"
-						placeholder="Create Password"
-					        if len(password) < 8:
-							flash('Password must be greater than 8 characters', category='error')
-						required
-					/>
+					<input type="password" name="password" placeholder="Create
+					Password" if len(password) < 8: flash('Password must be
+					greater than 8 characters', category='error') required />
 					<label for="rpassword">Repeat Password</label>
 					<input
 						type="password"
@@ -67,7 +66,12 @@ content %}
 					</p>
 					<hr />
 					<label for="email">Email</label>
-					<input type="text" name="email" placeholder="Enter Email" required />
+					<input
+						type="text"
+						name="email"
+						placeholder="Enter Email"
+						required
+					/>
 					<label for="username">Username</label>
 					<input
 						type="text"
@@ -128,7 +132,12 @@ content %}
 					</p>
 					<hr />
 					<label for="email">Email</label>
-					<input type="text" name="email" placeholder="Enter Email" required />
+					<input
+						type="text"
+						name="email"
+						placeholder="Enter Email"
+						required
+					/>
 					<label for="username">Username</label>
 					<input
 						type="text"
@@ -154,8 +163,8 @@ content %}
 					/>
 
 					<p>
-						Disclaimer: A developer account must be approved by the site admin
-						before it takes effect.
+						Disclaimer: A developer account must be approved by the
+						site admin before it takes effect.
 						<a href="/legal">Terms & Privacy</a>.
 					</p>
 					<button type="submit" class="registerbtn">Register</button>

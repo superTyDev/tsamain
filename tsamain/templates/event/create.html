@@ -1,138 +1,138 @@
 {% extends 'base.html' %} {% block title %}Create Event{% endblock %} {% block
 content %}
 <main>
-    <div>
-        <h1>Create Event</h1>
-        <form
-            method="POST"
-            onsubmit="return validateForm()"
-            enctype="multipart/form-data"
-            action="{{url_for('event.creator')}}"
-        >
-            <div>
-                <p>Please fill in this form to create an event.</p>
-                <hr />
-                <label for="title">Title</label>
-                <input
-                    type="text"
-                    name="title"
-                    placeholder="Enter Brief Title"
-                    required
-                />
+	<div>
+		<h1>Create Event</h1>
+		<form
+			method="POST"
+			onsubmit="return validateForm()"
+			enctype="multipart/form-data"
+			action="{{url_for('event.creator')}}"
+		>
+			<div>
+				<p>Please fill in this form to create an event.</p>
+				<hr />
+				<label for="title">Title</label>
+				<input
+					type="text"
+					name="title"
+					placeholder="Enter Brief Title"
+					required
+				/>
 
-                <label for="date">Start Time</label>
-                <input
-                    type="datetime-local"
-                    name="date"
-                    placeholder="Enter the Date"
-                    required
-                    id="datePicker"
-                />
+				<label for="date">Start Time</label>
+				<input
+					type="datetime-local"
+					name="date"
+					placeholder="Enter the Date"
+					required
+					id="datePicker"
+				/>
 
-                <label for="level">Attendance Level</label>
-                <div class="check">
-                    <label class="container">
-                        <input type="checkbox" name="level" value="Guest" />
-                        <span class="checkmark"></span>
-                        Guest
-                    </label>
-                    <label class="container">
-                        <input type="checkbox" name="level" value="Basic" />
-                        <span class="checkmark"></span>
-                        Basic
-                    </label>
-                    <label class="container">
-                        <input
-                            type="checkbox"
-                            name="level"
-                            value="Extended"
-                            checked
-                        />
-                        <span class="checkmark"></span>
-                        Extended
-                    </label>
-                </div>
+				<label for="level">Attendance Level</label>
+				<div class="check">
+					<label class="container">
+						<input type="checkbox" name="level" value="Guest" />
+						<span class="checkmark"></span>
+						Guest
+					</label>
+					<label class="container">
+						<input type="checkbox" name="level" value="Basic" />
+						<span class="checkmark"></span>
+						Basic
+					</label>
+					<label class="container">
+						<input
+							type="checkbox"
+							name="level"
+							value="Extended"
+							checked
+						/>
+						<span class="checkmark"></span>
+						Extended
+					</label>
+				</div>
 
-                <label for="price">Price</label>
-                <input
-                    name="price"
-                    type="number"
-                    value="1"
-                    min="0"
-                    max="99.99"
-                    step=".01"
-                    required
-                />
+				<label for="price">Price</label>
+				<input
+					name="price"
+					type="number"
+					value="1"
+					min="0"
+					max="99.99"
+					step=".01"
+					required
+				/>
 
-                <p>Optional</p>
-                <hr />
+				<p>Optional</p>
+				<hr />
 
-                <label for="desc">Description</label>
-                <textarea
-                    name="desc"
-                    placeholder="Enter a Description"
-                    rows="4"
-                ></textarea>
+				<label for="desc">Description</label>
+				<textarea
+					name="desc"
+					placeholder="Enter a Description"
+					rows="4"
+				></textarea>
 
-                <label for="hero">Hero Image</label>
-                <div
-                    class="box"
-                    ondrop="dropHandler(event);"
-                    ondragover="dragOverHandler(event);"
-                >
-                    <input
-                        type="file"
-                        name="hero"
-                        id="hero"
-                        class="inputfile"
-                        data-multiple-caption="{count} files selected"
-                        multiple
-                        accept="image/*"
-                    />
-                    <label for="hero"
-                        ><i class="fa fa-upload"></i
-                        ><span>Choose a file</span></label
-                    >
-                </div>
+				<label for="hero">Hero Image</label>
+				<div
+					class="box"
+					ondrop="dropHandler(event);"
+					ondragover="dragOverHandler(event);"
+				>
+					<input
+						type="file"
+						name="hero"
+						id="hero"
+						class="inputfile"
+						data-multiple-caption="{count} files selected"
+						multiple
+						accept="image/*"
+					/>
+					<label for="hero"
+						><i class="fa fa-upload"></i
+						><span>Choose a file</span></label
+					>
+				</div>
 
-                <label for="video">Event Video</label>
-                <div
-                    class="box"
-                    ondrop="dropHandler(event);"
-                    ondragover="dragOverHandler(event);"
-                >
-                    <input
-                        type="file"
-                        name="video"
-                        id="video"
-                        class="inputfile"
-                        data-multiple-caption="{count} files selected"
-                        multiple
-                        accept="video/*"
-                    />
-                    <label for="video"
-                        ><i class="fa fa-upload"></i
-                        ><span>Choose a file</span></label
-                    >
-                </div>
+				<label for="video">Event Video</label>
+				<div
+					class="box"
+					ondrop="dropHandler(event);"
+					ondragover="dragOverHandler(event);"
+				>
+					<input
+						type="file"
+						name="video"
+						id="video"
+						class="inputfile"
+						data-multiple-caption="{count} files selected"
+						multiple
+						accept="video/*"
+					/>
+					<label for="video"
+						><i class="fa fa-upload"></i
+						><span>Choose a file</span></label
+					>
+				</div>
 
-                <label for="stream">Event Stream</label>
-                <input
-                    type="text"
-                    name="stream"
-                    placeholder="Enter https:// web address"
-                />
+				<label for="stream">Event Stream</label>
+				<input
+					type="text"
+					name="stream"
+					placeholder="Enter https:// web address"
+				/>
 
-                <button type="submit" class="registerbtn">Create Event</button>
-            </div>
+				<button type="submit" class="registerbtn">Create Event</button>
+			</div>
 
-            <div>
-                <p>
-                    Need an account?
-                    <a href="{{ url_for('auth.register') }}">Register</a>.
-                </p>
-            </div>
-        </form>
-    </div>
+			<div>
+				<p>
+					Need an account?
+					<a href="{{ url_for('auth.register') }}">Register</a>.
+				</p>
+			</div>
+		</form>
+	</div>
 </main>
 {% endblock %}
