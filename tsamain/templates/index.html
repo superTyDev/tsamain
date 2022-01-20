@@ -39,8 +39,8 @@
 		<h2>Upcoming</h2>
 		<div class="row">
 			{% for row in info %}
-			<div class="card-outside" href="/event/{{ row['eventid'] }}"
-				onclick="location.href=`/event/{{ row['eventid'] }}`;">
+			<div class="card-outside {% if loop.index == 1 %}{{ "fullwidth" }}{% endif %}" href="/event/{{ row['eventid'] }}"
+				onclick="location.href=`/event/{{ row['eventid'] }}`;">				
 				<div class="card">
 					{% if row['eventhero'] %}
 					<img src="{{ os.path.join(url_for('static', filename = 'upload'), row['eventhero']) }}"
@@ -48,7 +48,7 @@
 					{% else %}
 					<div class="img"
 						style="background-color: #{% for i in range(6) %}{{ random.choice('ABCDEF0123456789') }}{% endfor %}">
-						{{ row['eventtitle'][0].title() }}
+						{{ row['eventtitle'][0].title() }}						
 					</div>
 					{% endif %}
 					<div class="container">
