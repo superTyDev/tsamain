@@ -46,9 +46,10 @@
 		</div>
 		<div class="nav-center">
 			<a href="/"><i class="fa fa-home" aria-hidden="true"></i>HOME</a>
+			<a href="javascript:void(0);" class="icon" onclick="responsiveNavbar()">
+	  		<i class="fa fa-bars"></i>
+	 	</a>
 		</div>
-
-
 
 		<div class="nav-right">
 			<div class="nav-dropdown">
@@ -67,10 +68,6 @@
 				</div>
 			</div>
 		</div>
-
-		<a href="javascript:void(0);" class="icon" onclick="responsiveNavbar()">
-			<i class="fa fa-bars"></i>
-		</a>
 	</nav>
 	<div class="messages">
 		{% for message in get_flashed_messages() %}

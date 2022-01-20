@@ -595,31 +595,36 @@ footer p {
 	header .info .title {
 		font-size: 8vw;
 	}
+	nav {
+					flex-direction: column;
+	}
+	nav>div {
+					flex-direction: column;
+	}
 	nav a {
 		display: none;
 		padding: 14px 16px;
 		font-size: 20px;
 	}
-	nav .icon,
-	.nav-center a {
-		display: block;
+	nav .nav-center a {
+	    display: block;
+					justify-content: start;
+					flex: 1;
 	}
-	nav.responsive a,
-	.nav-right {
-		float: none;
-		display: block;
+	nav .icon {
+		flex: 0;
+	}
+	nav .nav-center {
+	background:
+ 	flex-direction: row;
 	}
 	nav.responsive .nav-center a {
-		position: relative;
-		top: 0;
-		left: 0;
-		transform: none;
+	
 	}
 	nav.responsive.reverse {
-		overflow: visible;
+		
 	}
 	nav.responsive.reverse .holder {
-		transform: translateY(-83.333%);
 	}
 	.row > .card-outside ~ .card-outside {
 		flex: 100%;
