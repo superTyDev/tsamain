@@ -24,7 +24,7 @@ header .column {
 	display: flex;
 	flex-direction: column;
 }
-header .column .filler {
+header .filler {
 	flex: 1;
 }
 header .column img {
@@ -71,11 +71,10 @@ header .jump {
 header .rotateColumn {
 	perspective: 800px;
 	background-color: transparent;
-	max-height: 60vh;
 }
 .rotateColumn .slide-card {
 	width: 100%;
-	height: max(50vh, 100%);
+	height: max(50vh, 50%);
 	text-align: center;
 	transition: transform 0.6s;
 	transform-style: preserve-3d;
@@ -192,20 +191,15 @@ header video {
 	}
 }
 @media (max-width: 900px) {
-	header .info {
-		top: 10%;
-		transform: none;
-	}
-	header .info .column {
-		width: 100%;
-		float: none;
-		display: block;
-	}
-	header .info .rotateColumn {
-		max-height: 40vh;
+	header {
+		flex-direction: column;
 	}
 	.rotateColumn .slide-card {
 		transform: rotateX(20deg);
+		height: 100%;
+	}
+	header .slide-card {
+		flex: 5;
 	}
 	header .info img,
 	header .info video {
