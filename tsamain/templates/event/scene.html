@@ -2,9 +2,14 @@
 content %}
 <main>
 	<div>
-		<h1>{{ row['eventtitle'] }} <i class="fa fa-arrows-alt" aria-hidden="true"></i></h1>
+		<h1>
+			{{ row['eventtitle'] }}
+			<i class="fa fa-arrows-alt" aria-hidden="true"></i>
+		</h1>
 
-		<iframe src="https://tsaevent.herokuapp.com/scene.html?room={{eventid}}&username={{name}}"></iframe>
+		<iframe
+			src="https://tsaevent.herokuapp.com/scene.html?room={{eventid}}&username={{name}}"
+		></iframe>
 	</div>
 </main>
 {% endblock %}

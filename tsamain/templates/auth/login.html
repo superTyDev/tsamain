@@ -1,43 +1,43 @@
 {% extends 'base.html' %} {% block title %}Login{% endblock %} {% block content
 %}
 <main>
-    <div>
-        <h1>Login</h1>
-        <form method="POST" onsubmit="return validateForm()">
-            <div>
-                <p>Please fill in this form to create an account.</p>
-                <hr />
-                <label for="username">Username</label>
-                <input
-                    type="text"
-                    name="username"
-                    id="username"
-                    placeholder="Enter Username"
-                    required
-                />
-                <label for="password">Password</label>
-                <input
-                    type="password"
-                    name="password"
-                    id="password"
-                    placeholder="Enter Password"
-                    required
-                />
-                <button type="submit" class="registerbtn">Login</button>
-                <input
-    type="hidden"
-    name="next"
-    value="{{ request.args.get('next', '') }}"
-/>
-            </div>
+	<div>
+		<h1>Login</h1>
+		<form method="POST" onsubmit="return validateForm()">
+			<div>
+				<p>Please fill in this form to create an account.</p>
+				<hr />
+				<label for="username">Username</label>
+				<input
+					type="text"
+					name="username"
+					id="username"
+					placeholder="Enter Username"
+					required
+				/>
+				<label for="password">Password</label>
+				<input
+					type="password"
+					name="password"
+					id="password"
+					placeholder="Enter Password"
+					required
+				/>
+				<button type="submit" class="registerbtn">Login</button>
+				<input
+					type="hidden"
+					name="next"
+					value="{{ request.args.get('next', '') }}"
+				/>
+			</div>
 
-            <div>
-                <p>
-                    Need an account?
-                    <a href="{{ url_for('auth.register') }}">Register</a>.
-                </p>
-            </div>
-        </form>
-    </div>
+			<div>
+				<p>
+					Need an account?
+					<a href="{{ url_for('auth.register') }}">Register</a>.
+				</p>
+			</div>
+		</form>
+	</div>
 </main>
 {% endblock %}
