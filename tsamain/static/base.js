@@ -5,11 +5,12 @@ var theme = document.getElementById("theme");
 var sticky = navbar.offsetTop;
 var footer = document.getElementsByTagName("footer")[0];
 
-window.onload = function () {
-    stickyNav();
+window.onload = function () {   
     placeFooter();
+    stickyNav();
 };
 window.onscroll = stickyNav;
+setTimeout(stickyNav, 500);
 
 // NAVBAR
 function stickyNav() {
@@ -72,5 +73,3 @@ function pushMessage(message) {
 function placeFooter() {
     main.style.minHeight = window.innerHeight - footer.offsetHeight + "px";
 }
-
-// pushMessage("hi");

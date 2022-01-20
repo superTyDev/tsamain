@@ -53,13 +53,13 @@ def schedule():
         num = 20
 
     db = get_db()
-    info = db.execute('SELECT e.eventtitle, e.eventdate, e.eventlevel, e.eventprice, d.eventdesc, d.eventhero, e.eventid FROM events e LEFT JOIN edetails d ON e.eventid = d.deventid WHERE eventdate > DATE() - 1 ORDER BY eventdate ASC LIMIT ?', (num,)).fetchall()
+    info = db.execute("SELECT e.eventtitle, e.eventdate, e.eventlevel, e.eventprice, d.eventdesc, d.eventhero, e.eventid FROM events e LEFT JOIN edetails d ON e.eventid = d.deventid WHERE eventdate > DATE('now', '-2 hours') ORDER BY eventdate ASC LIMIT ?", (num,)).fetchall()
     return render_template('event/schedule.html', info=info)
 
 
 @bp.route('/live/<int:eventid>', methods=('GET', 'POST'))
 def eventroom(eventid):
-    request.path = "room"
+    request.path = "live"
 
     error = None
     if eventid:
@@ -68,12 +68,16 @@ def eventroom(eventid):
             'SELECT e.eventtitle, e.eventdate, e.eventlevel, e.eventprice, d.eventdesc, d.eventhero, d.eventvideo FROM events e LEFT JOIN edetails d ON e.eventid = d.deventid WHERE eventid = ?', (
                 eventid,)
         ).fetchone()
-        if g.user['username']:
+        if g.user != None:
             name = g.user['username']
         else:
             name = time.time()
 
-        return render_template('event/room.html', eventid=eventid, row=row, name=name)
+        if "iframe" in request.args:
+            return render_template('event/scene.html', eventid=eventid, row=row, name=name)
+        else:
+            return render_template("event/room.html", eventid=eventid, row=row, name=name)
+        
 
 
 @bp.route('/<int:eventid>', methods=('GET', 'POST'))
