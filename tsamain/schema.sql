@@ -40,6 +40,7 @@ CREATE TABLE edetails (
   eventdesc TEXT DEFAULT NULL,
   eventhero TEXT DEFAULT NULL,
   eventvideo TEXT DEFAULT NULL,
+  eventtags TEXT DEFAULT NULL,
   eventstream TEXT DEFAULT NULL,
   FOREIGN KEY (deventid) REFERENCES events (eventid)
  );
