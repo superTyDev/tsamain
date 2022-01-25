@@ -20,6 +20,11 @@ def login_required(view):
 
 @bp.route('/register', methods=('GET', 'POST'))
 def register():
+    if 'd' in request.args:
+        developer = True
+    else:
+        developer = False
+
     if request.method == 'POST':
         email = request.form['email']
         username = request.form['username']
@@ -63,7 +68,7 @@ def register():
 
         flash(error)
 
-    return render_template('auth/register.html')
+    return render_template('auth/register.html', developer = developer)
 
 
 @ bp.route('/login', methods=('GET', 'POST'))

@@ -21,13 +21,15 @@ def dashboard():
     db = get_db()
     error = None
     info = db.execute(
-        'SELECT e.eventtitle, e.eventdate, e.eventlevel, e.eventprice, d.eventdesc, d.eventhero, e.eventid, c.cartid FROM cart c LEFT JOIN events e ON c.ceventid = e.eventid LEFT JOIN edetails d ON c.ceventid = d.deventid WHERE (c.cuserid = ? and c.purchased = 1) ORDER BY eventdate ASC', (g.user['userid'],)).fetchall()
+        "SELECT e.eventtitle, e.eventdate, e.eventlevel, e.eventprice, d.eventdesc, d.eventhero, e.eventid, c.cartid FROM cart c LEFT JOIN events e ON c.ceventid = e.eventid LEFT JOIN edetails d ON c.ceventid = d.deventid WHERE (c.cuserid = ? and c.purchased = 1) AND eventdate > DATE('now', '-2 hours') ORDER BY eventdate ASC", (g.user['userid'],)).fetchall()
+    made = db.execute(
+        "SELECT e.eventtitle, e.eventdate, e.eventlevel, e.eventprice, d.eventdesc, d.eventhero, e.eventid FROM events e LEFT JOIN edetails d ON e.eventid = d.deventid WHERE (e.authorid = ?) AND eventdate > DATE('now', '-2 hours') ORDER BY eventdate ASC ", (g.user['userid'],)).fetchall()
     db.commit()
 
     if error is not None:
         flash(error)
 
-    return render_template('event/dashboard.html', info=info)
+    return render_template('event/dashboard.html', info=info, made=made)
 
 
 @bp.route('/initdb')
@@ -117,6 +119,16 @@ def eventid(eventid):
 def creator():
     if g.user["userlevel"] >= 2:
         if request.method == 'POST':
+            if 'removeevent' in request.form:
+                removeevent = request.form['removeevent']
+                db = get_db()
+                db.execute(
+                    'DELETE FROM events WHERE eventid = ?',
+                    (removeevent)
+                )
+                db.commit()
+                return redirect(url_for('event.dashboard'))
+
             title = request.form['title']
             date = request.form['date']
             level = request.form.getlist('level')

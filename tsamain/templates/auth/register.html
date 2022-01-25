@@ -6,7 +6,9 @@ endblock %} {% block content %}
 		<div class="tab">
 			<button class="tablinks" onclick="openPay(this)">Basic</button>
 			<button class="tablinks" onclick="openPay(this)">Extended</button>
+			{% if developer %} 
 			<button class="tablinks" onclick="openPay(this)">Developer</button>
+			{% endif %}
 		</div>
 		<div class="tabcontent fade">
 			<form method="POST">

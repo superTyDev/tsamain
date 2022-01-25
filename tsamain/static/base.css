@@ -313,6 +313,10 @@ hr {
 	filter: brightness(50%);
 	pointer-events: none;
 }
+.danger {
+  filter: hue-rotate(240deg);
+  filter: invert(100%)
+}
 
 /* - CARDS */
 .row {
