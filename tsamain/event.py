@@ -1,4 +1,4 @@
-import json
+import re
 import time
 import os
 from flask import (
@@ -47,17 +47,30 @@ def initdb():
 
 @bp.route('/schedule', methods=('GET', 'POST'))
 def schedule():
-    if 'num' in request.args:
-        num = request.args.get('num')
-    else:
-        num = 20
-
+    clause = ""
     db = get_db()
-    info = db.execute("SELECT e.eventtitle, e.eventdate, e.eventlevel, e.eventprice, d.eventdesc, d.eventhero, e.eventid FROM events e LEFT JOIN edetails d ON e.eventid = d.deventid WHERE eventdate > DATE('now', '-2 hours') ORDER BY eventdate ASC LIMIT ?", (num,)).fetchall()
-    return render_template('event/schedule.html', info=info)
+    count = db.execute("SELECT COUNT(*) FROM events e WHERE eventdate > DATE('now', '-2 hours') " +
+                       clause, ()).fetchone()
+
+    if 'a' in request.args and request.args.get('a') != "":
+        clause += " AND u.username = " + \
+            re.sub(r'\W+', '', request.args.get('a'))
+
+    if 'r' in request.args and request.args.get('a') != "" and request.args.get('r') < count:
+        num = request.args.get('r')
+    else:
+        num = 0
+
+    if 'q' in request.args and request.args.get('q') != "":
+        clause += " AND e.eventtitle = " + \
+            re.sub(r'\W+', '', request.args.get('q'))
+
+    info = db.execute("SELECT e.eventtitle, e.eventdate, e.eventlevel, e.eventprice, d.eventdesc, d.eventhero, e.eventid FROM events e LEFT JOIN edetails d ON e.eventid = d.deventid LEFT JOIN user u ON u.userid = e.authorid WHERE eventdate > DATE('now', '-2 hours') " +
+                      clause + " ORDER BY eventdate ASC LIMIT ?, 10", (num,)).fetchall()
+    return render_template('event/schedule.html', info=info, count=count)
 
 
-@bp.route('/live/<int:eventid>', methods=('GET', 'POST'))
+@ bp.route('/live/<int:eventid>', methods=('GET', 'POST'))
 def eventroom(eventid):
     request.path = "live"
 
@@ -77,17 +90,16 @@ def eventroom(eventid):
             return render_template('event/scene.html', eventid=eventid, row=row, name=name)
         else:
             return render_template("event/room.html", eventid=eventid, row=row, name=name)
-        
 
 
-@bp.route('/<int:eventid>', methods=('GET', 'POST'))
+@ bp.route('/<int:eventid>', methods=('GET', 'POST'))
 def eventid(eventid):
     request.path = "id"
     error = None
     if eventid:
         db = get_db()
         row = db.execute(
-            'SELECT e.eventtitle, e.eventdate, e.eventlevel, e.eventprice, d.eventdesc, d.eventhero FROM events e LEFT JOIN edetails d ON e.eventid = d.deventid WHERE eventid = ?', (
+            'SELECT e.eventtitle, e.eventdate, e.eventlevel, e.eventprice, d.eventdesc, d.eventhero, u.username, u.userid FROM events e LEFT JOIN edetails d ON e.eventid = d.deventid LEFT JOIN user u ON u.userid = e.authorid WHERE eventid = ?', (
                 eventid,)
         ).fetchone()
 
@@ -100,8 +112,8 @@ def eventid(eventid):
     return render_template('event/id.html', row=row)
 
 
-@bp.route('/creator', methods=('GET', 'POST'))
-@login_required
+@ bp.route('/creator', methods=('GET', 'POST'))
+@ login_required
 def creator():
     if g.user["userlevel"] >= 2:
         if request.method == 'POST':
@@ -194,12 +206,12 @@ print("--> init")
 rooms = {}
 
 
-@socketio.on('connection')
+@ socketio.on('connection')
 def on_connect(data):
     print("\n\n--> connect")
 
 
-@socketio.on('joinRoom')
+@ socketio.on('joinRoom')
 def on_join(data):
     print("\n\n--> join", request.sid)
     room = data['room']

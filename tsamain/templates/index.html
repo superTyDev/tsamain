@@ -5,13 +5,17 @@
 		<div class="logo">
 			<img src="{{ url_for('static', filename='logo_600.png') }}" alt="Prism Concerts" />
 			<div class="slideshow">
-				<h2 class="slide fade">High-Class<br />High School Entertainments</h2>
-				<h2 class="slide fade">High-Class<br />High School Entertainments</h2>
-				<h2 class="slide fade">High-Class<br />High School Entertainments</h2>
+				{% for row in featured %}
+				<div class="slide fade"><h2>High-Class<br />High School Entertainments</h2>
+					<h3 class="morebutton">
+						<a href="/event/{{ row['eventid'] }}">Attend Now <i class="jump">→</i></a>
+					</h3></div>
+				
+				{% endfor %}
 			</div>
-			<h3 class="morebutton fade">
+			<!-- <h3 class="morebutton fade">
 				<a href="#more">Learn More <i class="jump">↴</i></a>
-			</h3>
+			</h3> -->
 		</div>
 		<div class="filler"></div>
 	</div>
