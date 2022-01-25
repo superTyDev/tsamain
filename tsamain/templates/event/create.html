@@ -1,6 +1,4 @@
 {% extends 'base.html' %} 
-{% block style %}
-<link href="{{ url_for('static', filename='simple-tags.css') }}" rel="stylesheet">{% endblock %}
 {% block title %}Create Event{% endblock %} {% block
 content %}
 <main>
@@ -69,14 +67,6 @@ content %}
 
 				<p>Optional</p>
 				<hr />
-
-	<label for="tags">Tags</label>
-<div
-     name="tags"
-     id="simple-tag"
-     class="simple-tags"
-     data-simple-tags="Hi" >
-</div>
 
 			<label for="desc">Description</label>
 				<textarea
@@ -147,5 +137,3 @@ content %}
 	</div>
 </main>
 {% endblock %}
-{% block script %}
-<script src="{{ url_for('static', filename='simple-tags.js')}}"></script>{% endblock %}
