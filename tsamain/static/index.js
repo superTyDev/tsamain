@@ -8,11 +8,11 @@ var slideInterval = setInterval(nextSlide, 1000);
 showSlides(slideIndex);
 
 window.addEventListener("resize", placeNav);
-navbar.onload = setTimeout(placeNav, 300);
 document.body.onload = function () {
 	for (var i = 0; i < slideCards.length; i++) {
 		startTimer(slideCards[i].getElementsByClassName("slide-time")[0]);
 	}
+	setTimeout(placeNav, 300);
 };
 
 // NAVBAR

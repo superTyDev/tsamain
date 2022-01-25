@@ -58,7 +58,12 @@ function setTheme(themeName) {
 	} else if (localStorage.getItem("theme") === "theme-contrast") {
 		setTheme("theme-contrast");
 	} else {
-		setTheme("theme-dark");
+		if (window.matchMedia &&
+			window.matchMedia('(prefers-color-scheme: dark)').matches) {
+			setTheme("theme-dark");
+		} else {
+			setTheme("theme-light")
+		}
 	}
 })();
 

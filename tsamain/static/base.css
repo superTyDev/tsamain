@@ -148,10 +148,13 @@ nav.shrink a {
 .nav-dropdown-content a {
 	display: block;
 }
-.nav-dropdown:hover .nav-dropdown-content {
+nav .nav-dropdown:hover .nav-dropdown-content {
 	display: block;
 }
-.nav-dropdown:hover .nav-dropbtn {
+nav.reverse .nav-dropdown-content {
+	transform: translateY(-150%);
+}
+nav .nav-dropdown:hover .nav-dropbtn {
 	color: var(--color-text-theme);
 	background-color: var(--color-primary-light);
 }
@@ -631,6 +634,7 @@ footer p {
 	.nav-dropdown-content {
 		width: 100%;
 	}
+
 	.row > .card-outside:not(.fullwidth) {
 		flex: 100%;
 	}
