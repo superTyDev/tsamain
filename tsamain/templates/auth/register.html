@@ -34,8 +34,7 @@ endblock %} {% block content %}
 					/>
 					<label for="password">Password</label>
 					<input type="password" name="password" placeholder="Create
-					Password" if len(password) < 8: flash('Password must be
-					greater than 8 characters', category='error') required />
+					Password" pattern="^(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}$" title="Minimum of 8 characters. Should have at least one special character and one number and one UpperCase Letter."> required />
 					<label for="rpassword">Repeat Password</label>
 					<input
 						type="password"
