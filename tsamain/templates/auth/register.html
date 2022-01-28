@@ -6,7 +6,7 @@ endblock %} {% block content %}
 		<div class="tab">
 			<button class="tablinks" onclick="openPay(this)">Basic</button>
 			<button class="tablinks" onclick="openPay(this)">Extended</button>
-			{% if developer %} 
+			{% if developer %}
 			<button class="tablinks" onclick="openPay(this)">Developer</button>
 			{% endif %}
 		</div>
@@ -19,26 +19,14 @@ endblock %} {% block content %}
 					</p>
 					<hr />
 					<label for="email">Email</label>
-					<input
-						type="text"
-						name="email"
-						placeholder="Enter Email"
-						required
-					/>
+					<input type="text" name="email" placeholder="Enter Email" required />
 					<label for="username">Username</label>
-					<input
-						type="text"
-						name="username"
-						placeholder="Create Username"
-						required
-					/>
+					<input type="text" name="username" placeholder="Create Username" required />
 					<label for="password">Password</label>
-					<input type="password" name="password" placeholder="Create Password" pattern="^(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}$" title="Minimum of 8 characters. Should have at least one special character and one number and one UpperCase Letter.">
+					<input type="password" name="password" placeholder="Create
+					Password" if len(password) < 8: flash('Password must be greater than 8 characters', category='error' ) required />
 					<label for="rpassword">Repeat Password</label>
-					<input
-						type="password"
-						name="rpassword"
-						placeholder="Re enter Password"
+					<input type="password" name="rpassword" placeholder="Re enter Password" required />
 
 					<p>
 						By creating an account you agree to our
@@ -64,50 +52,17 @@ endblock %} {% block content %}
 					</p>
 					<hr />
 					<label for="email">Email</label>
-					<input
-						type="text"
-						name="email"
-						placeholder="Enter Email"
-						required
-					/>
+					<input type="text" name="email" placeholder="Enter Email" required />
 					<label for="username">Username</label>
-					<input
-						type="text"
-						name="username"
-						placeholder="Create Username"
-						required
-					/>
+					<input type="text" name="username" placeholder="Create Username" required />
 					<label for="password">Password</label>
-					<input
-						type="password"
-						name="password"
-						placeholder="Create Password"
-						required
-					/>
+					<input type="password" name="password" placeholder="Create Password" required />
 
 					<label for="credit-number">Payment</label>
-					<input
-						class="cc-number"
-						maxlength="19"
-						name="credit-number"
-						pattern="\d*"
-						placeholder="Card Number"
-						type="tel"
-					/><input
-						class="cc-expires"
-						maxlength="7"
-						name="credit-expires"
-						pattern="\d*"
-						placeholder="MM / YY"
-						type="tel"
-					/><input
-						class="cc-cvc"
-						maxlength="4"
-						name="credit-cvc"
-						pattern="\d*"
-						placeholder="CVC"
-						type="tel"
-					/>
+					<input class="cc-number" maxlength="19" name="credit-number" pattern="\d*" placeholder="Card Number"
+						type="tel" /><input class="cc-expires" maxlength="7" name="credit-expires" pattern="\d*"
+						placeholder="MM / YY" type="tel" /><input class="cc-cvc" maxlength="4" name="credit-cvc"
+						pattern="\d*" placeholder="CVC" type="tel" />
 
 					<p><a href="/legal">Terms & Privacy</a>.</p>
 					<button type="submit" class="registerbtn">Register</button>
@@ -130,35 +85,13 @@ endblock %} {% block content %}
 					</p>
 					<hr />
 					<label for="email">Email</label>
-					<input
-						type="text"
-						name="email"
-						placeholder="Enter Email"
-						required
-					/>
+					<input type="text" name="email" placeholder="Enter Email" required />
 					<label for="username">Username</label>
-					<input
-						type="text"
-						name="username"
-						placeholder="Create Username"
-						required
-					/>
+					<input type="text" name="username" placeholder="Create Username" required />
 					<label for="password">Password</label>
-					<input
-						type="password"
-						name="password"
-						placeholder="Create Password"
-						required
-					/>
+					<input type="password" name="password" placeholder="Create Password" required />
 					<label for="userlevel">Auth Level</label>
-					<input
-						name="userlevel"
-						type="number"
-						value="1"
-						min="1"
-						max="3"
-						steps="1"
-					/>
+					<input name="userlevel" type="number" value="1" min="1" max="3" steps="1" />
 
 					<p>
 						Disclaimer: A developer account must be approved by the
