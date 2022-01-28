@@ -11,6 +11,7 @@
   left: 0;
   right: 0;
   background-color: var(--color-primary-dark);
+  background: radial-gradient(circle at top, var(--color-primary-light), var(--color-primary-dark));
   overflow: hidden;
   width: 100%;
   height:0;

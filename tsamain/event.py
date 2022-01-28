@@ -53,22 +53,17 @@ def schedule():
     db = get_db()
     count = db.execute("SELECT COUNT(*) FROM events e WHERE eventdate > DATE('now', '-2 hours') " +
                        clause, ()).fetchone()
+    args = {}
+    for arg in ['a', 'q', 'n']:    
+        if arg in request.args:
+            if arg == 'n':
+                args[arg] = request.args[arg]
+            else:
+                args[arg] = f"'%{request.args[arg]}%'"
+        else:
+            args[arg] = ''
 
-    if 'a' in request.args and request.args.get('a') != "":
-        clause += " AND u.username = " + \
-            re.sub(r'\W+', '', request.args.get('a'))
-
-    if 'r' in request.args and request.args.get('a') != "" and request.args.get('r') < count:
-        num = request.args.get('r')
-    else:
-        num = 0
-
-    if 'q' in request.args and request.args.get('q') != "":
-        clause += " AND e.eventtitle = " + \
-            re.sub(r'\W+', '', request.args.get('q'))
-
-    info = db.execute("SELECT e.eventtitle, e.eventdate, e.eventlevel, e.eventprice, d.eventdesc, d.eventhero, e.eventid FROM events e LEFT JOIN edetails d ON e.eventid = d.deventid LEFT JOIN user u ON u.userid = e.authorid WHERE eventdate > DATE('now', '-2 hours') " +
-                      clause + " ORDER BY eventdate ASC LIMIT ?, 10", (num,)).fetchall()
+    info = db.execute("SELECT e.eventtitle, e.eventdate, e.eventlevel, e.eventprice, d.eventdesc, d.eventhero, e.eventid FROM events e LEFT JOIN edetails d ON e.eventid = d.deventid LEFT JOIN user u ON u.userid = e.authorid WHERE eventdate > DATE('now', '-2 hours') AND u.username LIKE IIF (? = '', u.username, ?) AND e.eventtitle LIKE IIF (? = '', e.eventtitle, ?) ORDER BY eventdate ASC LIMIT IIF (? = '', 0, ?), 10", (args.get('a'),args.get('a'), args.get('q'), args.get('q'),args.get('n'), args.get('n'),)).fetchall()
     return render_template('event/schedule.html', info=info, count=count)
 
 
