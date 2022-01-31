@@ -1,5 +1,5 @@
 import functools
-
+import re
 from flask import (
     Blueprint, flash, g, redirect, render_template, request, session, url_for
 )
@@ -9,6 +9,7 @@ from tsamain.db import get_db
 
 bp = Blueprint('auth', __name__, url_prefix='/auth')
 
+
 def login_required(view):
     @ functools.wraps(view)
     def wrapped_view(**kwargs):
@@ -17,6 +18,7 @@ def login_required(view):
             return redirect(url_for('auth.login', next=request.url))
         return view(**kwargs)
     return wrapped_view
+
 
 @bp.route('/register', methods=('GET', 'POST'))
 def register():
@@ -29,16 +31,25 @@ def register():
         email = request.form['email']
         username = request.form['username']
         password = request.form['password']
+        rpassword = request.form['rpassword']
 
         db = get_db()
         error = None
 
         if not email:
             error = 'Email is required.'
-        elif not username:
+        if not username:
             error = 'Username is required.'
-        elif not password:
+
+        if not password:
             error = 'Password is required.'
+        elif password != rpassword:
+            error = 'Passwords do not match.'
+
+        if len(password) <= 8:
+            error = 'Password must be greater than 8 characters'
+        if not bool(re.match('^(?=.*[0-9]$)(?=.*[a-zA-Z]$)(?=.*[!@#$%^&*\(\){}|\[\]\\:";\'<>\?]$)', password)):
+            error = 'Password must have a number, letter, and symbol'
 
         if not 'userlevel' in request.form:
             userlevel = 1
@@ -68,7 +79,7 @@ def register():
 
         flash(error)
 
-    return render_template('auth/register.html', developer = developer)
+    return render_template('auth/register.html', developer=developer)
 
 
 @ bp.route('/login', methods=('GET', 'POST'))
@@ -77,7 +88,7 @@ def login():
         username = request.form['username']
         password = request.form['password']
         next_url = request.form.get("next")
-        
+
         db = get_db()
         error = None
         user = db.execute(
@@ -118,6 +129,7 @@ def cart():
         flash(error)
 
     return render_template('auth/cart.html', info=info, totalprice=totalprice)
+
 
 @ bp.route('/cartmanage', methods=('GET', 'POST'))
 @login_required

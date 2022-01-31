@@ -8,27 +8,13 @@
 				<p>Please fill in this form to create an account.</p>
 				<hr />
 				<label for="username">Username</label>
-				<input
-					type="text"
-					name="username"
-					id="username"
-					placeholder="Enter Username"
-					required
-				/>
+				<input type="text" name="username" id="username" placeholder="Enter Username" required />
 				<label for="password">Password</label>
-				<input
-					type="password"
-					name="password"
-					id="password"
-					placeholder="Enter Password"
-					required
-				/>
+				<input type="password" name="password" id="password" placeholder="Enter Password" required />
+				<i class="fa fa-eye-slash" onclick="togglePassword(this, this.previousElementSibling)"></i>
+
 				<button type="submit" class="registerbtn">Login</button>
-				<input
-					type="hidden"
-					name="next"
-					value="{{ request.args.get('next', '') }}"
-				/>
+				<input type="hidden" name="next" value="{{ request.args.get('next', '') }}" />
 			</div>
 
 			<div>

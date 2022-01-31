@@ -22,11 +22,14 @@ endblock %} {% block content %}
 					<input type="text" name="email" placeholder="Enter Email" required />
 					<label for="username">Username</label>
 					<input type="text" name="username" placeholder="Create Username" required />
+
 					<label for="password">Password</label>
-					<input type="password" name="password" placeholder="Create
-					Password" if len(password) < 8: flash('Password must be greater than 8 characters', category='error' ) required />
+					<input type="password" name="password" placeholder="Create Password" required />
+					<i class="fa fa-eye-slash" onclick="togglePassword(this, this.previousElementSibling)"></i>
+
 					<label for="rpassword">Repeat Password</label>
 					<input type="password" name="rpassword" placeholder="Re enter Password" required />
+					<i class="fa fa-eye-slash" onclick="togglePassword(this, this.previousElementSibling)"></i>
 
 					<p>
 						By creating an account you agree to our
