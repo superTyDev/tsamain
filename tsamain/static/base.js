@@ -57,7 +57,10 @@ function setTheme(themeName) {
 		setTheme("theme-light");
 	} else if (localStorage.getItem("theme") === "theme-contrast") {
 		setTheme("theme-contrast");
-	} else {
+	} else if (localStorage.getItem("theme") === "theme-dark") {
+		setTheme("theme-dark");
+	}
+	else {
 		if (window.matchMedia &&
 			window.matchMedia('(prefers-color-scheme: dark)').matches) {
 			setTheme("theme-dark");

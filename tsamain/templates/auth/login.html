@@ -10,8 +10,10 @@
 				<label for="username">Username</label>
 				<input type="text" name="username" id="username" placeholder="Enter Username" required />
 				<label for="password">Password</label>
-				<input type="password" name="password" id="password" placeholder="Enter Password" required />
-				<i class="fa fa-eye-slash" onclick="togglePassword(this, this.previousElementSibling)"></i>
+				<div class="side-button">
+					<input type="password" name="password" id="password" placeholder="Enter Password" required />
+					<i class="fa fa-eye-slash viewpass" onclick="togglePassword(this, this.previousElementSibling)"></i>
+				</div>
 
 				<button type="submit" class="registerbtn">Login</button>
 				<input type="hidden" name="next" value="{{ request.args.get('next', '') }}" />

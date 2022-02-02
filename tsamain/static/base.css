@@ -243,6 +243,16 @@ button[type="submit"] {
 button[type="submit"]:hover {
 	opacity: 1;
 }
+.viewpass {
+	padding: 15px;
+	margin: 5px 0px 22px 5px;
+	background-color: var(--color-primary);
+	opacity: 0.8;
+	cursor: pointer;
+}
+.viewpass:hover {
+	opacity: 1;
+}
 .theme-contrast input[type="text"]:focus,
 .theme-contrast input[type="password"]:focus {
 	outline: solid;
@@ -320,6 +330,16 @@ hr {
   filter: hue-rotate(240deg);
   filter: invert(100%)
 }
+.side-button {
+	display: flex;
+	width: auto;
+	flex: 10%;
+}
+.side-button:first-child {
+	width: auto;
+	flex: 90% 1 1;
+}
+
 
 /* - CARDS */
 .row {

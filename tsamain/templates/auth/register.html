@@ -24,12 +24,18 @@ endblock %} {% block content %}
 					<input type="text" name="username" placeholder="Create Username" required />
 
 					<label for="password">Password</label>
-					<input type="password" name="password" placeholder="Create Password" required />
-					<i class="fa fa-eye-slash" onclick="togglePassword(this, this.previousElementSibling)"></i>
+					<div class="side-button">
+						<input type="password" name="password" placeholder="Create Password" required />
+						<i class="fa fa-eye-slash viewpass"
+							onclick="togglePassword(this, this.previousElementSibling)"></i>
+					</div>
 
 					<label for="rpassword">Repeat Password</label>
-					<input type="password" name="rpassword" placeholder="Re enter Password" required />
-					<i class="fa fa-eye-slash" onclick="togglePassword(this, this.previousElementSibling)"></i>
+					<div class="side-button">
+						<input type="password" name="rpassword" placeholder="Re enter Password" required />
+						<i class="fa fa-eye-slash viewpass"
+							onclick="togglePassword(this, this.previousElementSibling)"></i>
+					</div>
 
 					<p>
 						By creating an account you agree to our
