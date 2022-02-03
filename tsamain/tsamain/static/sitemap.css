@@ -1,0 +1,13 @@
+.links a {
+	display: block;
+	padding: 5px 8px;
+
+	margin: 5px;
+	background-color: var(--color-nav);
+	color: var(--color-text-nav);
+	text-decoration: none;
+}
+.links a:hover {
+	background-color: var(--color-primary-light);
+	color: black;
+}

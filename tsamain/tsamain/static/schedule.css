@@ -1,0 +1,15 @@
+.collapsible {
+	border: none;
+	text-align: left;
+	outline: none;
+}
+
+.collapsible.active {
+	background-color: var(--color-primary-light);
+	color: var(--color-text-theme);
+}
+
+.collapsible-content {
+	display: none;
+	overflow: hidden;
+}
