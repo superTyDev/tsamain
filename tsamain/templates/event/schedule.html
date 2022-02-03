@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 {% extends 'base.html' %} {% block title %}Schedule{% endblock %} {% block
 content %}
 <main>
@@ -81,3 +82,88 @@ content %}
 	</div>
 </main>
 {% endblock %}
+=======
+{% extends 'base.html' %} {% block title %}Schedule{% endblock %} {% block
+content %}
+<main>
+	<div class="upcoming">
+		<div class="">
+			<form method="GET" onsubmit="return validateForm()">
+				<div class="side-button">
+					<input
+						type="text"
+						name="q"
+						id="query"
+						placeholder="Search by Title..."
+					/>
+					<i class="fa fa-search viewpass"></i>
+					<i class="fa fa-caret-down viewpass collapsible"></i>
+				</div>
+				<div class="collapsible-content">
+					<input
+						type="text"
+						name="a"
+						id="author"
+						placeholder="Search by Author..."
+					/>
+					<input type="number" name="n" id="number" placeholder="Enter Page" />
+					<hr />
+				</div>
+			</form>
+		</div>
+		<div class="row" id="upcoming-expand">
+			{% for row in info %}
+			<div
+				class="card-outside"
+				href="/event/{{ row['eventid'] }}"
+				onclick="location.href=`/event/{{ row['eventid'] }}`;"
+			>
+				<div class="card">
+					{% if row['eventhero'] %}
+					<img
+						src="{{ os.path.join(url_for('static', filename = 'upload'), row['eventhero']) }}"
+						alt="{{ row[0] }}"
+						loading="lazy"
+					/>
+					{% else %}
+					<div
+						class="img"
+						style="background-color: #{% for i in range(6) %}{{ random.choice('ABCDEF0123456789') }}{% endfor %}"
+					>
+						{{ row['eventtitle'][0].title() }}
+					</div>
+					{% endif %}
+					<div class="container">
+						<h6>
+							{{ datetime.strptime(row['eventdate'],
+							"%Y-%m-%dT%H:%M").strftime("%#I:%M %p, %b. %#d") }}
+						</h6>
+						<h4><b>{{ row['eventtitle'] }}</b></h4>
+						<p>{% if row['eventdesc'] %}{{ row['eventdesc'] }}{% endif %}</p>
+						<div class="banner">{{ row['eventlevel'] }}</div>
+						<div class="corner">
+							{% if row['eventprice'] %} ${{ '{:.2f}'.format(row['eventprice'])
+							}} {% else %} Free {% endif %}
+						</div>
+						<div class="more_info">
+							<a href="/event/{{ row['eventid'] }}"> More </a>
+							<form method="POST" action="{{url_for('auth.cartmanage')}}">
+								<button
+									type="submit"
+									name="addcart"
+									type="submit"
+									value="{{ row['eventid'] }}"
+								>
+									<span>Add To Cart</span>
+								</button>
+							</form>
+						</div>
+					</div>
+				</div>
+			</div>
+			{% endfor %}
+		</div>
+	</div>
+</main>
+{% endblock %}
+>>>>>>> bcc21a1a0f95ad0d6bc859db173bb26bc0ed8b23
