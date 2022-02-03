@@ -46,11 +46,11 @@ def register():
         elif password != rpassword:
             error = 'Passwords do not match.'
 
-        if len(password) <= 8:
+        if len(password) < 8:
             error = 'Password must be greater than 8 characters'
-        if any(char.isupper() for char in password):
+        if not any(char.isupper() for char in password):
             error = 'Password must have a capital letter'
-        if any(char.isdigit() for char in password):
+        if not any(char.isnumeric() for char in password):
             error = 'Password must have a number'
 
         if not 'userlevel' in request.form:

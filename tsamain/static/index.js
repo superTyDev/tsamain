@@ -13,6 +13,7 @@ document.body.onload = function () {
 		startTimer(slideCards[i].getElementsByClassName("slide-time")[0]);
 	}
 	setTimeout(placeNav, 300);
+	animateHTML().init();
 };
 
 // NAVBAR
@@ -28,23 +29,23 @@ function nextSlide() {
 }
 
 function showSlides(n) {
-	var i;
+	if (slideCards.length) {
+		if (n > slideCards.length) {
+			slideIndex = 1;
+		}
+		if (n < 1) {
+			slideIndex = slideCards.length;
+		}
+		for (var i = 0; i < slideCards.length; i++) {
+			slides[i].style.display = "none";
+			slideCards[i].style.display = "none";
+		}
+		slides[slideIndex - 1].style.display = "block";
+		slideCards[slideIndex - 1].style.display = "block";
 
-	if (n > slides.length) {
-		slideIndex = 1;
+		clearInterval(slideInterval);
+		slideInterval = setInterval(nextSlide, 5000);
 	}
-	if (n < 1) {
-		slideIndex = slides.length;
-	}
-	for (i = 0; i < slides.length; i++) {
-		slides[i].style.display = "none";
-		slideCards[i].style.display = "none";
-	}
-	slides[slideIndex - 1].style.display = "block";
-	slideCards[slideIndex - 1].style.display = "block";
-
-	clearInterval(slideInterval);
-	slideInterval = setInterval(nextSlide, 5000);
 }
 
 // COUNTDOWN TIMER
@@ -86,3 +87,45 @@ function startTimer(display) {
 		}
 	}, 1000);
 }
+
+var animateHTML = function () {
+	var elems;
+	var windowHeight;
+
+	function init() {
+		elems = document.querySelectorAll(".pre-slide-in");
+		windowHeight = window.innerHeight;
+		addEventHandlers();
+		checkPosition();
+	}
+
+	function addEventHandlers() {
+		window.addEventListener("scroll", checkPosition);
+		window.addEventListener("resize", init);
+	}
+
+	function checkPosition() {
+		for (var i = 0; i < elems.length; i++) {
+			var positionFromTop = elems[i].getBoundingClientRect().top;
+			if (positionFromTop - windowHeight <= 0) {
+				if (elems[i].className.find("pre-animate")) {
+				}
+				elems[i].className = elems[i].className.replace(
+					"pre-animate__flipInY",
+					"animate__flipInY"
+				);
+			}
+
+			if (positionFromTop - windowHeight > 1 || positionFromTop < 0) {
+				elems[i].className = elems[i].className.replace(
+					"animate__flipInY",
+					"pre-animate__flipInY"
+				);
+			}
+		}
+	}
+
+	return {
+		init: init,
+	};
+};

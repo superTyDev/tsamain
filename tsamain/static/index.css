@@ -124,9 +124,24 @@ header video {
 }
 .slant {
 	background: var(--color-primary-dark);
+	background: linear-gradient(
+		to right,
+		var(--color-primary),
+		var(--color-primary-dark)
+	);
 	clip-path: polygon(0 20%, 100% 0, 100% 80%, 0 100%);
 	padding: 10rem 20%;
 	color: var(--color-text-theme);
+	position: relative;
+}
+.slant .watermark {
+	color: var(--color-text-theme);
+	position: absolute;
+	top: 60%;
+	left: 1%;
+	transform: translate(-50%, -50%);
+	font-size: 40vw;
+	filter: opacity(0.2) blur(5px);
 }
 .slant p {
 	font-weight: bold;

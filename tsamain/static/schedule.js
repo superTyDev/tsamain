@@ -13,10 +13,13 @@ function expandUpcoming(elem) {
 var coll = document.getElementsByClassName("collapsible");
 
 for (var i = 0; i < coll.length; i++) {
+	coll[i].dataset.index = i;
 	coll[i].addEventListener("click", function () {
 		this.classList.toggle("active");
-		var content = document.getElementsByClassName("collapsible-content")[i];
-		console.log(document.getElementsByClassName("collapsible-content"))
+		var content = document.getElementsByClassName("collapsible-content")[
+			this.dataset.index
+		];
+		console.log(content);
 		if (content.style.display === "block") {
 			content.style.display = "none";
 		} else {
