@@ -1,0 +1,27 @@
+.card img {
+	position: relative;
+	margin-bottom: -20px;
+}
+.card:hover .overlay {
+  bottom: 0;
+  height: 100%;
+}
+.overlay {
+  position: absolute;
+  bottom: 100%;
+  left: 0;
+  right: 0;
+  background-color: var(--color-primary-dark);
+  background: radial-gradient(circle at top, var(--color-primary-light), var(--color-primary-dark));
+  overflow: hidden;
+  width: 100%;
+  height:0;
+  transition: .5s ease;
+  font-size: 200%;
+}
+.centered {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+}
