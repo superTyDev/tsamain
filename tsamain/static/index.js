@@ -94,13 +94,13 @@ const observer = new IntersectionObserver(entries => {
 		if (entry.isIntersecting) {
 			console.log(entry.target.className);
 
-			entry.target.className.className.replace("pre-animate__", "animate__");
+			entry.target.className.replace("pre-animate__", "animate__");
 
 			return; // if we added the class, exit the function
 		}
 
 		// We're not intersecting, so remove the class!
-		entry.target.className.className.replace("animate__", "pre-animate__");
+		entry.target.className.replace("animate__", "pre-animate__");
 		console.log(3);
 	});
 });
