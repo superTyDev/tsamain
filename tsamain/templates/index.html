@@ -1,4 +1,12 @@
-{% extends 'base.html' %} {% block title %}Home{% endblock %} {% block header %}
+{% extends 'base.html' %} 
+{% block title %}Home{% endblock %}
+{% block style %}
+<link
+rel="stylesheet"
+href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"
+/>
+{% endblock%}
+{% block header %}
 <header>
 	<div class="column">
 		<div class="filler"></div>
@@ -13,9 +21,6 @@
 				
 				{% endfor %}
 			</div>
-			<!-- <h3 class="morebutton fade">
-				<a href="#more">Learn More <i class="jump">↴</i></a>
-			</h3> -->
 		</div>
 		<div class="filler"></div>
 	</div>
@@ -82,7 +87,8 @@
 		</div>
 	</div>
 	<div class="slant" id="more">
-		<h2>About</h2>
+		<i class="fa fa-info-circle watermark"></i>
+		<h2 >About</h2>
 		<p>Welcome to our annual prism concert here at George Jenkins High School! Just like a prism reflects the full
 			range of light, Prism Performances relects a variety of skills and acts.</p>
 		<p>
@@ -93,7 +99,7 @@
 			doing it online! So, come, join us, and experience all of the events that
 			lie ahead of us!
 		</p>
-		<div class="more">
+		<div class="more animate__animated animate__flipInY">
 			<a href="/about">Learn More</a>
 		</div>
 	</div>
