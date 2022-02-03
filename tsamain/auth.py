@@ -1,6 +1,5 @@
-<<<<<<< HEAD
-import functools
 import re
+import functools
 from flask import (
     Blueprint, flash, g, redirect, render_template, request, session, url_for
 )
@@ -177,15 +176,7 @@ def cartmanage():
 def logout():
     session.clear()
     return redirect(url_for('index'))
-=======
-import functools
-import re
-from flask import (
-    Blueprint, flash, g, redirect, render_template, request, session, url_for
-)
-from werkzeug.security import check_password_hash, generate_password_hash
 
-from tsamain.db import get_db
 
 bp = Blueprint('auth', __name__, url_prefix='/auth')
 
@@ -356,4 +347,3 @@ def cartmanage():
 def logout():
     session.clear()
     return redirect(url_for('index'))
->>>>>>> bcc21a1a0f95ad0d6bc859db173bb26bc0ed8b23

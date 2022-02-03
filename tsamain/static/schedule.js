@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 var expandLastHeight = 0;
 function expandUpcoming(elem) {
 	var upcoming = document.getElementById("upcoming-expand");
@@ -28,7 +27,6 @@ for (var i = 0; i < coll.length; i++) {
 		}
 	});
 }
-=======
 var expandLastHeight = 0;
 function expandUpcoming(elem) {
 	var upcoming = document.getElementById("upcoming-expand");
@@ -58,4 +56,3 @@ for (var i = 0; i < coll.length; i++) {
 		}
 	});
 }
->>>>>>> bcc21a1a0f95ad0d6bc859db173bb26bc0ed8b23
