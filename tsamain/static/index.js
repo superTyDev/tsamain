@@ -13,7 +13,6 @@ document.body.onload = function () {
 		startTimer(slideCards[i].getElementsByClassName("slide-time")[0]);
 	}
 	setTimeout(placeNav, 300);
-	animateHTML().init();
 };
 
 // NAVBAR
@@ -88,44 +87,22 @@ function startTimer(display) {
 	}, 1000);
 }
 
-var animateHTML = function () {
-	var elems;
-	var windowHeight;
+const observer = new IntersectionObserver(entries => {
 
-	function init() {
-		elems = document.querySelectorAll(".pre-slide-in");
-		windowHeight = window.innerHeight;
-		addEventHandlers();
-		checkPosition();
-	}
+	entries.forEach(entry => {
 
-	function addEventHandlers() {
-		window.addEventListener("scroll", checkPosition);
-		window.addEventListener("resize", init);
-	}
+		if (entry.isIntersecting) {
+			console.log(entry.target.className);
 
-	function checkPosition() {
-		for (var i = 0; i < elems.length; i++) {
-			var positionFromTop = elems[i].getBoundingClientRect().top;
-			if (positionFromTop - windowHeight <= 0) {
-				if (elems[i].className.find("pre-animate")) {
-				}
-				elems[i].className = elems[i].className.replace(
-					"pre-animate__flipInY",
-					"animate__flipInY"
-				);
-			}
+			entry.target.className.className.replace("pre-animate__", "animate__");
 
-			if (positionFromTop - windowHeight > 1 || positionFromTop < 0) {
-				elems[i].className = elems[i].className.replace(
-					"animate__flipInY",
-					"pre-animate__flipInY"
-				);
-			}
+			return; // if we added the class, exit the function
 		}
-	}
 
-	return {
-		init: init,
-	};
-};
+		// We're not intersecting, so remove the class!
+		entry.target.className.className.replace("animate__", "pre-animate__");
+		console.log(3);
+	});
+});
+
+observer.observe(document.querySelector('.animate__animated'));

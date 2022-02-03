@@ -1,10 +1,7 @@
-{% extends 'base.html' %} 
+{% extends 'base.html' %}
 {% block title %}Home{% endblock %}
 {% block style %}
-<link
-rel="stylesheet"
-href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"
-/>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
 {% endblock%}
 {% block header %}
 <header>
@@ -14,11 +11,13 @@ href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"
 			<img src="{{ url_for('static', filename='logo_600.png') }}" alt="Prism Concerts" />
 			<div class="slideshow">
 				{% for row in featured %}
-				<div class="slide fade"><h2>High-Class<br />High School Entertainments</h2>
+				<div class="slide fade">
+					<h2>High-Class<br />High School Entertainments</h2>
 					<h3 class="morebutton">
 						<a href="/event/live/{{ row['eventid'] }}">Attend Now <i class="jump">→</i></a>
-					</h3></div>
-				
+					</h3>
+				</div>
+
 				{% endfor %}
 			</div>
 		</div>
@@ -48,8 +47,8 @@ href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"
 		<h2>Upcoming</h2>
 		<div class="row">
 			{% for row in info %}
-			<div class="card-outside {% if loop.index == 1 %}{{ "fullwidth" }}{% endif %}" href="/event/{{ row['eventid'] }}"
-				onclick="location.href=`/event/{{ row['eventid'] }}`;">				
+			<div class="card-outside {% if loop.index == 1 %}{{ "fullwidth" }}{% endif %}"
+				href="/event/{{ row['eventid'] }}" onclick="location.href=`/event/{{ row['eventid'] }}`;">
 				<div class="card">
 					{% if row['eventhero'] %}
 					<img src="{{ os.path.join(url_for('static', filename = 'upload'), row['eventhero']) }}"
@@ -57,7 +56,7 @@ href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"
 					{% else %}
 					<div class="img"
 						style="background-color: #{% for i in range(6) %}{{ random.choice('ABCDEF0123456789') }}{% endfor %}">
-						{{ row['eventtitle'][0].title() }}						
+						{{ row['eventtitle'][0].title() }}
 					</div>
 					{% endif %}
 					<div class="container">
@@ -88,7 +87,7 @@ href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"
 	</div>
 	<div class="slant" id="more">
 		<i class="fa fa-info-circle watermark"></i>
-		<h2 >About</h2>
+		<h2>About</h2>
 		<p>Welcome to our annual prism concert here at George Jenkins High School! Just like a prism reflects the full
 			range of light, Prism Performances relects a variety of skills and acts.</p>
 		<p>
@@ -99,7 +98,7 @@ href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"
 			doing it online! So, come, join us, and experience all of the events that
 			lie ahead of us!
 		</p>
-		<div class="more animate__animated animate__flipInY">
+		<div class="more animate__animated pre-animate__flipInY">
 			<a href="/about">Learn More</a>
 		</div>
 	</div>
