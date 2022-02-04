@@ -170,17 +170,20 @@ main.extra {
 	right: 0px;
 	left: 0px;
 	margin: 5% 20%;
-	opacity: 0.8;
 }
 .flash {
 	text-align: center;
 	font-weight: bold;
 	background-color: var(--color-primary);
 	color: var(--color-theme-text);
-	box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.6);
+	box-shadow: 4px 4px 10px 5px rgba(0, 0, 0, 0.2);
 	padding: 15px;
 	font-size: 100%;
 	margin-top: 10px;
+	opacity: 0.8;
+}
+.flash:hover {
+				opacity: 1; 
 }
 
 /* MAIN PAGE */

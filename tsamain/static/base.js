@@ -94,7 +94,13 @@ for (const element of flashMessages) {
 				"animate__bounceInDown",
 				"animate__lightSpeedOutRight"
 			);
-		}, 2000);
+		}, 4000);
+	});
+	element.addEventListener("click", () => {		
+			element.classList.replace(
+				"animate__bounceInDown",
+				"animate__lightSpeedOutRight"
+			);
 	});
 }
 

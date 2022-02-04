@@ -43,7 +43,7 @@ function showSlides(n) {
 		slideCards[slideIndex - 1].style.display = "block";
 
 		clearInterval(slideInterval);
-		slideInterval = setInterval(nextSlide, 5000);
+		slideInterval = setInterval(nextSlide, 7000);
 	}
 }
 

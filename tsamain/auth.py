@@ -77,6 +77,7 @@ def register():
             except db.IntegrityError:
                 error = f"User {username} is already registered."
             else:
+                flash(f"{username} registered.")
                 return redirect(url_for("auth.login"))
 
         flash(error)
@@ -105,6 +106,7 @@ def login():
         if error is None:
             session.clear()
             session['userid'] = user['userid']
+            flash(f"{username} logged in.")
             if next_url:
                 return redirect(next_url)
             return redirect(url_for('index'))
