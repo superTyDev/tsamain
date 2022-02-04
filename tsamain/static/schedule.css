@@ -10,21 +10,7 @@
 }
 
 .collapsible-content {
-	display: none;
-	overflow: hidden;
-}
-.collapsible {
-	border: none;
-	text-align: left;
-	outline: none;
-}
-
-.collapsible.active {
-	background-color: var(--color-primary-light);
-	color: var(--color-text-theme);
-}
-
-.collapsible-content {
-	display: none;
-	overflow: hidden;
+	max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.2s ease-out;
 }

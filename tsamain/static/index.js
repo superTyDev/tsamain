@@ -13,6 +13,9 @@ document.body.onload = function () {
 		startTimer(slideCards[i].getElementsByClassName("slide-time")[0]);
 	}
 	setTimeout(placeNav, 300);
+	document.querySelectorAll(".animate__animated").forEach((el) => {
+		observer.observe(el);
+	})
 };
 
 // NAVBAR
@@ -90,14 +93,14 @@ function startTimer(display) {
 const observer = new IntersectionObserver((entries) => {
 	entries.forEach((entry) => {
 		if (entry.isIntersecting) {
-			entry.target.className.replace("pre-animate__", "animate__");
+			entry.target.classList.value.add("pre-animate__", "animate__");
+			console.log(entry.target)
 
 			return; // if we added the class, exit the function
 		}
 
 		// We're not intersecting, so remove the class!
 		entry.target.className.replace("animate__", "pre-animate__");
+
 	});
 });
-
-observer.observe(document.querySelector(".animate__animated"));
