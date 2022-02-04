@@ -170,7 +170,6 @@ main.extra {
 	right: 0px;
 	left: 0px;
 	margin: 5% 20%;
-	pointer-events: none;
 	opacity: 0.8;
 }
 .flash {
@@ -182,9 +181,6 @@ main.extra {
 	padding: 15px;
 	font-size: 100%;
 	margin-top: 10px;
-	animation: fade 0.5s ease 2s;
-	animation-direction: reverse;
-	animation-fill-mode: forwards;
 }
 
 /* MAIN PAGE */
@@ -327,8 +323,8 @@ hr {
 	pointer-events: none;
 }
 .danger {
-  filter: hue-rotate(240deg);
-  filter: invert(100%)
+	filter: hue-rotate(240deg);
+	filter: invert(100%);
 }
 .side-button {
 	display: flex;
@@ -339,7 +335,6 @@ hr {
 	width: auto;
 	flex: 90% 1 1;
 }
-
 
 /* - CARDS */
 .row {

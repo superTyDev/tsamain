@@ -24,15 +24,3 @@ $(function () {
 	$(".cc-expires").formatCardExpiry();
 	$(".cc-cvc").formatCardCVC();
 });
-
-function togglePassword(toggle, input) {
-	if (input.type === "password") {
-		input.type = "text";
-		toggle.classList.toggle("fa-eye")
-		toggle.classList.toggle("fa-eye-slash")
-	} else {
-		input.type = "password";
-		toggle.classList.toggle("fa-eye")
-		toggle.classList.toggle("fa-eye-slash")
-	}
-}

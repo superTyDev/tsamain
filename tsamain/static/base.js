@@ -4,6 +4,16 @@ var main = document.getElementsByTagName("main")[0];
 var theme = document.getElementById("theme");
 var sticky = navbar.offsetTop;
 var footer = document.getElementsByTagName("footer")[0];
+var flashMessages = document.getElementsByClassName("flash");
+
+console.log(
+	"%cThank You for Visiting Prism Performances!",
+	"color: blue; font-size: 20px"
+);
+console.log(
+	"%cYou can view the source code at https://github.com/superTyDev/tsamain.",
+	"color: blue; font-size: 15px"
+);
 
 window.onload = function () {
 	placeFooter();
@@ -59,13 +69,14 @@ function setTheme(themeName) {
 		setTheme("theme-contrast");
 	} else if (localStorage.getItem("theme") === "theme-dark") {
 		setTheme("theme-dark");
-	}
-	else {
-		if (window.matchMedia &&
-			window.matchMedia('(prefers-color-scheme: dark)').matches) {
+	} else {
+		if (
+			window.matchMedia &&
+			window.matchMedia("(prefers-color-scheme: dark)").matches
+		) {
 			setTheme("theme-dark");
 		} else {
-			setTheme("theme-light")
+			setTheme("theme-light");
 		}
 	}
 })();
@@ -76,8 +87,31 @@ function pushMessage(message) {
 		"messages"
 	)[0].innerHTML += `<div class="flash" onclick="this.style.display='none'">${message}</div >`;
 }
+for (const element of flashMessages) {
+	element.addEventListener("animationend", () => {
+		setTimeout(() => {
+			element.classList.replace(
+				"animate__bounceInDown",
+				"animate__lightSpeedOutRight"
+			);
+		}, 2000);
+	});
+}
 
 // FOOTER
 function placeFooter() {
 	main.style.minHeight = window.innerHeight - footer.offsetHeight + "px";
+}
+
+// TOGGLE PASSWORD
+function togglePassword(toggle, input) {
+	if (input.type === "password") {
+		input.type = "text";
+		toggle.classList.toggle("fa-eye");
+		toggle.classList.toggle("fa-eye-slash");
+	} else {
+		input.type = "password";
+		toggle.classList.toggle("fa-eye");
+		toggle.classList.toggle("fa-eye-slash");
+	}
 }

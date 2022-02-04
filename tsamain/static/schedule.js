@@ -19,7 +19,6 @@ for (var i = 0; i < coll.length; i++) {
 		var content = document.getElementsByClassName("collapsible-content")[
 			this.dataset.index
 		];
-		console.log(content);
 		if (content.style.display === "block") {
 			content.style.display = "none";
 		} else {
@@ -48,7 +47,6 @@ for (var i = 0; i < coll.length; i++) {
 		var content = document.getElementsByClassName("collapsible-content")[
 			this.dataset.index
 		];
-		console.log(content);
 		if (content.style.display === "block") {
 			content.style.display = "none";
 		} else {

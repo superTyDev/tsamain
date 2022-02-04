@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" class="theme-dark">
+<html lang="en" class="theme-light">
 	<head>
 		<!-- Set info for accessibility -->
 		<meta charset="UTF-8" />
@@ -60,6 +60,10 @@
 			rel="stylesheet"
 			href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
 		/>
+		<link
+			rel="stylesheet"
+			href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"
+		/>
 	</head>
 
 	<body>
@@ -91,20 +95,25 @@
 						Account
 						<span class="nav-more"></span>
 					</a>
+					{% if g.user %}
 					<div class="nav-dropdown-content">
-						{% if g.user %}
+						<a href="{{ url_for('event.dashboard') }}">Dashboard</a>
 						<a href="{{ url_for('auth.logout') }}">Log Out</a>
-						{% else %}
+					</div>
+					{% else %}
+					<div class="nav-dropdown-content">
 						<a href="{{ url_for('auth.register') }}">Register</a>
 						<a href="{{ url_for('auth.login') }}">Login</a>
-						{% endif %}
 					</div>
+					{% endif %}
 				</div>
 			</div>
 		</nav>
 		<div class="messages">
 			{% for message in get_flashed_messages() %}
-			<div class="flash">{{ message }}</div>
+			<div class="flash animate__animated animate__bounceInDown">
+				{{ message }}
+			</div>
 			{% endfor %}
 		</div>
 		{% block content %}{% endblock %}

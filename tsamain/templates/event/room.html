@@ -114,7 +114,6 @@
 		});
 		function switchAvatar() {
 			var heads = document.querySelectorAll("#player .head");
-			console.log(costume);
 			costume += 1;
 
 			if (costume >= heads.length) {
@@ -127,7 +126,6 @@
 				} else {
 					heads[i].setAttribute("visible", false);
 				}
-				console.log(heads[i].getAttribute("visible"));
 			}
 		}
 	</script>
