@@ -3,7 +3,7 @@ content %}
 <main>
 	<div class="upcoming">
 		<div class="">
-			<form method="GET" onsubmit="return validateForm()">
+			<form method="GET" id="searchForm">
 				<div class="side-button">
 					<input
 						type="text"
@@ -11,7 +11,11 @@ content %}
 						id="query"
 						placeholder="Search by Title..."
 					/>
-					<i class="fa fa-search viewpass"></i>
+					<i
+						class="fa fa-search viewpass"
+						href="javascript:{}"
+						onclick="document.getElementById('searchForm').submit();"
+					></i>
 					<i class="fa fa-caret-down viewpass collapsible"></i>
 				</div>
 				<div class="collapsible-content">
@@ -22,6 +26,7 @@ content %}
 						placeholder="Search by Author..."
 					/>
 					<input type="number" name="n" id="number" placeholder="Enter Page" />
+					<input type="submit" style="display: none" />
 					<hr />
 				</div>
 			</form>

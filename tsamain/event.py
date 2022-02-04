@@ -55,8 +55,8 @@ def schedule():
                        clause, ()).fetchone()
 
     if 'a' in request.args and request.args.get('a') != "":
-        clause += " AND u.username = " + \
-            re.sub(r'\W+', '', request.args.get('a'))
+        clause += " AND u.username LIKE '%" + \
+            re.sub(r'\W+', '', request.args.get('a')) + "%'"
 
     if 'r' in request.args and request.args.get('a') != "" and request.args.get('r') < count:
         num = request.args.get('r')
@@ -64,11 +64,12 @@ def schedule():
         num = 0
 
     if 'q' in request.args and request.args.get('q') != "":
-        clause += " AND e.eventtitle = " + \
-            re.sub(r'\W+', '', request.args.get('q'))
+        clause += " AND e.eventtitle LIKE '%" + \
+            re.sub(r'\W+', '', request.args.get('q')) + "%'"
 
     info = db.execute("SELECT e.eventtitle, e.eventdate, e.eventlevel, e.eventprice, d.eventdesc, d.eventhero, e.eventid FROM events e LEFT JOIN edetails d ON e.eventid = d.deventid LEFT JOIN user u ON u.userid = e.authorid WHERE eventdate > DATE('now', '-2 hours') " +
                       clause + " ORDER BY eventdate ASC LIMIT ?, 10", (num,)).fetchall()
+    flash(clause)
     return render_template('event/schedule.html', info=info, count=count)
 
 

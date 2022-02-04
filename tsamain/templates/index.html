@@ -44,7 +44,7 @@
 		<h2>Upcoming</h2>
 		<div class="row">
 			{% for row in info %}
-			<div class="card-outside animate__animated pre-animate__backInRight animate__delay-1s {% if loop.index == 1 %}{{ "fullwidth" }}{% endif %}"
+			<div class="card-outside animate__animated pre-animate__backInRight {% if loop.index == 1 %}{{ "fullwidth" }}{% endif %}"
 				href="/event/{{ row['eventid'] }}" onclick="location.href=`/event/{{ row['eventid'] }}`;">
 				<div class="card">
 					{% if row['eventhero'] %}
@@ -77,7 +77,7 @@
 			</div>
 			{% endfor %}
 
-			<div class="more">
+			<div class="more animate__animated pre-animate__flipInY animate__delay-1s">
 				<a href="{{ url_for('event.schedule') }}">View More</a>
 			</div>
 		</div>
@@ -101,7 +101,7 @@
 	</div>
 	<div class="accounts">
 		<h2>Accounts</h2>
-		<div class="table-cont">
+		<div class="table-cont animate__animated pre-animate__fadeInUp">
 			<div class="card-outside">
 				<div class="card">
 					<h3 class="plan">Guest</h3>
@@ -142,7 +142,7 @@
 				</div>
 			</div>
 		</div>
-		<div class="more">
+		<div class="more animate__animated pre-animate__flipInY animate__delay-1s">
 			<a href="{{ url_for('auth.register') }}">Sign Up</a>
 		</div>
 	</div>
