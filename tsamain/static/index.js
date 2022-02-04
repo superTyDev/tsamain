@@ -93,14 +93,12 @@ function startTimer(display) {
 const observer = new IntersectionObserver((entries) => {
 	entries.forEach((entry) => {
 		if (entry.isIntersecting) {
-			entry.target.classList.value.add("pre-animate__", "animate__");
-			console.log(entry.target)
+		 entry.target.className = entry.target.className.replaceAll("pre-animate__", "animate__");
 
 			return; // if we added the class, exit the function
 		}
 
 		// We're not intersecting, so remove the class!
-		entry.target.className.replace("animate__", "pre-animate__");
-
+		// entry.target.className = entry.target.className.replaceAll("animate__", "pre-animate__").replaceAll("pre-animate__animated", "animate__animated");
 	});
 });
