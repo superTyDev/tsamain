@@ -69,7 +69,6 @@ def schedule():
 
     info = db.execute("SELECT e.eventtitle, e.eventdate, e.eventlevel, e.eventprice, d.eventdesc, d.eventhero, e.eventid FROM events e LEFT JOIN edetails d ON e.eventid = d.deventid LEFT JOIN user u ON u.userid = e.authorid WHERE eventdate > DATE('now', '-2 hours') " +
                       clause + " ORDER BY eventdate ASC LIMIT ?, 10", (num,)).fetchall()
-    flash(clause)
     return render_template('event/schedule.html', info=info, count=count)
 
 
