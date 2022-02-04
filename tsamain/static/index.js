@@ -15,7 +15,7 @@ document.body.onload = function () {
 	setTimeout(placeNav, 300);
 	document.querySelectorAll(".animate__animated").forEach((el) => {
 		observer.observe(el);
-	})
+	});
 };
 
 // NAVBAR
@@ -93,7 +93,10 @@ function startTimer(display) {
 const observer = new IntersectionObserver((entries) => {
 	entries.forEach((entry) => {
 		if (entry.isIntersecting) {
-		 entry.target.className = entry.target.className.replaceAll("pre-animate__", "animate__");
+			entry.target.className = entry.target.className.replaceAll(
+				"pre-animate__",
+				"animate__"
+			);
 
 			return; // if we added the class, exit the function
 		}
