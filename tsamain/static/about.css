@@ -25,3 +25,22 @@
 	left: 50%;
 	transform: translate(-50%, -50%);
 }
+
+ .more {
+	width: 50%;
+	min-width: 150px;
+	margin: 20px auto;
+}
+ .more a {
+	padding: 5px 10px;
+	border-radius: 2px;
+	text-decoration: none;
+	text-align: center;
+	width: 100%;
+	color: var(--color-primary);
+	border: 2px solid var(--color-primary);
+}
+ .more a:hover {
+	background-color: var(--color-primary);
+	color: var(--color-text-theme);
+}
