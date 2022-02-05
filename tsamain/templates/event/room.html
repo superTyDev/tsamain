@@ -40,7 +40,7 @@
 		</div> -->
 	<a-scene dynamic-room>
 		<a-assets>
-			<video autoplay muted loop id="theater" {% if row['eventvideo'] %}
+			<video loop id="theater" {% if row['eventvideo'] %}
 				src="{{ '/static/upload/' + row['eventvideo'] }}" {% else %} src="{{ '/static/sampleVideo.mp4' }}"
 				{% endif %} crossorigin="anonymous"></video>
 			<img id="marble" src="{{ url_for('static', filename='marble-1024.jpg') }}" crossorigin="anonymous" />
