@@ -12,8 +12,8 @@
 	<div>
 		<h1>{{ row['eventtitle'] }}</h1>
 		<h3>
-			{{ datetime.strptime(row['eventdate'], "%Y-%m-%dT%H:%M").strftime("%#I:%M
-			%p, %b. %#d") }}
+			{{ datetime.strptime(row['eventdate'],
+			"%Y-%m-%dT%H:%M").strftime("%#I:%M %p, %b. %#d") }}
 		</h3>
 		<h4>
 			Published by {{ row['username'] }}
@@ -27,8 +27,8 @@
 
 		<div class="banner">{{ row['eventlevel'] }}</div>
 		<hr />
-		{% if row['eventprice'] %} ${{ '{:.2f}'.format(row['eventprice']) }} {% else
-		%} Free {% endif %}
+		{% if row['eventprice'] %} ${{ '{:.2f}'.format(row['eventprice']) }} {%
+		else %} Free {% endif %}
 		<div class="more_info">
 			<a href="#more">Add To Cart</a>
 			<a href="/auth/cart">View Cart</a>

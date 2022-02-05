@@ -25,7 +25,12 @@ content %}
 						id="author"
 						placeholder="Search by Author..."
 					/>
-					<input type="number" name="n" id="number" placeholder="Enter Page" />
+					<input
+						type="number"
+						name="n"
+						id="number"
+						placeholder="Enter Page"
+					/>
 					<input type="submit" style="display: none" />
 					<hr />
 				</div>
@@ -59,15 +64,22 @@ content %}
 							"%Y-%m-%dT%H:%M").strftime("%#I:%M %p, %b. %#d") }}
 						</h6>
 						<h4><b>{{ row['eventtitle'] }}</b></h4>
-						<p>{% if row['eventdesc'] %}{{ row['eventdesc'] }}{% endif %}</p>
+						<p>
+							{% if row['eventdesc'] %}{{ row['eventdesc'] }}{%
+							endif %}
+						</p>
 						<div class="banner">{{ row['eventlevel'] }}</div>
 						<div class="corner">
-							{% if row['eventprice'] %} ${{ '{:.2f}'.format(row['eventprice'])
-							}} {% else %} Free {% endif %}
+							{% if row['eventprice'] %} ${{
+							'{:.2f}'.format(row['eventprice']) }} {% else %}
+							Free {% endif %}
 						</div>
 						<div class="more_info">
 							<a href="/event/{{ row['eventid'] }}"> More </a>
-							<form method="POST" action="{{url_for('auth.cartmanage')}}">
+							<form
+								method="POST"
+								action="{{url_for('auth.cartmanage')}}"
+							>
 								<button
 									type="submit"
 									name="addcart"

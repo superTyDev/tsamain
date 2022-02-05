@@ -96,11 +96,11 @@ for (const element of flashMessages) {
 			);
 		}, 4000);
 	});
-	element.addEventListener("click", () => {		
-			element.classList.replace(
-				"animate__bounceInDown",
-				"animate__lightSpeedOutRight"
-			);
+	element.addEventListener("click", () => {
+		element.classList.replace(
+			"animate__bounceInDown",
+			"animate__lightSpeedOutRight"
+		);
 	});
 }
 
@@ -124,8 +124,12 @@ function togglePassword(toggle, input) {
 
 // Mobile Dev Tools
 (function () {
-    var src = '//cdn.jsdelivr.net/npm/eruda';
-    if (!/dev/.test(window.location) && localStorage.getItem('active-eruda') != 'true') return;
-    document.write('<scr' + 'ipt src="' + src + '"></scr' + 'ipt>');
-    document.write('<scr' + 'ipt>eruda.init();</scr' + 'ipt>');
+	var src = "//cdn.jsdelivr.net/npm/eruda";
+	if (
+		!/dev/.test(window.location) &&
+		localStorage.getItem("active-eruda") != "true"
+	)
+		return;
+	document.write("<scr" + 'ipt src="' + src + '"></scr' + "ipt>");
+	document.write("<scr" + "ipt>eruda.init();</scr" + "ipt>");
 })();

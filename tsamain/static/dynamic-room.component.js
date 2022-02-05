@@ -56,11 +56,15 @@ AFRAME.registerComponent("dynamic-room", {
 			username = document.body.dataset.username;
 		}
 
-		var myNametag = document.getElementById("player").querySelector(".nametag");
+		var myNametag = document
+			.getElementById("player")
+			.querySelector(".nametag");
 		myNametag.setAttribute("text", "value", username);
 		switchAvatar();
 
-		document.querySelector("a-scene").components["networked-scene"].connect();
+		document
+			.querySelector("a-scene")
+			.components["networked-scene"].connect();
 	},
 });
 AFRAME.registerComponent("play-on-click", {
