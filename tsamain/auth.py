@@ -62,6 +62,7 @@ def register():
             creditnumber = None
         else:
             creditnumber = "0000000000000000"
+            userlevel = 2
 
         if error is None:
             try:

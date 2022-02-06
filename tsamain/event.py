@@ -52,13 +52,13 @@ def schedule():
     clause = ""
     db = get_db()
     count = db.execute("SELECT COUNT(*) FROM events e WHERE eventdate > DATE('now', '-2 hours') " +
-                       clause, ()).fetchone()
+                       clause, ()).fetchall()
 
     if 'a' in request.args and request.args.get('a') != "":
         clause += " AND u.username LIKE '%" + \
             re.sub(r'\W+', '', request.args.get('a')) + "%'"
 
-    if 'r' in request.args and request.args.get('a') != "" and request.args.get('r') < count:
+    if 'r' in request.args and request.args.get('r') != "" and int(request.args.get('r')) < count[0][0]:
         num = request.args.get('r')
     else:
         num = 0
@@ -69,7 +69,7 @@ def schedule():
 
     info = db.execute("SELECT e.eventtitle, e.eventdate, e.eventlevel, e.eventprice, d.eventdesc, d.eventhero, e.eventid FROM events e LEFT JOIN edetails d ON e.eventid = d.deventid LEFT JOIN user u ON u.userid = e.authorid WHERE eventdate > DATE('now', '-2 hours') " +
                       clause + " ORDER BY eventdate ASC LIMIT ?, 10", (num,)).fetchall()
-    return render_template('event/schedule.html', info=info, count=count)
+    return render_template('event/schedule.html', info=info, count=count[0][0], num=num)
 
 
 @ bp.route('/live/<int:eventid>', methods=('GET', 'POST'))
@@ -124,9 +124,10 @@ def creator():
                 db = get_db()
                 db.execute(
                     'DELETE FROM events WHERE eventid = ?',
-                    (removeevent)
+                    (removeevent,)
                 )
                 db.commit()
+                flash(f'Event {removeevent} was deleted.')
                 return redirect(url_for('event.dashboard'))
 
             title = request.form['title']
