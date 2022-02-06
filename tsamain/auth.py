@@ -22,6 +22,9 @@ def login_required(view):
 
 @bp.route('/register', methods=('GET', 'POST'))
 def register():
+    returnemail = ""
+    returnusername = ""
+
     if 'd' in request.args:
         developer = True
     else:
@@ -38,20 +41,32 @@ def register():
 
         if not email:
             error = 'Email is required.'
+            returnusername = username
         if not username:
             error = 'Username is required.'
+            returnemail = email
 
         if not password:
             error = 'Password is required.'
+            returnemail = email
+            returnusername = username
         elif password != rpassword:
             error = 'Passwords do not match.'
+            returnemail = email
+            returnusername = username
 
         if len(password) < 8:
             error = 'Password must be greater than 8 characters'
+            returnemail = email
+            returnusername = username
         if not any(char.isupper() for char in password):
             error = 'Password must have a capital letter'
+            returnemail = email
+            returnusername = username
         if not any(char.isnumeric() for char in password):
             error = 'Password must have a number'
+            returnemail = email
+            returnusername = username
 
         if not 'userlevel' in request.form:
             userlevel = 1
@@ -83,7 +98,7 @@ def register():
 
         flash(error)
 
-    return render_template('auth/register.html', developer=developer)
+    return render_template('auth/register.html', developer=developer, username=returnusername, email=returnemail)
 
 
 @ bp.route('/authmanage', methods=['POST'])

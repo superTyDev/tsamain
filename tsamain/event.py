@@ -57,6 +57,9 @@ def schedule():
     if 'a' in request.args and request.args.get('a') != "":
         clause += " AND u.username LIKE '%" + \
             re.sub(r'\W+', '', request.args.get('a')) + "%'"
+        author = request.args.get('a')
+    else:
+        author = ""
 
     if 'r' in request.args and request.args.get('r') != "" and int(request.args.get('r')) < count[0][0]:
         num = request.args.get('r')
@@ -66,10 +69,13 @@ def schedule():
     if 'q' in request.args and request.args.get('q') != "":
         clause += " AND e.eventtitle LIKE '%" + \
             re.sub(r'\W+', '', request.args.get('q')) + "%'"
+        query = request.args.get('q')
+    else:
+        query = ""
 
     info = db.execute("SELECT e.eventtitle, e.eventdate, e.eventlevel, e.eventprice, d.eventdesc, d.eventhero, e.eventid FROM events e LEFT JOIN edetails d ON e.eventid = d.deventid LEFT JOIN user u ON u.userid = e.authorid WHERE eventdate > DATE('now', '-2 hours') " +
                       clause + " ORDER BY eventdate ASC LIMIT ?, 10", (num,)).fetchall()
-    return render_template('event/schedule.html', info=info, count=count[0][0], num=num)
+    return render_template('event/schedule.html', info=info, count=count[0][0], num=num, author=author, query=query)
 
 
 @ bp.route('/live/<int:eventid>', methods=('GET', 'POST'))

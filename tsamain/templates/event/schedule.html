@@ -9,6 +9,7 @@ content %}
 						type="text"
 						name="q"
 						id="query"
+						value="{{ query }}"
 						placeholder="Search by Title..."
 					/>
 					<i
@@ -23,6 +24,7 @@ content %}
 						type="text"
 						name="a"
 						id="author"
+						value="{{ author }}"
 						placeholder="Search by Author..."
 					/>
 					<input type="number" name="r" id="number" placeholder="Enter Page" />
@@ -92,6 +94,8 @@ content %}
 				name="r"
 				style="display: none"
 			/>
+			<input type="text" value="{{ author }}" name="a" style="display: none" />
+			<input type="text" value="{{ query }}" name="q" style="display: none" />
 			<button type="submit">Next Page →</button>
 		</form>
 	</div>
