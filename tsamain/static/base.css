@@ -43,7 +43,7 @@
 	--color-text-nav: var(--color-primary-dark);
 	--color-text-theme: black;
 	--color-input: #f1f1f1;
-	--color-input-focus: #ddd;
+	--color-input-focus: #cdcdcd;
 }
 
 /* GENERAL */
@@ -184,6 +184,34 @@ main.extra {
 }
 .flash:hover {
 	opacity: 1;
+}
+.inlineAlert {
+	width: 100%;
+	background-color: var(--color-primary);
+	color: var(--color-text-theme);
+	font-size: 100%;
+	margin: 20px 0;
+	font-weight: bold;
+	display: flex;
+	overflow: hidden;
+	max-height: 300px;
+	transition: max-height 2s;
+}
+.inlineAlert .leftBody {
+	flex: 2;
+	overflow: auto;
+	padding: 15px;
+}
+.inlineAlert .rightClose {
+	padding: 0 10px 0 20px;
+	display: flex;
+}
+.inlineAlert .rightClose:hover {
+	background-color: var(--color-primary-light);
+}
+.inlineAlert .rightClose i {
+	text-align: center;
+	align-self: center;
 }
 
 /* MAIN PAGE */

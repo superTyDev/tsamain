@@ -6,14 +6,40 @@ content %} {% block style %}
 <main>
 	<div>
 		<h1>Register</h1>
+		<div class="inlineAlert">
+			<div class="leftBody">
+				<h3>Account Notice</h3>
+				<p>
+					For the competition, accounts were made for judges. Any changes made
+					to this server will be reset once a day.
+				</p>
+				<p>
+					Basic Account: username = "tsabasic", password = "TSApassword2022".
+				</p>
+				<p>
+					Extended Account: username = "tsaextended", password =
+					"TSApassword2022".
+				</p>
+				<p>
+					Developer Account: username = "tsadeveloper", password =
+					"TSApassword2022".
+				</p>
+			</div>
+			<div
+				class="rightClose"
+				onclick="this.parentElement.style.maxHeight = '0px';"
+			>
+				<i class="fa fa-window-close-o"></i>
+			</div>
+		</div>
 		<div class="tab">
-			<button class="tablinks" onclick="openPay(this)">Basic</button>
+			<button class="tablinks active" onclick="openPay(this)">Basic</button>
 			<button class="tablinks" onclick="openPay(this)">Extended</button>
 			{% if developer %}
 			<button class="tablinks" onclick="openPay(this)">Developer</button>
 			{% endif %}
 		</div>
-		<div class="tabcontent fade">
+		<div class="tabcontent fade" style="display: block">
 			<form method="POST">
 				<div>
 					<p>
@@ -22,12 +48,7 @@ content %} {% block style %}
 					</p>
 					<hr />
 					<label for="email">Email</label>
-					<input
-						type="text"
-						name="email"
-						placeholder="Enter Email"
-						required
-					/>
+					<input type="text" name="email" placeholder="Enter Email" required />
 					<label for="username">Username</label>
 					<input
 						type="text"
@@ -88,12 +109,7 @@ content %} {% block style %}
 					</p>
 					<hr />
 					<label for="email">Email</label>
-					<input
-						type="text"
-						name="email"
-						placeholder="Enter Email"
-						required
-					/>
+					<input type="text" name="email" placeholder="Enter Email" required />
 					<label for="username">Username</label>
 					<input
 						type="text"
@@ -174,12 +190,7 @@ content %} {% block style %}
 					</p>
 					<hr />
 					<label for="email">Email</label>
-					<input
-						type="text"
-						name="email"
-						placeholder="Enter Email"
-						required
-					/>
+					<input type="text" name="email" placeholder="Enter Email" required />
 					<label for="username">Username</label>
 					<input
 						type="text"
@@ -225,8 +236,8 @@ content %} {% block style %}
 					/>
 
 					<p>
-						Disclaimer: A developer account must be approved by the
-						site admin before it takes effect.
+						Disclaimer: A developer account must be approved by the site admin
+						before it takes effect.
 						<a href="/legal">Terms & Privacy</a>.
 					</p>
 					<button type="submit" class="registerbtn">Register</button>

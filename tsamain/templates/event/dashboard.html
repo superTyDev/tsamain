@@ -161,7 +161,25 @@ content %}
 		</div>
 		<span
 			><a href="{{ url_for('event.create') }}">Create Event</a> |
-			<a href="{{ url_for('auth.cart') }}">View Cart</a>
+			<a href="{{ url_for('auth.cart') }}">View Cart</a> |
+			<a  id="openModal" class="danger">Delete Account</a>
+
+			<div id="deleteModal" class="modal">
+
+				<div class="modal-content">
+					<div class="modal-header danger">
+					  <span class="closeModal">&times;</span>
+					  <h2>Confirm Delete Account</h2>
+					</div>
+					<div class="modal-body">
+					  <p>Are you sure you want to delete your account?  All events you created and attended, gifts, transactions, etc. will be permanately deleted and not recoverable.</p>
+
+					  <form method="POST" action="{{url_for('auth.authmanage')}}">
+						  <button name="deleteAccount" type="submit" class="danger" value="{{ g.user['userid'] }}">YES, DELETE MY ACCOUNT.</button>
+					  </form>
+					</div>
+				  </div>
+			</div>
 		</span>
 	</div>
 </main>
