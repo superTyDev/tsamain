@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>The End</title>
+
+		<style>
+			#button {
+				position: fixed;
+				top: 0;
+				right: 0;
+				left: 0;
+				bottom: 0;
+				background-color: red;
+				text-align: center;
+			}
+			#button:hover {
+				background-color: darkred;
+				color: white;
+			}
+			#button h1 {
+				font-size: 20vw;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="button" onclick="playAudio()">
+			<h1>The<br />End</h1>
+		</div>
+	</body>
+	<script>
+		var audio = new Audio("theEnd.mp3");
+		function playAudio() {
+			openFullscreen();
+			audio.currentTime = 0;
+			audio.play();
+		}
+
+		var elem = document.getElementById("button");
+
+		function openFullscreen() {
+			if (elem.requestFullscreen) {
+				elem.requestFullscreen();
+			} else if (elem.webkitRequestFullscreen) {
+				/* Safari */
+				elem.webkitRequestFullscreen();
+			} else if (elem.msRequestFullscreen) {
+				/* IE11 */
+				elem.msRequestFullscreen();
+			}
+		}
+	</script>
+</html>
